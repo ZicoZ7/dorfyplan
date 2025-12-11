@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { colors } from '../colors';
 
@@ -16,6 +17,10 @@ export default function SlideShowcase() {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
+        }
+
+        html {
+          scroll-behavior: smooth;
         }
 
         html, body {
@@ -37,6 +42,34 @@ export default function SlideShowcase() {
           min-height: 100vh;
         }
 
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        .animate-in {
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .fade-in {
+          animation: fadeIn 1s ease-out forwards;
+        }
+
         @media (max-width: 768px) {
           body {
             background-size: 25px 25px;
@@ -48,18 +81,25 @@ export default function SlideShowcase() {
 }
 
 function IntroSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <section className="intro-section">
+    <section ref={sectionRef} className="intro-section">
       <div className="intro-content">
-        <h1 className="intro-title">
+        <h1 className={`intro-title ${isVisible ? 'animate-in' : ''}`}>
           What is <span className="brand-name">Dorfy</span>?
         </h1>
 
-        <p className="intro-description">
+        <p className={`intro-description ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.2s' }}>
           A community hub where you can see what everyone&apos;s watching, playing, and wearing.
         </p>
 
-        <div className="content-wrapper">
+        <div className={`content-wrapper ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.4s' }}>
           <div className="app-preview">
             <Image
               src="/homepage.jpg"
@@ -71,22 +111,22 @@ function IntroSection() {
             />
           </div>
 
-          <div className="features-list-wrapper">
-            <div className="intro-features-list">
-              <div className="feature-point">
-                <span className="bullet">•</span>
+          <div className="info-container">
+            <div className="features-list">
+              <div className="feature-item">
+                <span className="icon">🛍️</span>
                 <span>Build features to shop similar items that people are wearing</span>
               </div>
-              <div className="feature-point">
-                <span className="bullet">•</span>
+              <div className="feature-item">
+                <span className="icon">👔</span>
                 <span>Try outfits on yourself before buying</span>
               </div>
-              <div className="feature-point">
-                <span className="bullet">•</span>
+              <div className="feature-item">
+                <span className="icon">🤝</span>
                 <span>Collaborate with brands and affiliate platforms</span>
               </div>
-              <div className="feature-point">
-                <span className="bullet">•</span>
+              <div className="feature-item">
+                <span className="icon">🌐</span>
                 <span>Shop across eBay, Amazon, AliExpress, Walmart & more</span>
               </div>
             </div>
@@ -95,12 +135,12 @@ function IntroSection() {
               href="https://play.google.com/store/apps/details?id=com.sharifzafar.dorfy"
               target="_blank"
               rel="noopener noreferrer"
-              className="google-play-button"
+              className="download-btn"
             >
-              <svg viewBox="0 0 24 24" width="28" height="28" className="play-icon">
-                <path fill="currentColor" d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
               </svg>
-              <span>Download on Google Play</span>
+              Download on Google Play
             </a>
           </div>
         </div>
@@ -132,6 +172,7 @@ function IntroSection() {
           margin: 0;
           line-height: 1.1;
           text-align: center;
+          opacity: 0;
         }
 
         .brand-name {
@@ -145,6 +186,7 @@ function IntroSection() {
           line-height: 1.6;
           margin: 0;
           text-align: center;
+          opacity: 0;
         }
 
         .content-wrapper {
@@ -155,6 +197,7 @@ function IntroSection() {
           align-items: center;
           justify-content: center;
           flex-wrap: wrap;
+          opacity: 0;
         }
 
         .app-preview {
@@ -170,93 +213,130 @@ function IntroSection() {
           width: 100%;
           max-width: 300px;
           height: auto;
+          transition: transform 0.3s ease;
         }
 
-        .features-list-wrapper {
+        .phone-mockup:hover {
+          transform: translateY(-10px);
+        }
+
+        .info-container {
           flex: 1;
           min-width: 320px;
           max-width: 600px;
           display: flex;
           flex-direction: column;
-          gap: 35px;
+          gap: 40px;
         }
 
-        .intro-features-list {
+        .features-list {
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: 24px;
         }
 
-        .feature-point {
+        .feature-item {
           display: flex;
-          align-items: flex-start;
-          gap: 15px;
-          font-size: clamp(1rem, 2vw, 1.2rem);
+          align-items: center;
+          gap: 16px;
+          font-size: clamp(1rem, 1.8vw, 1.15rem);
           color: ${colors.textLight};
-          line-height: 1.6;
+          padding: 16px 20px;
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          transition: all 0.3s ease;
         }
 
-        .bullet {
-          color: ${colors.netflixRed};
-          font-size: 2rem;
-          font-weight: bold;
+        .feature-item:hover {
+          background: rgba(229, 9, 20, 0.1);
+          border-color: rgba(229, 9, 20, 0.3);
+          transform: translateX(10px);
+        }
+
+        .icon {
+          font-size: 1.8rem;
           flex-shrink: 0;
-          line-height: 1;
         }
 
-        .google-play-button {
+        .download-btn {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 14px;
+          gap: 12px;
           background: ${colors.netflixRed};
           color: ${colors.white};
-          padding: 18px 36px;
-          border-radius: 12px;
+          padding: 16px 32px;
+          border-radius: 50px;
           text-decoration: none;
-          font-size: clamp(1.05rem, 2vw, 1.2rem);
+          font-size: 1.05rem;
           font-weight: 700;
           transition: all 0.3s ease;
-          box-shadow: 0 6px 25px rgba(229, 9, 20, 0.5);
+          box-shadow: 0 8px 30px rgba(229, 9, 20, 0.4);
+          align-self: flex-start;
         }
 
-        .google-play-button:hover {
+        .download-btn:hover {
           transform: translateY(-3px);
-          box-shadow: 0 10px 40px rgba(229, 9, 20, 0.7);
-          background: #f40612;
+          box-shadow: 0 12px 40px rgba(229, 9, 20, 0.6);
         }
 
-        .play-icon {
-          flex-shrink: 0;
-        }
-
-        @media (max-width: 968px) {
+        @media (max-width: 1024px) {
           .content-wrapper {
-            flex-direction: column;
-            gap: 40px;
+            grid-template-columns: 1fr;
+            gap: 50px;
           }
 
-          .features-list-wrapper {
-            width: 100%;
+          .phone-container {
+            order: -1;
           }
 
-          .google-play-button {
-            width: 100%;
-            max-width: 400px;
+          .phone-mockup {
+            max-width: 240px;
+          }
+
+          .info-container {
+            gap: 30px;
+          }
+
+          .download-btn {
+            align-self: stretch;
           }
         }
 
         @media (max-width: 768px) {
           .intro-section {
-            padding: 40px 20px;
+            padding: 32px 20px;
           }
 
           .intro-content {
+            gap: 40px;
+          }
+
+          .content-wrapper {
             gap: 35px;
           }
 
           .phone-mockup {
-            max-width: 250px;
+            max-width: 200px;
+          }
+
+          .features-list {
+            gap: 16px;
+          }
+
+          .feature-item {
+            padding: 12px 16px;
+            font-size: 0.95rem;
+          }
+
+          .icon {
+            font-size: 1.5rem;
+          }
+
+          .download-btn {
+            padding: 14px 28px;
+            font-size: 1rem;
           }
         }
       `}</style>
@@ -265,56 +345,78 @@ function IntroSection() {
 }
 
 function FeaturesSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="features-section">
+    <section ref={sectionRef} className="features-section">
       <div className="features-content">
-        <h2 className="features-title">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
           Main <span className="highlight">Features</span>
         </h2>
 
-        <div className="features-grid">
-          <div className="feature-card">
-            <div className="feature-icon">👗</div>
-            <h3>Closet & Try Outfit</h3>
-            <p>Build your digital wardrobe and virtually try on outfits before you buy</p>
+        <div className={`features-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.2s' }}>
+          <div className="feature-card" style={{ animationDelay: '0.1s' }}>
+            <div className="card-icon">👗</div>
+            <h3>Closet & Try On</h3>
+            <p>Build your digital wardrobe and try outfits virtually</p>
           </div>
 
-          <div className="feature-card">
-            <div className="feature-icon">🔍</div>
+          <div className="feature-card" style={{ animationDelay: '0.2s' }}>
+            <div className="card-icon">🔍</div>
             <h3>Image Search</h3>
-            <p>Find similar items instantly by uploading or searching any image</p>
+            <p>Find similar items by uploading any image & Shop</p>
           </div>
 
-          <div className="feature-card">
-            <div className="feature-icon">📹</div>
+          <div className="feature-card" style={{ animationDelay: '0.3s' }}>
+            <div className="card-icon">📹</div>
             <h3>Video Scanner</h3>
-            <p>Scan videos to identify and shop products you see in real-time</p>
+            <p>Scan videos to identify Movies/Games/summerize & more..</p>
           </div>
 
-          <div className="feature-card">
-            <div className="feature-icon">🛒</div>
-            <h3>Cross-Platform Shopping</h3>
+          <div className="feature-card" style={{ animationDelay: '0.4s' }}>
+            <div className="card-icon">🛒</div>
+            <h3>Multi-Platform</h3>
             <p>Compare and shop products across multiple platforms in one place</p>
           </div>
         </div>
 
-        <div className="app-screenshots">
-          <div className="screenshot-wrapper">
+        <div className={`screenshots-container ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
+          <div className="screenshot-item">
             <Image
               src="/6.png"
-              alt="Dorfy App Feature 1"
-              width={280}
-              height={560}
-              className="screenshot"
+              alt="Feature 1"
+              width={220}
+              height={440}
+              className="app-screenshot"
             />
           </div>
-          <div className="screenshot-wrapper">
+          <div className="screenshot-item">
             <Image
               src="/5.png"
-              alt="Dorfy App Feature 2"
-              width={280}
-              height={560}
-              className="screenshot"
+              alt="Feature 2"
+              width={220}
+              height={440}
+              className="app-screenshot"
             />
           </div>
         </div>
@@ -327,7 +429,7 @@ function FeaturesSection() {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 80px 20px;
+          padding: 80px 24px;
         }
 
         .features-content {
@@ -339,12 +441,13 @@ function FeaturesSection() {
           gap: 60px;
         }
 
-        .features-title {
+        .section-title {
           font-size: clamp(2.5rem, 6vw, 4rem);
           font-weight: 900;
           color: ${colors.white};
-          margin: 0;
           text-align: center;
+          margin: 0;
+          opacity: 0;
         }
 
         .highlight {
@@ -353,74 +456,82 @@ function FeaturesSection() {
 
         .features-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 30px;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 24px;
           width: 100%;
-          max-width: 1100px;
+          opacity: 0;
         }
 
         .feature-card {
-          background: rgba(26, 26, 26, 0.8);
-          border: 2px solid rgba(229, 9, 20, 0.4);
-          border-radius: 20px;
-          padding: 40px;
+          background: rgba(26, 26, 26, 0.6);
+          border: 1px solid rgba(229, 9, 20, 0.3);
+          border-radius: 16px;
+          padding: 32px 24px;
           text-align: center;
           transition: all 0.4s ease;
           backdrop-filter: blur(10px);
+          opacity: 0;
+          animation: fadeInUp 0.6s ease-out forwards;
         }
 
         .feature-card:hover {
-          transform: translateY(-10px);
+          transform: translateY(-8px);
           border-color: ${colors.netflixRed};
-          box-shadow: 0 15px 50px rgba(229, 9, 20, 0.6);
-          background: rgba(26, 26, 26, 0.95);
+          box-shadow: 0 12px 40px rgba(229, 9, 20, 0.4);
+          background: rgba(26, 26, 26, 0.85);
         }
 
-        .feature-icon {
-          font-size: 3.5rem;
-          margin-bottom: 20px;
+        .card-icon {
+          font-size: 3rem;
+          margin-bottom: 16px;
         }
 
         .feature-card h3 {
-          font-size: clamp(1.3rem, 2.5vw, 1.6rem);
-          font-weight: 800;
+          font-size: 1.25rem;
+          font-weight: 700;
           color: ${colors.white};
-          margin: 0 0 15px 0;
+          margin: 0 0 12px 0;
         }
 
         .feature-card p {
-          font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+          font-size: 0.95rem;
           color: ${colors.textLight};
-          line-height: 1.7;
+          line-height: 1.5;
           margin: 0;
         }
 
-        .app-screenshots {
+        .screenshots-container {
           display: flex;
           gap: 40px;
-          flex-wrap: wrap;
           justify-content: center;
+          flex-wrap: wrap;
           margin-top: 20px;
+          opacity: 0;
         }
 
-        .screenshot-wrapper {
+        .screenshot-item {
           position: relative;
         }
 
-        .screenshot {
-          border-radius: 28px;
-          box-shadow:
-            0 20px 60px rgba(229, 9, 20, 0.35),
-            0 0 0 8px rgba(255, 255, 255, 0.08);
-          transition: transform 0.4s ease;
-          object-fit: cover;
+        .app-screenshot {
           width: 100%;
-          max-width: 280px;
+          max-width: 220px;
           height: auto;
+          border-radius: 24px;
+          box-shadow:
+            0 20px 60px rgba(229, 9, 20, 0.3),
+            0 0 0 1px rgba(255, 255, 255, 0.08);
+          transition: transform 0.3s ease;
         }
 
-        .screenshot:hover {
+        .app-screenshot:hover {
           transform: scale(1.05);
+        }
+
+        @media (max-width: 1024px) {
+          .features-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
         }
 
         @media (max-width: 768px) {
@@ -429,30 +540,37 @@ function FeaturesSection() {
           }
 
           .features-content {
-            gap: 45px;
+            gap: 40px;
           }
 
           .features-grid {
             grid-template-columns: 1fr;
-            gap: 24px;
+            gap: 20px;
           }
 
           .feature-card {
-            padding: 30px;
+            padding: 24px 20px;
           }
 
-          .screenshot {
-            max-width: 220px;
+          .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
           }
 
-          .app-screenshots {
-            gap: 30px;
+          .feature-card h3 {
+            font-size: 1.1rem;
           }
-        }
 
-        @media (min-width: 1024px) {
-          .features-grid {
-            grid-template-columns: repeat(2, 1fr);
+          .feature-card p {
+            font-size: 0.9rem;
+          }
+
+          .screenshots-container {
+            gap: 24px;
+          }
+
+          .app-screenshot {
+            max-width: 160px;
           }
         }
       `}</style>
