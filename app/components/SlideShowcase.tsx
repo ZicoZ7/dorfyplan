@@ -1,158 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { colors } from '../colors';
 
-interface Slide {
-  id: number;
-  component: React.ReactNode;
-}
-
 export default function SlideShowcase() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const slides: Slide[] = [
-    {
-      id: 1,
-      component: <IntroSlide />,
-    },
-    {
-      id: 2,
-      component: <FeaturesSlide />,
-    },
-  ];
-
-  const nextSlide = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-      setIsTransitioning(false);
-    }, 600);
-  };
-
-  const prevSlide = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-      setIsTransitioning(false);
-    }, 600);
-  };
-
-  const goToSlide = (index: number) => {
-    if (isTransitioning || index === currentSlide) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentSlide(index);
-      setIsTransitioning(false);
-    }, 600);
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowDown') nextSlide();
-      if (e.key === 'ArrowUp') prevSlide();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isTransitioning]);
-
-  useEffect(() => {
-    let touchStartY = 0;
-    let touchEndY = 0;
-
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartY = e.touches[0].clientY;
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      touchEndY = e.changedTouches[0].clientY;
-      const diff = touchStartY - touchEndY;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) {
-          nextSlide();
-        } else {
-          prevSlide();
-        }
-      }
-    };
-
-    window.addEventListener('touchstart', handleTouchStart);
-    window.addEventListener('touchend', handleTouchEnd);
-    return () => {
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchend', handleTouchEnd);
-    };
-  }, [isTransitioning]);
-
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      if (Math.abs(e.deltaY) > 10) {
-        if (e.deltaY > 0) {
-          nextSlide();
-        } else {
-          prevSlide();
-        }
-      }
-    };
-
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    return () => window.removeEventListener('wheel', handleWheel);
-  }, [isTransitioning]);
-
   return (
     <>
-      <div className="slide-container">
-        <div
-          className="slides-wrapper"
-          style={{
-            transform: `translateY(-${currentSlide * 100}vh)`,
-            transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
-          }}
-        >
-          {slides.map((slide) => (
-            <div key={slide.id} className="slide">
-              {slide.component}
-            </div>
-          ))}
-        </div>
-
-        <button
-          onClick={prevSlide}
-          className="nav-arrow nav-arrow-up"
-          aria-label="Previous slide"
-          disabled={isTransitioning}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <polyline points="18 15 12 9 6 15"></polyline>
-          </svg>
-        </button>
-        <button
-          onClick={nextSlide}
-          className="nav-arrow nav-arrow-down"
-          aria-label="Next slide"
-          disabled={isTransitioning}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </button>
-
-        <div className="slide-indicators">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`indicator ${currentSlide === index ? 'active' : ''}`}
-              aria-label={`Go to slide ${index + 1}`}
-              disabled={isTransitioning}
-            />
-          ))}
-        </div>
+      <div className="main-container">
+        <IntroSection />
+        <FeaturesSection />
       </div>
 
       <style jsx global>{`
@@ -165,124 +21,25 @@ export default function SlideShowcase() {
         html, body {
           width: 100%;
           height: 100%;
-          overflow: hidden;
         }
 
-        .slide-container {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          overflow: hidden;
+        body {
           background-color: ${colors.dark};
           background-image:
             radial-gradient(circle, rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px);
           background-size: 40px 40px;
           background-position: 0 0;
+          background-attachment: fixed;
         }
 
-        .slides-wrapper {
+        .main-container {
           width: 100%;
-          height: 100%;
-        }
-
-        .slide {
-          width: 100vw;
-          height: 100vh;
-          position: relative;
-          overflow-y: auto;
-          overflow-x: hidden;
-        }
-
-        .nav-arrow {
-          position: fixed;
-          background: rgba(229, 9, 20, 0.9);
-          border: none;
-          color: ${colors.white};
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.3s ease;
-          z-index: 1000;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-
-        .nav-arrow:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-
-        .nav-arrow:not(:disabled):hover {
-          background: ${colors.netflixRed};
-          transform: translateX(-50%) scale(1.1);
-        }
-
-        .nav-arrow-up {
-          top: 20px;
-        }
-
-        .nav-arrow-down {
-          bottom: 80px;
-        }
-
-        .slide-indicators {
-          position: fixed;
-          bottom: 20px;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          gap: 12px;
-          z-index: 1000;
-        }
-
-        .indicator {
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          border: 2px solid ${colors.white};
-          background: transparent;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .indicator:disabled {
-          cursor: not-allowed;
-        }
-
-        .indicator.active {
-          background: ${colors.netflixRed};
-          border-color: ${colors.netflixRed};
-          transform: scale(1.3);
-        }
-
-        .indicator:not(:disabled):not(.active):hover {
-          transform: scale(1.2);
-          border-color: ${colors.netflixRed};
+          min-height: 100vh;
         }
 
         @media (max-width: 768px) {
-          .slide-container {
+          body {
             background-size: 25px 25px;
-          }
-
-          .nav-arrow {
-            width: 45px;
-            height: 45px;
-          }
-
-          .nav-arrow-down {
-            bottom: 70px;
-          }
-
-          .indicator {
-            width: 10px;
-            height: 10px;
           }
         }
       `}</style>
@@ -290,9 +47,9 @@ export default function SlideShowcase() {
   );
 }
 
-function IntroSlide() {
+function IntroSection() {
   return (
-    <div className="intro-slide">
+    <section className="intro-section">
       <div className="intro-content">
         <h1 className="intro-title">
           What is <span className="brand-name">Dorfy</span>?
@@ -302,8 +59,19 @@ function IntroSlide() {
           A community hub where you can see what everyone&apos;s watching, playing, and wearing.
         </p>
 
-        <div className="content-grid">
-          <div className="features-section">
+        <div className="content-wrapper">
+          <div className="app-preview">
+            <Image
+              src="/homepage.jpg"
+              alt="Dorfy App Homepage"
+              width={300}
+              height={600}
+              className="phone-mockup"
+              priority
+            />
+          </div>
+
+          <div className="features-list-wrapper">
             <div className="intro-features-list">
               <div className="feature-point">
                 <span className="bullet">•</span>
@@ -335,28 +103,17 @@ function IntroSlide() {
               <span>Download on Google Play</span>
             </a>
           </div>
-
-          <div className="app-preview">
-            <Image
-              src="/homepage.jpg"
-              alt="Dorfy App Homepage"
-              width={280}
-              height={560}
-              className="phone-mockup"
-              priority
-            />
-          </div>
         </div>
       </div>
 
       <style jsx>{`
-        .intro-slide {
+        .intro-section {
           width: 100%;
           min-height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 80px 20px 120px;
+          padding: 60px 20px;
         }
 
         .intro-content {
@@ -365,7 +122,7 @@ function IntroSlide() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 40px;
+          gap: 50px;
         }
 
         .intro-title {
@@ -379,11 +136,10 @@ function IntroSlide() {
 
         .brand-name {
           color: ${colors.netflixRed};
-          display: inline-block;
         }
 
         .intro-description {
-          font-size: clamp(1.15rem, 2.5vw, 1.6rem);
+          font-size: clamp(1.1rem, 2.5vw, 1.5rem);
           color: ${colors.textLight};
           max-width: 900px;
           line-height: 1.6;
@@ -391,7 +147,7 @@ function IntroSlide() {
           text-align: center;
         }
 
-        .content-grid {
+        .content-wrapper {
           display: flex;
           gap: 60px;
           width: 100%;
@@ -401,19 +157,34 @@ function IntroSlide() {
           flex-wrap: wrap;
         }
 
-        .features-section {
+        .app-preview {
+          flex: 0 0 auto;
+        }
+
+        .phone-mockup {
+          border-radius: 30px;
+          box-shadow:
+            0 25px 70px rgba(229, 9, 20, 0.4),
+            0 0 0 10px rgba(255, 255, 255, 0.1);
+          object-fit: cover;
+          width: 100%;
+          max-width: 300px;
+          height: auto;
+        }
+
+        .features-list-wrapper {
           flex: 1;
-          min-width: 300px;
+          min-width: 320px;
           max-width: 600px;
           display: flex;
           flex-direction: column;
-          gap: 30px;
+          gap: 35px;
         }
 
         .intro-features-list {
           display: flex;
           flex-direction: column;
-          gap: 18px;
+          gap: 20px;
         }
 
         .feature-point {
@@ -433,24 +204,10 @@ function IntroSlide() {
           line-height: 1;
         }
 
-        .app-preview {
-          flex: 0 0 auto;
-        }
-
-        .phone-mockup {
-          border-radius: 30px;
-          box-shadow:
-            0 25px 70px rgba(229, 9, 20, 0.35),
-            0 0 0 10px rgba(255, 255, 255, 0.08);
-          object-fit: cover;
-          width: 100%;
-          max-width: 280px;
-          height: auto;
-        }
-
         .google-play-button {
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           gap: 14px;
           background: ${colors.netflixRed};
           color: ${colors.white};
@@ -473,46 +230,43 @@ function IntroSlide() {
           flex-shrink: 0;
         }
 
-        @media (max-width: 768px) {
-          .intro-slide {
-            padding: 70px 20px 120px;
-          }
-
-          .content-grid {
+        @media (max-width: 968px) {
+          .content-wrapper {
+            flex-direction: column;
             gap: 40px;
-            flex-direction: column-reverse;
           }
 
-          .features-section {
+          .features-list-wrapper {
             width: 100%;
-          }
-
-          .intro-features-list {
-            gap: 15px;
-          }
-
-          .feature-point {
-            font-size: 1rem;
-          }
-
-          .phone-mockup {
-            max-width: 240px;
           }
 
           .google-play-button {
-            padding: 16px 28px;
             width: 100%;
-            justify-content: center;
+            max-width: 400px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .intro-section {
+            padding: 40px 20px;
+          }
+
+          .intro-content {
+            gap: 35px;
+          }
+
+          .phone-mockup {
+            max-width: 250px;
           }
         }
       `}</style>
-    </div>
+    </section>
   );
 }
 
-function FeaturesSlide() {
+function FeaturesSection() {
   return (
-    <div className="features-slide">
+    <section className="features-section">
       <div className="features-content">
         <h2 className="features-title">
           Main <span className="highlight">Features</span>
@@ -549,8 +303,8 @@ function FeaturesSlide() {
             <Image
               src="/6.png"
               alt="Dorfy App Feature 1"
-              width={260}
-              height={520}
+              width={280}
+              height={560}
               className="screenshot"
             />
           </div>
@@ -558,8 +312,8 @@ function FeaturesSlide() {
             <Image
               src="/5.png"
               alt="Dorfy App Feature 2"
-              width={260}
-              height={520}
+              width={280}
+              height={560}
               className="screenshot"
             />
           </div>
@@ -567,13 +321,13 @@ function FeaturesSlide() {
       </div>
 
       <style jsx>{`
-        .features-slide {
+        .features-section {
           width: 100%;
           min-height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 80px 20px 120px;
+          padding: 80px 20px;
         }
 
         .features-content {
@@ -582,7 +336,7 @@ function FeaturesSlide() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 50px;
+          gap: 60px;
         }
 
         .features-title {
@@ -599,17 +353,17 @@ function FeaturesSlide() {
 
         .features-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
           gap: 30px;
           width: 100%;
           max-width: 1100px;
         }
 
         .feature-card {
-          background: rgba(26, 26, 26, 0.7);
+          background: rgba(26, 26, 26, 0.8);
           border: 2px solid rgba(229, 9, 20, 0.4);
           border-radius: 20px;
-          padding: 35px;
+          padding: 40px;
           text-align: center;
           transition: all 0.4s ease;
           backdrop-filter: blur(10px);
@@ -618,8 +372,8 @@ function FeaturesSlide() {
         .feature-card:hover {
           transform: translateY(-10px);
           border-color: ${colors.netflixRed};
-          box-shadow: 0 12px 40px rgba(229, 9, 20, 0.5);
-          background: rgba(26, 26, 26, 0.9);
+          box-shadow: 0 15px 50px rgba(229, 9, 20, 0.6);
+          background: rgba(26, 26, 26, 0.95);
         }
 
         .feature-icon {
@@ -646,7 +400,7 @@ function FeaturesSlide() {
           gap: 40px;
           flex-wrap: wrap;
           justify-content: center;
-          margin-top: 30px;
+          margin-top: 20px;
         }
 
         .screenshot-wrapper {
@@ -656,26 +410,26 @@ function FeaturesSlide() {
         .screenshot {
           border-radius: 28px;
           box-shadow:
-            0 20px 60px rgba(229, 9, 20, 0.3),
-            0 0 0 8px rgba(255, 255, 255, 0.06);
+            0 20px 60px rgba(229, 9, 20, 0.35),
+            0 0 0 8px rgba(255, 255, 255, 0.08);
           transition: transform 0.4s ease;
           object-fit: cover;
           width: 100%;
-          max-width: 260px;
+          max-width: 280px;
           height: auto;
         }
 
         .screenshot:hover {
-          transform: scale(1.08);
+          transform: scale(1.05);
         }
 
         @media (max-width: 768px) {
-          .features-slide {
-            padding: 70px 20px 120px;
+          .features-section {
+            padding: 60px 20px;
           }
 
           .features-content {
-            gap: 35px;
+            gap: 45px;
           }
 
           .features-grid {
@@ -684,19 +438,15 @@ function FeaturesSlide() {
           }
 
           .feature-card {
-            padding: 28px;
-          }
-
-          .feature-icon {
-            font-size: 3rem;
-          }
-
-          .app-screenshots {
-            gap: 30px;
+            padding: 30px;
           }
 
           .screenshot {
             max-width: 220px;
+          }
+
+          .app-screenshots {
+            gap: 30px;
           }
         }
 
@@ -706,6 +456,6 @@ function FeaturesSlide() {
           }
         }
       `}</style>
-    </div>
+    </section>
   );
 }
