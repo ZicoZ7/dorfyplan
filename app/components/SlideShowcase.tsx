@@ -4125,6 +4125,57 @@ function AIChatModelSection() {
           </div>
         </div>
 
+        {/* Additional Features */}
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '1.4s' }}>
+          Additional <span className="highlight">Features</span>
+        </h2>
+
+        <p className={`additional-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '1.5s' }}>
+          We don't market these - they're just there
+        </p>
+
+        <div className={`additional-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '1.6s' }}>
+          <div className="additional-item">
+            <div className="additional-wrapper">
+              <Image
+                src="/scanfood.gif"
+                alt="Calories Scanner"
+                width={300}
+                height={600}
+                className="additional-image"
+                unoptimized
+              />
+            </div>
+            <div className="additional-label">Calories Scanner</div>
+          </div>
+
+          <div className="additional-item">
+            <div className="additional-wrapper">
+              <Image
+                src="/workoutlogs.png"
+                alt="Workout Logs"
+                width={300}
+                height={600}
+                className="additional-image"
+              />
+            </div>
+            <div className="additional-label">Workout Logs</div>
+          </div>
+
+          <div className="additional-item">
+            <div className="additional-wrapper">
+              <Image
+                src="/statschart.png"
+                alt="Stats Chart"
+                width={300}
+                height={600}
+                className="additional-image"
+              />
+            </div>
+            <div className="additional-label">Stats Chart</div>
+          </div>
+        </div>
+
       </div>
 
       <style jsx>{`
@@ -4479,6 +4530,62 @@ function AIChatModelSection() {
           margin: 0;
         }
 
+        .additional-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.2rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -30px 0 0 0;
+          max-width: 700px;
+          opacity: 0;
+        }
+
+        .additional-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 32px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .additional-item {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          align-items: center;
+        }
+
+        .additional-wrapper {
+          position: relative;
+          border-radius: 24px;
+          overflow: hidden;
+          box-shadow:
+            0 20px 60px rgba(229, 9, 20, 0.5),
+            0 0 0 2px rgba(255, 255, 255, 0.1);
+          transition: all 0.4s ease;
+        }
+
+        .additional-wrapper:hover {
+          transform: translateY(-10px) scale(1.03);
+          box-shadow:
+            0 30px 80px rgba(229, 9, 20, 0.6),
+            0 0 0 2px ${colors.netflixRed};
+        }
+
+        .additional-image {
+          border-radius: 24px;
+          width: 100%;
+          max-width: 300px;
+          height: auto;
+          display: block;
+        }
+
+        .additional-label {
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: ${colors.white};
+          text-align: center;
+        }
+
         /* Responsive Design */
         .ai-chat-section {
           padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
@@ -4602,6 +4709,23 @@ function AIChatModelSection() {
 
         .detail-text p {
           font-size: clamp(1rem, 2vw, 1.05rem);
+        }
+
+        .additional-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 22vw, 260px), 1fr));
+          gap: clamp(24px, 5vw, 32px);
+        }
+
+        .additional-item {
+          gap: clamp(12px, 2.4vw, 16px);
+        }
+
+        .additional-image {
+          max-width: clamp(260px, 28vw, 300px);
+        }
+
+        .additional-label {
+          font-size: clamp(1.1rem, 2.2vw, 1.2rem);
         }
 
       `}</style>
