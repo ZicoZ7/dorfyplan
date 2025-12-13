@@ -10,6 +10,7 @@ export default function SlideShowcase() {
       <div className="main-container">
         <IntroSection />
         <FeaturesSection />
+        <VisionSection />
         <MarketOpportunitySection />
       </div>
 
@@ -338,6 +339,383 @@ function IntroSection() {
           .download-btn {
             padding: 14px 28px;
             font-size: 1rem;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function VisionSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="vision-section">
+      <div className="vision-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          The <span className="highlight">Future</span> Vision
+        </h2>
+
+        <p className={`vision-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          Transforming how people discover, try, and shop in the real world
+        </p>
+
+        {/* YouTube Video Showcase */}
+        <div className={`video-container ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+          <div className="video-wrapper">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/Mi4hRzjP-0A?si=IWyXPHpyrxQioV_9"
+              title="Dorfy Vision Demo"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+
+        {/* Vision Features */}
+        <div className={`vision-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
+          <div className="vision-card">
+            <div className="vision-icon">👓</div>
+            <h3>Smart Glass Integration</h3>
+            <p>Seamlessly integrate with Meta Ray-Ban glasses and future AR devices for hands-free shopping experiences</p>
+          </div>
+
+          <div className="vision-card">
+            <div className="vision-icon">📸</div>
+            <h3>Real-World Discovery</h3>
+            <p>Take a photo during a film, on the street, or anywhere - instantly shop similar items across Amazon, Walmart, AliExpress, eBay & more</p>
+          </div>
+
+          <div className="vision-card">
+            <div className="vision-icon">🎭</div>
+            <h3>Virtual Try-On</h3>
+            <p>Try outfits on yourself, friends, or family instantly using advanced AI - see before you buy, shop directly</p>
+          </div>
+
+          <div className="vision-card">
+            <div className="vision-icon">🛍️</div>
+            <h3>Contextual Commerce</h3>
+            <p>Like Humane&apos;s Ai Pin but for shopping - bringing intelligent, context-aware purchasing to your everyday life</p>
+          </div>
+        </div>
+
+        {/* Key Highlights */}
+        <div className={`highlights-container ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.7s' }}>
+          <div className="highlight-item">
+            <span className="highlight-number">∞</span>
+            <span className="highlight-text">Unlimited Product Discovery</span>
+          </div>
+          <div className="highlight-item">
+            <span className="highlight-number">⚡</span>
+            <span className="highlight-text">Instant Virtual Try-On</span>
+          </div>
+          <div className="highlight-item">
+            <span className="highlight-number">🌍</span>
+            <span className="highlight-text">Global Multi-Platform Shopping</span>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .vision-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .vision-section::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background:
+            radial-gradient(circle at 20% 50%, rgba(229, 9, 20, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 50%, rgba(229, 9, 20, 0.08) 0%, transparent 50%);
+          pointer-events: none;
+        }
+
+        .vision-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+          position: relative;
+          display: inline-block;
+        }
+
+        .highlight::after {
+          content: '';
+          position: absolute;
+          bottom: -8px;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(90deg, ${colors.netflixRed}, #ff4444);
+          border-radius: 2px;
+        }
+
+        .vision-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 700px;
+          opacity: 0;
+        }
+
+        .video-container {
+          width: 100%;
+          max-width: 900px;
+          opacity: 0;
+        }
+
+        .video-wrapper {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.25%; /* 16:9 aspect ratio */
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow:
+            0 25px 70px rgba(229, 9, 20, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.1);
+          background: rgba(26, 26, 26, 0.8);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-wrapper:hover {
+          transform: translateY(-5px);
+          box-shadow:
+            0 30px 80px rgba(229, 9, 20, 0.5),
+            0 0 0 1px rgba(229, 9, 20, 0.3);
+        }
+
+        .video-wrapper iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .vision-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 24px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .vision-card {
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(40, 40, 40, 0.6) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.2);
+          border-radius: 20px;
+          padding: 32px 24px;
+          text-align: center;
+          transition: all 0.4s ease;
+          backdrop-filter: blur(10px);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .vision-card::before {
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          background: linear-gradient(135deg, ${colors.netflixRed}, #ff4444, ${colors.netflixRed});
+          border-radius: 20px;
+          opacity: 0;
+          transition: opacity 0.4s ease;
+          z-index: -1;
+        }
+
+        .vision-card:hover::before {
+          opacity: 1;
+        }
+
+        .vision-card:hover {
+          transform: translateY(-10px) scale(1.02);
+          border-color: transparent;
+          box-shadow: 0 25px 70px rgba(229, 9, 20, 0.5);
+        }
+
+        .vision-icon {
+          font-size: 3.5rem;
+          margin-bottom: 16px;
+          filter: drop-shadow(0 4px 10px rgba(229, 9, 20, 0.3));
+        }
+
+        .vision-card h3 {
+          font-size: 1.35rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .vision-card p {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .highlights-container {
+          display: flex;
+          gap: 40px;
+          flex-wrap: wrap;
+          justify-content: center;
+          width: 100%;
+          padding: 30px;
+          background: rgba(26, 26, 26, 0.5);
+          border-radius: 20px;
+          border: 1px solid rgba(229, 9, 20, 0.2);
+          opacity: 0;
+        }
+
+        .highlight-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+          padding: 20px;
+          transition: transform 0.3s ease;
+        }
+
+        .highlight-item:hover {
+          transform: scale(1.1);
+        }
+
+        .highlight-number {
+          font-size: 3rem;
+          font-weight: 900;
+          color: ${colors.netflixRed};
+          text-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+        }
+
+        .highlight-text {
+          font-size: 1rem;
+          font-weight: 600;
+          color: ${colors.white};
+          text-align: center;
+          max-width: 180px;
+        }
+
+        @media (max-width: 1024px) {
+          .vision-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .vision-section {
+            padding: 60px 20px;
+          }
+
+          .vision-content {
+            gap: 35px;
+          }
+
+          .video-wrapper {
+            border-radius: 16px;
+          }
+
+          .vision-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+
+          .vision-card {
+            padding: 28px 20px;
+          }
+
+          .vision-icon {
+            font-size: 3rem;
+          }
+
+          .vision-card h3 {
+            font-size: 1.2rem;
+          }
+
+          .vision-card p {
+            font-size: 0.95rem;
+          }
+
+          .highlights-container {
+            gap: 24px;
+            padding: 24px;
+          }
+
+          .highlight-item {
+            flex: 1;
+            min-width: 140px;
+          }
+
+          .highlight-number {
+            font-size: 2.5rem;
+          }
+
+          .highlight-text {
+            font-size: 0.9rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .highlights-container {
+            flex-direction: column;
+            gap: 20px;
+          }
+
+          .highlight-item {
+            width: 100%;
           }
         }
       `}</style>
