@@ -77,10 +77,9 @@ export default function SlideShowcase() {
           animation: fadeIn 1s ease-out forwards;
         }
 
-        @media (max-width: 768px) {
-          body {
-            background-size: 25px 25px;
-          }
+        /* Adaptive background sizing using CSS custom properties */
+        body {
+          background-size: clamp(25px, 5vw, 40px) clamp(25px, 5vw, 40px);
         }
       `}</style>
     </>
@@ -300,63 +299,44 @@ function IntroSection() {
           box-shadow: 0 12px 40px rgba(229, 9, 20, 0.6);
         }
 
-        @media (max-width: 1024px) {
-          .content-wrapper {
-            grid-template-columns: 1fr;
-            gap: 50px;
-          }
-
-          .phone-container {
-            order: -1;
-          }
-
-          .phone-mockup {
-            max-width: 240px;
-          }
-
-          .info-container {
-            gap: 30px;
-          }
-
-          .download-btn {
-            align-self: stretch;
-          }
+        /* Adaptive layout using flex-wrap and responsive sizing */
+        .content-wrapper {
+          gap: clamp(35px, 8vw, 60px);
         }
 
-        @media (max-width: 768px) {
-          .intro-section {
-            padding: 32px 20px;
-          }
+        .phone-mockup {
+          max-width: clamp(200px, 25vw, 300px);
+        }
 
-          .intro-content {
-            gap: 40px;
-          }
+        .info-container {
+          gap: clamp(30px, 5vw, 40px);
+          min-width: clamp(280px, 30vw, 600px);
+        }
 
-          .content-wrapper {
-            gap: 35px;
-          }
+        .features-list {
+          gap: clamp(16px, 3vw, 24px);
+        }
 
-          .phone-mockup {
-            max-width: 200px;
-          }
+        .feature-item {
+          padding: clamp(12px, 2.5vw, 16px) clamp(16px, 3vw, 20px);
+          font-size: clamp(0.95rem, 2vw, 1.15rem);
+        }
 
-          .features-list {
-            gap: 16px;
-          }
+        .icon {
+          font-size: clamp(1.5rem, 3vw, 1.8rem);
+        }
 
-          .feature-item {
-            padding: 12px 16px;
-            font-size: 0.95rem;
-          }
+        .download-btn {
+          padding: clamp(14px, 3vw, 16px) clamp(28px, 6vw, 32px);
+          font-size: clamp(1rem, 2vw, 1.05rem);
+        }
 
-          .icon {
-            font-size: 1.5rem;
-          }
+        .intro-section {
+          padding: clamp(32px, 5vw, 60px) clamp(20px, 4vw, 20px);
+        }
 
-          .download-btn {
-            padding: 14px 28px;
-            font-size: 1rem;
-          }
+        .intro-content {
+          gap: clamp(40px, 8vw, 50px);
         }
       `}</style>
     </section>
@@ -666,74 +646,57 @@ function VisionSection() {
           max-width: 180px;
         }
 
-        @media (max-width: 1024px) {
-          .vision-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+        /* Adaptive responsive design using clamp and flex-wrap */
+        .vision-section {
+          padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
         }
 
-        @media (max-width: 768px) {
-          .vision-section {
-            padding: 60px 20px;
-          }
-
-          .vision-content {
-            gap: 35px;
-          }
-
-          .video-wrapper {
-            border-radius: 16px;
-          }
-
-          .vision-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-          }
-
-          .vision-card {
-            padding: 28px 20px;
-          }
-
-          .vision-icon {
-            font-size: 3rem;
-          }
-
-          .vision-card h3 {
-            font-size: 1.2rem;
-          }
-
-          .vision-card p {
-            font-size: 0.95rem;
-          }
-
-          .highlights-container {
-            gap: 24px;
-            padding: 24px;
-          }
-
-          .highlight-item {
-            flex: 1;
-            min-width: 140px;
-          }
-
-          .highlight-number {
-            font-size: 2.5rem;
-          }
-
-          .highlight-text {
-            font-size: 0.9rem;
-          }
+        .vision-content {
+          gap: clamp(35px, 8vw, 50px);
         }
 
-        @media (max-width: 480px) {
-          .highlights-container {
-            flex-direction: column;
-            gap: 20px;
-          }
+        .video-wrapper {
+          border-radius: clamp(16px, 4vw, 20px);
+        }
 
-          .highlight-item {
-            width: 100%;
-          }
+        .vision-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 20vw, 260px), 1fr));
+          gap: clamp(20px, 3vw, 24px);
+        }
+
+        .vision-card {
+          padding: clamp(28px, 5vw, 32px) clamp(20px, 3vw, 24px);
+        }
+
+        .vision-icon {
+          font-size: clamp(3rem, 7vw, 3.5rem);
+        }
+
+        .vision-card h3 {
+          font-size: clamp(1.2rem, 2.5vw, 1.35rem);
+        }
+
+        .vision-card p {
+          font-size: clamp(0.95rem, 2vw, 1rem);
+        }
+
+        .highlights-container {
+          gap: clamp(20px, 5vw, 40px);
+          padding: clamp(24px, 5vw, 30px);
+          flex-direction: column;
+        }
+
+        .highlight-item {
+          padding: clamp(20px, 4vw, 20px);
+          min-width: clamp(140px, 15vw, 180px);
+        }
+
+        .highlight-number {
+          font-size: clamp(2.5rem, 6vw, 3rem);
+        }
+
+        .highlight-text {
+          font-size: clamp(0.9rem, 2vw, 1rem);
         }
       `}</style>
     </section>
@@ -1028,46 +991,35 @@ function MarketOpportunitySection() {
           font-weight: 500;
         }
 
-        @media (max-width: 1024px) {
-          .market-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-
-          .metrics-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+        /* Adaptive responsive design using clamp and grid auto-fit */
+        .market-section {
+          padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
         }
 
-        @media (max-width: 768px) {
-          .market-section {
-            padding: 60px 20px;
-          }
+        .market-content {
+          gap: clamp(35px, 8vw, 50px);
+        }
 
-          .market-content {
-            gap: 35px;
-          }
+        .market-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 18vw, 240px), 1fr));
+          gap: clamp(20px, 3vw, 24px);
+        }
 
-          .market-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-          }
+        .market-card {
+          padding: clamp(24px, 4vw, 32px) clamp(20px, 3vw, 24px);
+        }
 
-          .market-card {
-            padding: 24px 20px;
-          }
+        .metrics-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(160px, 15vw, 200px), 1fr));
+          gap: clamp(16px, 3vw, 20px);
+        }
 
-          .metrics-grid {
-            grid-template-columns: 1fr;
-            gap: 16px;
-          }
+        .metric-card {
+          padding: clamp(20px, 4vw, 28px) clamp(16px, 3vw, 20px);
+        }
 
-          .metric-card {
-            padding: 20px 16px;
-          }
-
-          .metric-icon {
-            font-size: 2rem;
-          }
+        .metric-icon {
+          font-size: clamp(2rem, 4vw, 2.5rem);
         }
       `}</style>
     </section>
@@ -1369,73 +1321,70 @@ function ShopWhatYouSeeSection() {
           transform: translateY(-2px);
         }
 
-        @media (max-width: 1024px) {
-          .content-layout {
-            gap: 40px;
-          }
+        /* Adaptive responsive design using clamp and flex-wrap */
+        .shop-section {
+          padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
         }
 
-        @media (max-width: 768px) {
-          .shop-section {
-            padding: 60px 20px;
-          }
+        .shop-content {
+          gap: clamp(35px, 8vw, 50px);
+        }
 
-          .shop-content {
-            gap: 35px;
-          }
+        .content-layout {
+          gap: clamp(30px, 6vw, 60px);
+        }
 
-          .content-layout {
-            gap: 30px;
-          }
+        .showcase-image {
+          max-width: clamp(280px, 30vw, 400px);
+        }
 
-          .showcase-image {
-            max-width: 280px;
-          }
+        .features-content {
+          gap: clamp(20px, 4vw, 24px);
+        }
 
-          .features-content {
-            gap: 20px;
-          }
+        .feature-box {
+          padding: clamp(20px, 4vw, 24px);
+        }
 
-          .feature-box {
-            padding: 20px;
-          }
+        .box-icon {
+          font-size: clamp(2rem, 4vw, 2.5rem);
+        }
 
-          .box-icon {
-            font-size: 2rem;
-          }
+        .feature-box h3 {
+          font-size: clamp(1.2rem, 2.5vw, 1.3rem);
+        }
 
-          .feature-box h3 {
-            font-size: 1.2rem;
-          }
+        .feature-box p {
+          font-size: clamp(0.95rem, 2vw, 1rem);
+        }
 
-          .feature-box p {
-            font-size: 0.95rem;
-          }
+        .revenue-box {
+          padding: clamp(24px, 5vw, 28px);
+        }
 
-          .revenue-box {
-            padding: 24px;
-          }
+        .revenue-icon {
+          font-size: clamp(2rem, 4vw, 2.5rem);
+        }
 
-          .revenue-icon {
-            font-size: 2rem;
-          }
+        .revenue-header h3 {
+          font-size: clamp(1.3rem, 2.5vw, 1.5rem);
+        }
 
-          .revenue-header h3 {
-            font-size: 1.3rem;
-          }
+        .percentage {
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
+        }
 
-          .percentage {
-            font-size: 2.5rem;
-          }
+        .description {
+          font-size: clamp(1rem, 2vw, 1.1rem);
+        }
 
-          .description {
-            font-size: 1rem;
-          }
+        .platforms-list {
+          gap: clamp(6px, 1vw, 10px);
+        }
 
-          .platform-tag {
-            font-size: 0.8rem;
-            padding: 6px 12px;
-          }
+        .platform-tag {
+          font-size: clamp(0.8rem, 1.5vw, 0.85rem);
+          padding: clamp(6px, 1.5vw, 8px) clamp(12px, 3vw, 16px);
         }
       `}</style>
     </section>
@@ -1828,98 +1777,91 @@ function OutfitManagementSection() {
           color: ${colors.white};
         }
 
-        @media (max-width: 1024px) {
-          .outfit-features-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+        /* Adaptive responsive design using clamp and flex-wrap */
+        .outfit-section {
+          padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
+          background:
+            radial-gradient(circle at 50% 30%, rgba(229, 9, 20, 0.08) 0%, transparent 60%),
+            linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(229, 9, 20, 0.03) 100%);
         }
 
-        @media (max-width: 768px) {
-          .outfit-section {
-            padding: 60px 20px;
-            background:
-              radial-gradient(circle at 50% 30%, rgba(229, 9, 20, 0.08) 0%, transparent 60%),
-              linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(229, 9, 20, 0.03) 100%);
-          }
+        .outfit-content {
+          gap: clamp(35px, 8vw, 50px);
+        }
 
-          .outfit-content {
-            gap: 35px;
-          }
+        .gif-showcase {
+          gap: clamp(30px, 6vw, 40px);
+        }
 
-          .gif-showcase {
-            gap: 30px;
-          }
+        .gif-image {
+          max-width: clamp(240px, 25vw, 280px);
+        }
 
-          .gif-image {
-            max-width: 240px;
-          }
+        .gif-label {
+          font-size: clamp(1.1rem, 2.2vw, 1.2rem);
+          padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 24px);
+        }
 
-          .gif-label {
-            font-size: 1.1rem;
-            padding: 10px 20px;
-          }
+        .outfit-features-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 20vw, 260px), 1fr));
+          gap: clamp(20px, 3vw, 24px);
+        }
 
-          .outfit-features-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-          }
+        .outfit-feature-card {
+          padding: clamp(28px, 5vw, 32px) clamp(20px, 3vw, 24px);
+        }
 
-          .outfit-feature-card {
-            padding: 28px 20px;
-          }
+        .feature-icon {
+          font-size: clamp(3rem, 7vw, 3.5rem);
+        }
 
-          .feature-icon {
-            font-size: 3rem;
-          }
+        .outfit-feature-card h3 {
+          font-size: clamp(1.2rem, 2.5vw, 1.35rem);
+        }
 
-          .outfit-feature-card h3 {
-            font-size: 1.2rem;
-          }
+        .outfit-feature-card p {
+          font-size: clamp(0.95rem, 2vw, 1rem);
+        }
 
-          .outfit-feature-card p {
-            font-size: 0.95rem;
-          }
+        .marketplace-box {
+          padding: clamp(32px, 6vw, 40px) clamp(24px, 4vw, 32px);
+        }
 
-          .marketplace-box {
-            padding: 32px 24px;
-          }
+        .marketplace-feature {
+          flex-direction: column;
+          gap: clamp(16px, 3vw, 20px);
+          padding: clamp(20px, 4vw, 24px);
+        }
 
-          .marketplace-feature {
-            flex-direction: column;
-            gap: 16px;
-            padding: 20px;
-          }
+        .feature-number {
+          width: clamp(44px, 8vw, 48px);
+          height: clamp(44px, 8vw, 48px);
+          font-size: clamp(1.3rem, 2.5vw, 1.5rem);
+        }
 
-          .feature-number {
-            width: 44px;
-            height: 44px;
-            font-size: 1.3rem;
-          }
+        .feature-text h4 {
+          font-size: clamp(1.15rem, 2.3vw, 1.25rem);
+        }
 
-          .feature-text h4 {
-            font-size: 1.15rem;
-          }
+        .feature-text p {
+          font-size: clamp(0.95rem, 2vw, 1rem);
+        }
 
-          .feature-text p {
-            font-size: 0.95rem;
-          }
+        .marketplace-stats {
+          flex-direction: column;
+          gap: clamp(16px, 3vw, 24px);
+        }
 
-          .marketplace-stats {
-            flex-direction: column;
-            gap: 16px;
-          }
+        .stat-item {
+          padding: clamp(14px, 3vw, 16px) clamp(20px, 4vw, 24px);
+        }
 
-          .stat-item {
-            padding: 14px 20px;
-          }
+        .stat-icon {
+          font-size: clamp(1.8rem, 3.5vw, 2rem);
+        }
 
-          .stat-icon {
-            font-size: 1.8rem;
-          }
-
-          .stat-text {
-            font-size: 0.95rem;
-          }
+        .stat-text {
+          font-size: clamp(0.95rem, 2vw, 1rem);
         }
       `}</style>
     </section>
@@ -1931,22 +1873,7 @@ function TryOnSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
+    setIsVisible(true);
   }, []);
 
   return (
@@ -2067,7 +1994,7 @@ function TryOnSection() {
       <style jsx>{`
         .tryon-section {
           width: 100%;
-          min-height: 100vh;
+          min-height: auto;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -2385,102 +2312,95 @@ function TryOnSection() {
           color: ${colors.white};
         }
 
-        @media (max-width: 1024px) {
-          .tryon-features-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-
-          .flow-steps {
-            flex-direction: column;
-          }
-
-          .flow-arrow {
-            transform: rotate(90deg);
-          }
+        /* Adaptive responsive design using clamp and flex-wrap */
+        .tryon-section {
+          padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
         }
 
-        @media (max-width: 768px) {
-          .tryon-section {
-            padding: 60px 20px;
-          }
+        .tryon-content {
+          gap: clamp(35px, 8vw, 50px);
+        }
 
-          .tryon-content {
-            gap: 35px;
-          }
+        .tryon-gifs {
+          gap: clamp(35px, 7vw, 50px);
+        }
 
-          .tryon-gifs {
-            gap: 35px;
-          }
+        .tryon-gif-image {
+          max-width: clamp(260px, 27vw, 300px);
+        }
 
-          .tryon-gif-image {
-            max-width: 260px;
-          }
+        .tryon-gif-label {
+          font-size: clamp(1.15rem, 2.3vw, 1.3rem);
+          padding: clamp(12px, 2.4vw, 14px) clamp(24px, 4.8vw, 28px);
+        }
 
-          .tryon-gif-label {
-            font-size: 1.15rem;
-            padding: 12px 24px;
-          }
+        .tryon-features-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 22vw, 270px), 1fr));
+          gap: clamp(24px, 4vw, 28px);
+        }
 
-          .tryon-features-grid {
-            grid-template-columns: 1fr;
-            gap: 24px;
-          }
+        .tryon-feature-card {
+          padding: clamp(32px, 6vw, 36px) clamp(24px, 4vw, 28px);
+        }
 
-          .tryon-feature-card {
-            padding: 32px 24px;
-          }
+        .tryon-feature-icon {
+          font-size: clamp(3.5rem, 7vw, 4rem);
+        }
 
-          .tryon-feature-icon {
-            font-size: 3.5rem;
-          }
+        .tryon-feature-card h3 {
+          font-size: clamp(1.3rem, 2.6vw, 1.4rem);
+        }
 
-          .tryon-feature-card h3 {
-            font-size: 1.3rem;
-          }
+        .tryon-feature-card p {
+          font-size: clamp(1rem, 2vw, 1.05rem);
+        }
 
-          .tryon-feature-card p {
-            font-size: 1rem;
-          }
+        .shopping-flow-box {
+          padding: clamp(36px, 7vw, 48px) clamp(28px, 5vw, 40px);
+        }
 
-          .shopping-flow-box {
-            padding: 36px 28px;
-          }
+        .flow-steps {
+          flex-direction: column;
+        }
 
-          .flow-step {
-            min-width: 100%;
-            padding: 24px 20px;
-          }
+        .flow-arrow {
+          transform: rotate(90deg);
+        }
 
-          .step-number {
-            width: 52px;
-            height: 52px;
-            font-size: 1.6rem;
-          }
+        .flow-step {
+          min-width: 100%;
+          padding: clamp(24px, 4vw, 28px) clamp(20px, 3vw, 24px);
+        }
 
-          .step-content h4 {
-            font-size: 1.2rem;
-          }
+        .step-number {
+          width: clamp(52px, 10vw, 56px);
+          height: clamp(52px, 10vw, 56px);
+          font-size: clamp(1.6rem, 3vw, 1.8rem);
+        }
 
-          .step-content p {
-            font-size: 0.95rem;
-          }
+        .step-content h4 {
+          font-size: clamp(1.2rem, 2.4vw, 1.3rem);
+        }
 
-          .flow-benefits {
-            flex-direction: column;
-            gap: 16px;
-          }
+        .step-content p {
+          font-size: clamp(0.95rem, 2vw, 1rem);
+        }
 
-          .benefit-badge {
-            padding: 12px 20px;
-          }
+        .flow-benefits {
+          flex-direction: column;
+          gap: clamp(16px, 3vw, 20px);
+        }
 
-          .badge-icon {
-            font-size: 1.6rem;
-          }
+        .benefit-badge {
+          padding: clamp(12px, 2.4vw, 14px) clamp(20px, 4vw, 24px);
+        }
 
-          .badge-text {
-            font-size: 1rem;
-          }
+        .badge-icon {
+          font-size: clamp(1.6rem, 3.2vw, 1.8rem);
+        }
+
+        .badge-text {
+          font-size: clamp(1rem, 2vw, 1.05rem);
         }
       `}</style>
     </section>
@@ -2492,22 +2412,7 @@ function BrandPartnershipSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
+    setIsVisible(true);
   }, []);
 
   return (
@@ -2656,7 +2561,7 @@ function BrandPartnershipSection() {
       <style jsx>{`
         .partnership-section {
           width: 100%;
-          min-height: 100vh;
+          min-height: clamp(70vh, 100vh, 90vh);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -3035,116 +2940,108 @@ function BrandPartnershipSection() {
           line-height: 1.4;
         }
 
-        @media (max-width: 1024px) {
-          .features-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-
-          .win-win-grid {
-            grid-template-columns: 1fr;
-          }
+        /* Adaptive responsive design using clamp and flex-wrap */
+        .partnership-section {
+          padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
         }
 
-        @media (max-width: 768px) {
-          .partnership-section {
-            padding: 60px 20px;
-          }
-
-          .partnership-content {
-            gap: 35px;
-          }
-
-          .free-offer-box {
-            padding: 36px 28px;
-          }
-
-          .offer-header {
-            flex-direction: column;
-            gap: 12px;
-          }
-
-          .offer-icon {
-            font-size: 3rem;
-          }
-
-          .win-box {
-            padding: 28px 24px;
-          }
-
-          .win-box h4 {
-            font-size: 1.35rem;
-          }
-
-          .win-box li {
-            font-size: 1rem;
-          }
-
-          .subscription-box {
-            padding: 36px 28px;
-          }
-
-          .features-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-          }
-
-          .feature-item {
-            padding: 24px 20px;
-          }
-
-          .item-icon {
-            font-size: 2.5rem;
-          }
-
-          .feature-item h4 {
-            font-size: 1.2rem;
-          }
-
-          .feature-item p {
-            font-size: 0.95rem;
-          }
-
-          .video-demo-box {
-            padding: 32px 24px;
-          }
-
-          .play-icon {
-            width: 70px;
-            height: 70px;
-            font-size: 2rem;
-          }
-
-          .placeholder-content p {
-            font-size: 1.1rem;
-          }
-
-          .view-demo-btn {
-            padding: 12px 28px;
-            font-size: 1rem;
-          }
-
-          .impact-stats {
-            gap: 20px;
-          }
-
-          .stat-box {
-            min-width: 100%;
-            padding: 32px 24px;
-          }
+        .partnership-content {
+          gap: clamp(35px, 8vw, 50px);
         }
 
-        @media (max-width: 480px) {
-          .offer-description {
-            font-size: 1rem;
-          }
+        .free-offer-box {
+          padding: clamp(36px, 7vw, 44px) clamp(28px, 5vw, 40px);
+        }
 
-          .stat-number {
-            font-size: 3rem;
-          }
+        .offer-header {
+          flex-direction: column;
+          gap: clamp(12px, 2.4vw, 16px);
+        }
 
-          .stat-label {
-            font-size: 1rem;
-          }
+        .offer-icon {
+          font-size: clamp(3rem, 6vw, 3.5rem);
+        }
+
+        .offer-description {
+          font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+
+        .win-win-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 25vw, 300px), 1fr));
+          gap: clamp(28px, 5vw, 32px);
+        }
+
+        .win-box {
+          padding: clamp(28px, 5vw, 32px) clamp(24px, 4vw, 28px);
+        }
+
+        .win-box h4 {
+          font-size: clamp(1.35rem, 2.7vw, 1.5rem);
+        }
+
+        .win-box li {
+          font-size: clamp(1rem, 2vw, 1.05rem);
+        }
+
+        .subscription-box {
+          padding: clamp(36px, 7vw, 48px) clamp(28px, 5vw, 40px);
+        }
+
+        .features-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 25vw, 300px), 1fr));
+          gap: clamp(20px, 3vw, 24px);
+        }
+
+        .feature-item {
+          padding: clamp(24px, 4vw, 28px) clamp(20px, 3vw, 24px);
+        }
+
+        .item-icon {
+          font-size: clamp(2.5rem, 5vw, 3rem);
+        }
+
+        .feature-item h4 {
+          font-size: clamp(1.2rem, 2.4vw, 1.3rem);
+        }
+
+        .feature-item p {
+          font-size: clamp(0.95rem, 2vw, 1rem);
+        }
+
+        .video-demo-box {
+          padding: clamp(32px, 6vw, 44px) clamp(24px, 4vw, 40px);
+        }
+
+        .play-icon {
+          width: clamp(70px, 14vw, 80px);
+          height: clamp(70px, 14vw, 80px);
+          font-size: clamp(2rem, 4vw, 2.5rem);
+        }
+
+        .placeholder-content p {
+          font-size: clamp(1.1rem, 2.2vw, 1.2rem);
+        }
+
+        .view-demo-btn {
+          padding: clamp(12px, 2.4vw, 14px) clamp(28px, 5.6vw, 32px);
+          font-size: clamp(1rem, 2vw, 1.05rem);
+        }
+
+        .impact-stats {
+          gap: clamp(20px, 4vw, 32px);
+        }
+
+        .stat-box {
+          min-width: 100%;
+          padding: clamp(32px, 6vw, 36px) clamp(24px, 4vw, 28px);
+        }
+
+        .stat-number {
+          font-size: clamp(3rem, 6vw, 4.5rem);
+        }
+
+        .stat-label {
+          font-size: clamp(1rem, 2vw, 1.2rem);
         }
       `}</style>
     </section>
@@ -3156,22 +3053,7 @@ function VideoScannerSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
+    setIsVisible(true);
   }, []);
 
   return (
@@ -3332,7 +3214,7 @@ function VideoScannerSection() {
       <style jsx>{`
         .video-scanner-section {
           width: 100%;
-          min-height: 100vh;
+          min-height: clamp(70vh, 100vh, 90vh);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -3713,139 +3595,111 @@ function VideoScannerSection() {
           line-height: 1.4;
         }
 
-        @media (max-width: 1024px) {
-          .ai-features-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+        /* Adaptive responsive design using clamp and flex-wrap */
+        .video-scanner-section {
+          padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
         }
 
-        @media (max-width: 768px) {
-          .video-scanner-section {
-            padding: 60px 20px;
-          }
-
-          .scanner-content {
-            gap: 35px;
-          }
-
-          .platform-badges {
-            gap: 12px;
-          }
-
-          .platform-badge {
-            padding: 10px 20px;
-            font-size: 1rem;
-          }
-
-          .badge-emoji {
-            font-size: 1.2rem;
-          }
-
-          .video-showcase {
-            gap: 40px;
-          }
-
-          .video-gif {
-            max-width: 260px;
-          }
-
-          .example-label {
-            padding: 18px 24px;
-            max-width: 300px;
-          }
-
-          .label-icon {
-            font-size: 2rem;
-          }
-
-          .example-label h3 {
-            font-size: 1.25rem;
-          }
-
-          .example-label p {
-            font-size: 0.95rem;
-          }
-
-          .ai-features-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-          }
-
-          .ai-feature-card {
-            padding: 28px 24px;
-          }
-
-          .feature-icon {
-            font-size: 3rem;
-          }
-
-          .ai-feature-card h3 {
-            font-size: 1.25rem;
-          }
-
-          .ai-feature-card p {
-            font-size: 0.95rem;
-          }
-
-          .future-feature-box {
-            padding: 36px 28px;
-          }
-
-          .future-badge {
-            font-size: 0.85rem;
-            padding: 7px 18px;
-          }
-
-          .future-description {
-            font-size: 1rem;
-          }
-
-          .benefit-item {
-            padding: 14px 20px;
-            font-size: 1rem;
-          }
-
-          .check-icon {
-            font-size: 1.3rem;
-          }
-
-          .capability-stats {
-            gap: 20px;
-          }
-
-          .capability-stat {
-            min-width: 100%;
-            padding: 32px 24px;
-          }
-
-          .stat-icon {
-            font-size: 2.5rem;
-          }
+        .scanner-content {
+          gap: clamp(35px, 8vw, 50px);
         }
 
-        @media (max-width: 480px) {
-          .platform-badges {
-            flex-direction: column;
-            width: 100%;
-            max-width: 280px;
-          }
+        .platform-badges {
+          gap: clamp(12px, 2.4vw, 16px);
+          flex-direction: column;
+          width: 100%;
+          max-width: clamp(280px, 60vw, 400px);
+        }
 
-          .platform-badge {
-            justify-content: center;
-          }
+        .platform-badge {
+          padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 24px);
+          font-size: clamp(1rem, 2vw, 1.05rem);
+          justify-content: center;
+        }
 
-          .video-gif {
-            max-width: 240px;
-          }
+        .badge-emoji {
+          font-size: clamp(1.2rem, 2.4vw, 1.4rem);
+        }
 
-          .future-benefits {
-            gap: 12px;
-          }
+        .video-showcase {
+          gap: clamp(40px, 8vw, 60px);
+        }
 
-          .benefit-item {
-            padding: 12px 18px;
-            font-size: 0.95rem;
-          }
+        .video-gif {
+          max-width: clamp(240px, 25vw, 300px);
+        }
+
+        .example-label {
+          padding: clamp(18px, 3.6vw, 20px) clamp(24px, 4.8vw, 28px);
+          max-width: clamp(300px, 60vw, 340px);
+        }
+
+        .label-icon {
+          font-size: clamp(2rem, 4vw, 2.5rem);
+        }
+
+        .example-label h3 {
+          font-size: clamp(1.25rem, 2.5vw, 1.4rem);
+        }
+
+        .example-label p {
+          font-size: clamp(0.95rem, 2vw, 1rem);
+        }
+
+        .ai-features-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 22vw, 280px), 1fr));
+          gap: clamp(20px, 3vw, 24px);
+        }
+
+        .ai-feature-card {
+          padding: clamp(28px, 5vw, 32px) clamp(24px, 4vw, 28px);
+        }
+
+        .feature-icon {
+          font-size: clamp(3rem, 6vw, 3.5rem);
+        }
+
+        .ai-feature-card h3 {
+          font-size: clamp(1.25rem, 2.5vw, 1.35rem);
+        }
+
+        .ai-feature-card p {
+          font-size: clamp(0.95rem, 2vw, 1rem);
+        }
+
+        .future-feature-box {
+          padding: clamp(36px, 7vw, 44px) clamp(28px, 5vw, 40px);
+        }
+
+        .future-badge {
+          font-size: clamp(0.85rem, 1.7vw, 0.9rem);
+          padding: clamp(7px, 1.4vw, 8px) clamp(18px, 3.6vw, 20px);
+        }
+
+        .future-description {
+          font-size: clamp(1rem, 2vw, 1.05rem);
+        }
+
+        .benefit-item {
+          padding: clamp(12px, 2.4vw, 16px) clamp(18px, 3.6vw, 24px);
+          font-size: clamp(0.95rem, 2vw, 1.05rem);
+        }
+
+        .check-icon {
+          font-size: clamp(1.3rem, 2.6vw, 1.5rem);
+        }
+
+        .capability-stats {
+          gap: clamp(20px, 4vw, 32px);
+        }
+
+        .capability-stat {
+          min-width: 100%;
+          padding: clamp(32px, 6vw, 36px) clamp(24px, 4vw, 28px);
+        }
+
+        .stat-icon {
+          font-size: clamp(2.5rem, 5vw, 3rem);
         }
       `}</style>
     </section>
@@ -4051,50 +3905,43 @@ function FeaturesSection() {
           display: block;
         }
 
-        @media (max-width: 1024px) {
-          .features-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+        /* Adaptive responsive design using clamp and grid auto-fit */
+        .features-section {
+          padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
         }
 
-        @media (max-width: 768px) {
-          .features-section {
-            padding: 60px 20px;
-          }
+        .features-content {
+          gap: clamp(40px, 8vw, 60px);
+        }
 
-          .features-content {
-            gap: 40px;
-          }
+        .features-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 20vw, 250px), 1fr));
+          gap: clamp(20px, 3vw, 24px);
+        }
 
-          .features-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-          }
+        .feature-card {
+          padding: clamp(24px, 4vw, 32px) clamp(20px, 3vw, 24px);
+        }
 
-          .feature-card {
-            padding: 24px 20px;
-          }
+        .card-icon {
+          font-size: clamp(2.5rem, 5vw, 3rem);
+          margin-bottom: clamp(12px, 2vw, 16px);
+        }
 
-          .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-          }
+        .feature-card h3 {
+          font-size: clamp(1.1rem, 2.2vw, 1.25rem);
+        }
 
-          .feature-card h3 {
-            font-size: 1.1rem;
-          }
+        .feature-card p {
+          font-size: clamp(0.9rem, 2vw, 0.95rem);
+        }
 
-          .feature-card p {
-            font-size: 0.9rem;
-          }
+        .screenshots-container {
+          gap: clamp(24px, 5vw, 40px);
+        }
 
-          .screenshots-container {
-            gap: 24px;
-          }
-
-          .app-screenshot {
-            max-width: 160px;
-          }
+        .app-screenshot {
+          max-width: clamp(160px, 20vw, 220px);
         }
       `}</style>
     </section>
