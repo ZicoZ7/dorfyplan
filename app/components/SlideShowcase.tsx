@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { colors } from '../colors';
+import { getAssetPath } from '../utils/assetPath';
 
 export default function SlideShowcase() {
   return (
@@ -125,7 +126,7 @@ function IntroSection() {
           <div className="app-preview">
             <div className="homepage-wrapper">
               <Image
-                src="/homepage.jpg"
+                src={getAssetPath("/homepage.jpg")}
                 alt="Dorfy App Homepage"
                 width={300}
                 height={600}
@@ -1081,7 +1082,7 @@ function ShopWhatYouSeeSection() {
           <div className="image-showcase">
             <div className="showcase-wrapper">
               <Image
-                src="/scanitem.png"
+                src={getAssetPath("/scanitem.png")}
                 alt="Shop What You See - Scan and Find Similar Items"
                 width={400}
                 height={800}
@@ -1446,7 +1447,7 @@ function OutfitManagementSection() {
           <div className="gif-wrapper">
             <div className="gif-image-wrapper">
               <Image
-                src="/fits.gif"
+                src={getAssetPath("/fits.gif")}
                 alt="Create and organize your outfits"
                 width={300}
                 height={600}
@@ -1459,7 +1460,7 @@ function OutfitManagementSection() {
           <div className="gif-wrapper">
             <div className="gif-image-wrapper">
               <Image
-                src="/pieces.gif"
+                src={getAssetPath("/pieces.gif")}
                 alt="Categorize your wardrobe pieces"
                 width={300}
                 height={600}
@@ -1926,7 +1927,7 @@ function TryOnSection() {
           <div className="tryon-gif-wrapper">
             <div className="tryon-gif-image-wrapper">
               <Image
-                src="/tryoutfit.gif"
+                src={getAssetPath("/tryoutfit.gif")}
                 alt="Try on outfits virtually"
                 width={300}
                 height={600}
@@ -1939,7 +1940,7 @@ function TryOnSection() {
           <div className="tryon-gif-wrapper">
             <div className="tryon-gif-image-wrapper">
               <Image
-                src="/trytab.gif"
+                src={getAssetPath("/trytab.gif")}
                 alt="Browse and try outfits from feed"
                 width={300}
                 height={600}
@@ -2577,7 +2578,7 @@ function BrandPartnershipSection() {
               controls
               className="twitter-video"
             >
-              <source src="/twittervideo.mp4" type="video/mp4" />
+              <source src={getAssetPath("/twittervideo.mp4")} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
@@ -3152,7 +3153,7 @@ function VideoScannerSection() {
           <div className="video-example">
             <div className="video-gif-wrapper">
               <Image
-                src="/videoshows.gif"
+                src={getAssetPath("/videoshows.gif")}
                 alt="Video Scanner - Movies & TV Shows Analysis"
                 width={300}
                 height={600}
@@ -3170,7 +3171,7 @@ function VideoScannerSection() {
           <div className="video-example">
             <div className="video-gif-wrapper">
               <Image
-                src="/videocook.gif"
+                src={getAssetPath("/videocook.gif")}
                 alt="Video Scanner - Cooking & Recipe Analysis"
                 width={300}
                 height={600}
@@ -3807,7 +3808,7 @@ function AIChatModelSection() {
         <div className={`main-gif-container ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
           <div className="main-gif-wrapper">
             <Image
-              src="/chatmovie.gif"
+              src={getAssetPath("/chatmovie.gif")}
               alt="AI Chat Assistant in action"
               width={350}
               height={700}
@@ -3827,7 +3828,7 @@ function AIChatModelSection() {
           <div className="chat-example-card">
             <div className="example-image-wrapper">
               <Image
-                src="/chat1.jpg"
+                src={getAssetPath("/chat1.jpg")}
                 alt="Movie search and details"
                 width={300}
                 height={600}
@@ -3839,7 +3840,7 @@ function AIChatModelSection() {
           <div className="chat-example-card">
             <div className="example-image-wrapper">
               <Image
-                src="/chat2.jpg"
+                src={getAssetPath("/chat2.jpg")}
                 alt="Get movie cast and details"
                 width={300}
                 height={600}
@@ -3851,7 +3852,7 @@ function AIChatModelSection() {
           <div className="chat-example-card">
             <div className="example-image-wrapper">
               <Image
-                src="/chat3.jpg"
+                src={getAssetPath("/chat3.jpg")}
                 alt="Find similar movies"
                 width={300}
                 height={600}
@@ -3863,7 +3864,7 @@ function AIChatModelSection() {
           <div className="chat-example-card">
             <div className="example-image-wrapper">
               <Image
-                src="/chat4.jpg"
+                src={getAssetPath("/chat4.jpg")}
                 alt="Game search and compare prices"
                 width={300}
                 height={600}
@@ -3875,7 +3876,7 @@ function AIChatModelSection() {
           <div className="chat-example-card">
             <div className="example-image-wrapper">
               <Image
-                src="/chat5.jpg"
+                src={getAssetPath("/chat5.jpg")}
                 alt="Shopping with price comparison"
                 width={300}
                 height={600}
@@ -3945,7 +3946,7 @@ function AIChatModelSection() {
           <div className="media-item">
             <div className="media-wrapper">
               <Image
-                src="/bees.gif"
+                src={getAssetPath("/bees.gif")}
                 alt="Bees Feed"
                 width={300}
                 height={600}
@@ -3959,7 +3960,7 @@ function AIChatModelSection() {
           <div className="media-item">
             <div className="media-wrapper">
               <Image
-                src="/cast.gif"
+                src={getAssetPath("/cast.gif")}
                 alt="Cast"
                 width={300}
                 height={600}
@@ -3973,7 +3974,7 @@ function AIChatModelSection() {
           <div className="media-item">
             <div className="media-wrapper">
               <Image
-                src="/similarshows.gif"
+                src={getAssetPath("/similarshows.gif")}
                 alt="Similar Shows"
                 width={300}
                 height={600}
@@ -3987,7 +3988,7 @@ function AIChatModelSection() {
           <div className="media-item">
             <div className="media-wrapper">
               <Image
-                src="/slotmoive.gif"
+                src={getAssetPath("/slotmoive.gif")}
                 alt="Slot Movie"
                 width={300}
                 height={600}
@@ -4001,7 +4002,7 @@ function AIChatModelSection() {
           <div className="media-item">
             <div className="media-wrapper">
               <Image
-                src="/wheretowatch.gif"
+                src={getAssetPath("/wheretowatch.gif")}
                 alt="Where to Watch"
                 width={300}
                 height={600}
@@ -4015,7 +4016,7 @@ function AIChatModelSection() {
           <div className="media-item">
             <div className="media-wrapper">
               <Image
-                src="/rating.jpg"
+                src={getAssetPath("/rating.jpg")}
                 alt="Rating"
                 width={300}
                 height={600}
@@ -4040,7 +4041,7 @@ function AIChatModelSection() {
           <div className="future-feature-item">
             <div className="future-image-wrapper">
               <Image
-                src="/ngl.png"
+                src={getAssetPath("/ngl.png")}
                 alt="NGL-Style Social Integration"
                 width={400}
                 height={800}
@@ -4053,7 +4054,7 @@ function AIChatModelSection() {
           <div className="future-feature-item">
             <div className="future-image-wrapper">
               <Image
-                src="/map.png"
+                src={getAssetPath("/map.png")}
                 alt="Social Map Feature"
                 width={400}
                 height={800}
@@ -4128,7 +4129,7 @@ function AIChatModelSection() {
           <div className="additional-item">
             <div className="additional-wrapper">
               <Image
-                src="/scanfood.gif"
+                src={getAssetPath("/scanfood.gif")}
                 alt="Calories Scanner"
                 width={300}
                 height={600}
@@ -4142,7 +4143,7 @@ function AIChatModelSection() {
           <div className="additional-item">
             <div className="additional-wrapper">
               <Image
-                src="/workoutlogs.png"
+                src={getAssetPath("/workoutlogs.png")}
                 alt="Workout Logs"
                 width={300}
                 height={600}
@@ -4155,7 +4156,7 @@ function AIChatModelSection() {
           <div className="additional-item">
             <div className="additional-wrapper">
               <Image
-                src="/statschart.png"
+                src={getAssetPath("/statschart.png")}
                 alt="Stats Chart"
                 width={300}
                 height={600}
@@ -4176,7 +4177,7 @@ function AIChatModelSection() {
           <div className="founder-photos">
             <div className="founder-photo-wrapper">
               <Image
-                src="/photo2.jpg"
+                src={getAssetPath("/photo2.jpg")}
                 alt="Sharif (Zico) Zafar"
                 width={300}
                 height={300}
@@ -4185,7 +4186,7 @@ function AIChatModelSection() {
             </div>
             <div className="founder-photo-wrapper">
               <Image
-                src="/photo1.jpg"
+                src={getAssetPath("/photo1.jpg")}
                 alt="Sharif (Zico) Zafar"
                 width={300}
                 height={300}
@@ -4194,7 +4195,7 @@ function AIChatModelSection() {
             </div>
             <div className="founder-photo-wrapper">
               <Image
-                src="/photo.jpg"
+                src={getAssetPath("/photo.jpg")}
                 alt="Sharif (Zico) Zafar"
                 width={300}
                 height={300}
@@ -5018,7 +5019,7 @@ function FeaturesSection() {
           <div className="screenshot-item">
             <div className="screenshot-wrapper">
               <Image
-                src="/6.png"
+                src={getAssetPath("/6.png")}
                 alt="Feature 1"
                 width={220}
                 height={440}
@@ -5029,7 +5030,7 @@ function FeaturesSection() {
           <div className="screenshot-item">
             <div className="screenshot-wrapper">
               <Image
-                src="/5.png"
+                src={getAssetPath("/5.png")}
                 alt="Feature 2"
                 width={220}
                 height={440}
