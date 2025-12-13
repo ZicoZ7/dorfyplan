@@ -4036,6 +4036,95 @@ function AIChatModelSection() {
           </div>
         </div>
 
+        {/* Future Considerable Features */}
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '1.0s' }}>
+          Future <span className="highlight">Considerable</span> Features
+        </h2>
+
+        <p className={`future-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '1.1s' }}>
+          Stop relying solely on content - integrate social features to make the app shareable and turn users into promoters
+        </p>
+
+        {/* Feature Images */}
+        <div className={`future-features-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '1.2s' }}>
+          <div className="future-feature-item">
+            <div className="future-image-wrapper">
+              <Image
+                src="/ngl.png"
+                alt="NGL-Style Social Integration"
+                width={400}
+                height={800}
+                className="future-image"
+              />
+            </div>
+            <div className="future-feature-label">NGL-Style Social Integration</div>
+          </div>
+
+          <div className="future-feature-item">
+            <div className="future-image-wrapper">
+              <Image
+                src="/map.png"
+                alt="Social Map Feature"
+                width={400}
+                height={800}
+                className="future-image"
+              />
+            </div>
+            <div className="future-feature-label">Social Map Feature</div>
+          </div>
+        </div>
+
+        {/* Feature Details List */}
+        <div className={`future-details-list ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '1.3s' }}>
+          <div className="future-detail-item">
+            <span className="detail-emoji">💬</span>
+            <div className="detail-text">
+              <h3>NGL-Inspired Viral Sharing ($40M/year model)</h3>
+              <p>Anonymous feedback, shareable stories, and viral loops that made NGL generate $40M annually. Users share to Instagram/TikTok stories, driving organic growth and app downloads</p>
+            </div>
+          </div>
+
+          <div className="future-detail-item">
+            <span className="detail-emoji">🗺️</span>
+            <div className="detail-text">
+              <h3>Social Map - See What Friends Are Doing</h3>
+              <p>Real-time map showing friends' locations with what they're listening to (music), watching (movies/shows), playing (games), and wearing (outfits). Tap to rate movies, discover games, or shop similar items instantly</p>
+            </div>
+          </div>
+
+          <div className="future-detail-item">
+            <span className="detail-emoji">💬</span>
+            <div className="detail-text">
+              <h3>Interactive Messaging</h3>
+              <p>Users can send text and voice messages on the map. React to friends' activities, start conversations about what they're watching or wearing, creating constant engagement</p>
+            </div>
+          </div>
+
+          <div className="future-detail-item">
+            <span className="detail-emoji">👔</span>
+            <div className="detail-text">
+              <h3>Outfit Worth Calculator & Sharing</h3>
+              <p>AI calculates total outfit value from each item's price. Share your fits as stories showing the worth, driving envy and clicks. Perfect for promoting resale items and try-on features</p>
+            </div>
+          </div>
+
+          <div className="future-detail-item">
+            <span className="detail-emoji">📸</span>
+            <div className="detail-text">
+              <h3>Story Sharing for Resale & Try-On</h3>
+              <p>Share outfit try-ons as stories to promote resale items. Friends can instantly shop similar items or buy directly from your closet. Creates viral marketing loop for marketplace</p>
+            </div>
+          </div>
+
+          <div className="future-detail-item">
+            <span className="detail-emoji">🎯</span>
+            <div className="detail-text">
+              <h3>Direct Integration with Everything</h3>
+              <p>From map, directly access: rate movies, discover games with prices, shop outfits, listen to same music, watch together. Every feature interconnected for seamless social discovery</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <style jsx>{`
@@ -4299,6 +4388,97 @@ function AIChatModelSection() {
           text-align: center;
         }
 
+        .future-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.2rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -30px 0 0 0;
+          max-width: 900px;
+          opacity: 0;
+        }
+
+        .future-features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 40px;
+          width: 100%;
+          max-width: 1000px;
+          opacity: 0;
+        }
+
+        .future-feature-item {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          align-items: center;
+        }
+
+        .future-image-wrapper {
+          position: relative;
+          border-radius: 24px;
+          overflow: hidden;
+          box-shadow:
+            0 25px 70px rgba(229, 9, 20, 0.6),
+            0 0 0 2px rgba(255, 255, 255, 0.1);
+          transition: all 0.5s ease;
+        }
+
+        .future-image-wrapper:hover {
+          transform: translateY(-12px) scale(1.05);
+          box-shadow:
+            0 35px 90px rgba(229, 9, 20, 0.7),
+            0 0 0 3px ${colors.netflixRed};
+        }
+
+        .future-image {
+          border-radius: 24px;
+          width: 100%;
+          max-width: 400px;
+          height: auto;
+          display: block;
+        }
+
+        .future-feature-label {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: ${colors.white};
+          text-align: center;
+        }
+
+        .future-details-list {
+          width: 100%;
+          max-width: 1000px;
+          display: flex;
+          flex-direction: column;
+          gap: 28px;
+          opacity: 0;
+        }
+
+        .future-detail-item {
+          display: flex;
+          gap: 20px;
+          align-items: flex-start;
+        }
+
+        .detail-emoji {
+          font-size: 2.5rem;
+          flex-shrink: 0;
+        }
+
+        .detail-text h3 {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin: 0 0 8px 0;
+        }
+
+        .detail-text p {
+          font-size: 1.05rem;
+          color: ${colors.textLight};
+          line-height: 1.7;
+          margin: 0;
+        }
+
         /* Responsive Design */
         .ai-chat-section {
           padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
@@ -4385,6 +4565,43 @@ function AIChatModelSection() {
 
         .media-label {
           font-size: clamp(1.1rem, 2.2vw, 1.2rem);
+        }
+
+        .future-features-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 28vw, 300px), 1fr));
+          gap: clamp(32px, 6vw, 40px);
+        }
+
+        .future-feature-item {
+          gap: clamp(16px, 3vw, 20px);
+        }
+
+        .future-image {
+          max-width: clamp(320px, 35vw, 400px);
+        }
+
+        .future-feature-label {
+          font-size: clamp(1.2rem, 2.4vw, 1.3rem);
+        }
+
+        .future-details-list {
+          gap: clamp(20px, 4vw, 28px);
+        }
+
+        .future-detail-item {
+          gap: clamp(16px, 3vw, 20px);
+        }
+
+        .detail-emoji {
+          font-size: clamp(2rem, 4vw, 2.5rem);
+        }
+
+        .detail-text h3 {
+          font-size: clamp(1.15rem, 2.3vw, 1.3rem);
+        }
+
+        .detail-text p {
+          font-size: clamp(1rem, 2vw, 1.05rem);
         }
 
       `}</style>
