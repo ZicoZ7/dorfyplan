@@ -12,6 +12,7 @@ export default function SlideShowcase() {
         <FeaturesSection />
         <VisionSection />
         <MarketOpportunitySection />
+        <ShopWhatYouSeeSection />
       </div>
 
       <style jsx global>{`
@@ -1050,6 +1051,385 @@ function MarketOpportunitySection() {
 
           .metric-icon {
             font-size: 2rem;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function ShopWhatYouSeeSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="shop-section">
+      <div className="shop-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          Shop <span className="highlight">What You See</span>
+        </h2>
+
+        <p className={`shop-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          Instant visual search and discovery from anywhere
+        </p>
+
+        <div className={`content-layout ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+          {/* Left side - Image showcase */}
+          <div className="image-showcase">
+            <div className="showcase-wrapper">
+              <Image
+                src="/scanitem.png"
+                alt="Shop What You See - Scan and Find Similar Items"
+                width={400}
+                height={800}
+                className="showcase-image"
+                priority
+              />
+              <div className="glow-effect"></div>
+            </div>
+          </div>
+
+          {/* Right side - Features and Revenue */}
+          <div className="features-content">
+            <div className="feature-box">
+              <div className="box-icon">📸</div>
+              <h3>Capture & Upload</h3>
+              <p>Take a photo or screenshot from Instagram stories, TikTok, movies, or anywhere - upload it to Dorfy and let AI do the work</p>
+            </div>
+
+            <div className="feature-box">
+              <div className="box-icon">🔍</div>
+              <h3>AI-Powered Scan</h3>
+              <p>Advanced visual recognition instantly identifies items and finds similar products across multiple platforms</p>
+            </div>
+
+            <div className="feature-box">
+              <div className="box-icon">🛒</div>
+              <h3>Shop Similar Items</h3>
+              <p>Browse matching products from Amazon, Walmart, AliExpress, eBay, and more - all in one place</p>
+            </div>
+
+            {/* Revenue Model */}
+            <div className="revenue-box">
+              <div className="revenue-header">
+                <div className="revenue-icon">💰</div>
+                <h3>Revenue Model</h3>
+              </div>
+              <div className="revenue-details">
+                <div className="revenue-item">
+                  <span className="percentage">9-10%</span>
+                  <span className="description">Commission per sale via affiliate platforms</span>
+                </div>
+                <div className="platforms-list">
+                  <span className="platform-tag">Amazon Associates</span>
+                  <span className="platform-tag">Walmart Affiliates</span>
+                  <span className="platform-tag">eBay Partner Network</span>
+                  <span className="platform-tag">AliExpress</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .shop-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          position: relative;
+          background: linear-gradient(180deg, rgba(229, 9, 20, 0.03) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        .shop-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+        }
+
+        .shop-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 700px;
+          opacity: 0;
+        }
+
+        .content-layout {
+          display: flex;
+          gap: 60px;
+          width: 100%;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: wrap;
+          opacity: 0;
+        }
+
+        .image-showcase {
+          flex: 0 0 auto;
+          position: relative;
+        }
+
+        .showcase-wrapper {
+          position: relative;
+          display: inline-block;
+        }
+
+        .showcase-image {
+          border-radius: 30px;
+          box-shadow:
+            0 30px 80px rgba(229, 9, 20, 0.5),
+            0 0 0 1px rgba(255, 255, 255, 0.1);
+          object-fit: cover;
+          width: 100%;
+          max-width: 350px;
+          height: auto;
+          transition: transform 0.4s ease;
+          position: relative;
+          z-index: 2;
+        }
+
+        .showcase-image:hover {
+          transform: translateY(-10px) scale(1.02);
+        }
+
+        .glow-effect {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 120%;
+          height: 120%;
+          background: radial-gradient(circle, rgba(229, 9, 20, 0.3) 0%, transparent 70%);
+          filter: blur(40px);
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        .features-content {
+          flex: 1;
+          min-width: 320px;
+          max-width: 600px;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
+        .feature-box {
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(40, 40, 40, 0.6) 100%);
+          border: 1px solid rgba(229, 9, 20, 0.2);
+          border-radius: 16px;
+          padding: 24px;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .feature-box:hover {
+          transform: translateX(10px);
+          border-color: rgba(229, 9, 20, 0.5);
+          box-shadow: 0 10px 40px rgba(229, 9, 20, 0.3);
+        }
+
+        .box-icon {
+          font-size: 2.5rem;
+          margin-bottom: 12px;
+        }
+
+        .feature-box h3 {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin: 0 0 10px 0;
+        }
+
+        .feature-box p {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .revenue-box {
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(26, 26, 26, 0.9) 100%);
+          border: 2px solid ${colors.netflixRed};
+          border-radius: 20px;
+          padding: 28px;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 15px 50px rgba(229, 9, 20, 0.4);
+        }
+
+        .revenue-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 20px;
+        }
+
+        .revenue-icon {
+          font-size: 2.5rem;
+        }
+
+        .revenue-header h3 {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: ${colors.white};
+          margin: 0;
+        }
+
+        .revenue-details {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .revenue-item {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .percentage {
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
+          font-weight: 900;
+          color: ${colors.netflixRed};
+          text-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+        }
+
+        .description {
+          font-size: 1.1rem;
+          color: ${colors.textLight};
+          font-weight: 500;
+        }
+
+        .platforms-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-top: 8px;
+        }
+
+        .platform-tag {
+          background: rgba(229, 9, 20, 0.2);
+          border: 1px solid rgba(229, 9, 20, 0.4);
+          color: ${colors.white};
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          transition: all 0.3s ease;
+        }
+
+        .platform-tag:hover {
+          background: rgba(229, 9, 20, 0.3);
+          border-color: ${colors.netflixRed};
+          transform: translateY(-2px);
+        }
+
+        @media (max-width: 1024px) {
+          .content-layout {
+            gap: 40px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .shop-section {
+            padding: 60px 20px;
+          }
+
+          .shop-content {
+            gap: 35px;
+          }
+
+          .content-layout {
+            gap: 30px;
+          }
+
+          .showcase-image {
+            max-width: 280px;
+          }
+
+          .features-content {
+            gap: 20px;
+          }
+
+          .feature-box {
+            padding: 20px;
+          }
+
+          .box-icon {
+            font-size: 2rem;
+          }
+
+          .feature-box h3 {
+            font-size: 1.2rem;
+          }
+
+          .feature-box p {
+            font-size: 0.95rem;
+          }
+
+          .revenue-box {
+            padding: 24px;
+          }
+
+          .revenue-icon {
+            font-size: 2rem;
+          }
+
+          .revenue-header h3 {
+            font-size: 1.3rem;
+          }
+
+          .percentage {
+            font-size: 2.5rem;
+          }
+
+          .description {
+            font-size: 1rem;
+          }
+
+          .platform-tag {
+            font-size: 0.8rem;
+            padding: 6px 12px;
           }
         }
       `}</style>
