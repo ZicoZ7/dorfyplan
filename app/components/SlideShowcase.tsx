@@ -1108,7 +1108,6 @@ function ShopWhatYouSeeSection() {
                 className="showcase-image"
                 priority
               />
-              <div className="glow-effect"></div>
             </div>
           </div>
 
@@ -1215,38 +1214,28 @@ function ShopWhatYouSeeSection() {
 
         .showcase-wrapper {
           position: relative;
-          display: inline-block;
+          border-radius: 32px;
+          overflow: hidden;
+          box-shadow:
+            0 35px 90px rgba(229, 9, 20, 0.6),
+            0 0 0 2px rgba(255, 255, 255, 0.1);
+          transition: all 0.5s ease;
+        }
+
+        .showcase-wrapper:hover {
+          transform: translateY(-12px) scale(1.05);
+          box-shadow:
+            0 40px 100px rgba(229, 9, 20, 0.7),
+            0 0 0 3px ${colors.netflixRed},
+            0 0 60px rgba(229, 9, 20, 0.5);
         }
 
         .showcase-image {
-          border-radius: 30px;
-          box-shadow:
-            0 30px 80px rgba(229, 9, 20, 0.5),
-            0 0 0 1px rgba(255, 255, 255, 0.1);
-          object-fit: cover;
+          border-radius: 32px;
           width: 100%;
           max-width: 350px;
           height: auto;
-          transition: transform 0.4s ease;
-          position: relative;
-          z-index: 2;
-        }
-
-        .showcase-image:hover {
-          transform: translateY(-10px) scale(1.02);
-        }
-
-        .glow-effect {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 120%;
-          height: 120%;
-          background: radial-gradient(circle, rgba(229, 9, 20, 0.3) 0%, transparent 70%);
-          filter: blur(40px);
-          z-index: 1;
-          pointer-events: none;
+          display: block;
         }
 
         .features-content {
@@ -1478,25 +1467,29 @@ function OutfitManagementSection() {
         {/* GIF Showcases */}
         <div className={`gif-showcase ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
           <div className="gif-wrapper">
-            <Image
-              src="/fits.gif"
-              alt="Create and organize your outfits"
-              width={300}
-              height={600}
-              className="gif-image"
-              unoptimized
-            />
+            <div className="gif-image-wrapper">
+              <Image
+                src="/fits.gif"
+                alt="Create and organize your outfits"
+                width={300}
+                height={600}
+                className="gif-image"
+                unoptimized
+              />
+            </div>
             <div className="gif-label">Create Fits</div>
           </div>
           <div className="gif-wrapper">
-            <Image
-              src="/pieces.gif"
-              alt="Categorize your wardrobe pieces"
-              width={300}
-              height={600}
-              className="gif-image"
-              unoptimized
-            />
+            <div className="gif-image-wrapper">
+              <Image
+                src="/pieces.gif"
+                alt="Categorize your wardrobe pieces"
+                width={300}
+                height={600}
+                className="gif-image"
+                unoptimized
+              />
+            </div>
             <div className="gif-label">Organize Pieces</div>
           </div>
         </div>
@@ -1625,26 +1618,34 @@ function OutfitManagementSection() {
           position: relative;
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 24px;
           align-items: center;
         }
 
-        .gif-image {
-          border-radius: 30px;
+        .gif-image-wrapper {
+          position: relative;
+          border-radius: 32px;
+          overflow: hidden;
           box-shadow:
-            0 30px 80px rgba(229, 9, 20, 0.5),
-            0 0 0 1px rgba(255, 255, 255, 0.1);
+            0 35px 90px rgba(229, 9, 20, 0.6),
+            0 0 0 2px rgba(255, 255, 255, 0.1);
+          transition: all 0.5s ease;
+        }
+
+        .gif-image-wrapper:hover {
+          transform: translateY(-12px) scale(1.05);
+          box-shadow:
+            0 40px 100px rgba(229, 9, 20, 0.7),
+            0 0 0 3px ${colors.netflixRed},
+            0 0 60px rgba(229, 9, 20, 0.5);
+        }
+
+        .gif-image {
+          border-radius: 32px;
           width: 100%;
           max-width: 280px;
           height: auto;
-          transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .gif-image:hover {
-          transform: translateY(-10px) scale(1.05);
-          box-shadow:
-            0 35px 90px rgba(229, 9, 20, 0.6),
-            0 0 0 2px ${colors.netflixRed};
+          display: block;
         }
 
         .gif-label {
@@ -1947,25 +1948,29 @@ function TryOnSection() {
         {/* GIF Showcases */}
         <div className={`tryon-gifs ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
           <div className="tryon-gif-wrapper">
-            <Image
-              src="/tryoutfit.gif"
-              alt="Try on outfits virtually"
-              width={300}
-              height={600}
-              className="tryon-gif-image"
-              unoptimized
-            />
+            <div className="tryon-gif-image-wrapper">
+              <Image
+                src="/tryoutfit.gif"
+                alt="Try on outfits virtually"
+                width={300}
+                height={600}
+                className="tryon-gif-image"
+                unoptimized
+              />
+            </div>
             <div className="tryon-gif-label">Virtual Try-On</div>
           </div>
           <div className="tryon-gif-wrapper">
-            <Image
-              src="/trytab.gif"
-              alt="Browse and try outfits from feed"
-              width={300}
-              height={600}
-              className="tryon-gif-image"
-              unoptimized
-            />
+            <div className="tryon-gif-image-wrapper">
+              <Image
+                src="/trytab.gif"
+                alt="Browse and try outfits from feed"
+                width={300}
+                height={600}
+                className="tryon-gif-image"
+                unoptimized
+              />
+            </div>
             <div className="tryon-gif-label">Try-On Tab</div>
           </div>
         </div>
@@ -2106,24 +2111,30 @@ function TryOnSection() {
           align-items: center;
         }
 
-        .tryon-gif-image {
+        .tryon-gif-image-wrapper {
+          position: relative;
           border-radius: 32px;
+          overflow: hidden;
           box-shadow:
             0 35px 90px rgba(229, 9, 20, 0.6),
-            0 0 0 2px rgba(255, 255, 255, 0.15);
-          width: 100%;
-          max-width: 300px;
-          height: auto;
+            0 0 0 2px rgba(255, 255, 255, 0.1);
           transition: all 0.5s ease;
-          position: relative;
         }
 
-        .tryon-gif-image:hover {
-          transform: translateY(-15px) scale(1.08);
+        .tryon-gif-image-wrapper:hover {
+          transform: translateY(-12px) scale(1.05);
           box-shadow:
             0 40px 100px rgba(229, 9, 20, 0.7),
             0 0 0 3px ${colors.netflixRed},
-            0 0 60px rgba(229, 9, 20, 0.4);
+            0 0 60px rgba(229, 9, 20, 0.5);
+        }
+
+        .tryon-gif-image {
+          border-radius: 32px;
+          width: 100%;
+          max-width: 300px;
+          height: auto;
+          display: block;
         }
 
         .tryon-gif-label {
@@ -3884,22 +3895,26 @@ function FeaturesSection() {
 
         <div className={`screenshots-container ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
           <div className="screenshot-item">
-            <Image
-              src="/6.png"
-              alt="Feature 1"
-              width={220}
-              height={440}
-              className="app-screenshot"
-            />
+            <div className="screenshot-wrapper">
+              <Image
+                src="/6.png"
+                alt="Feature 1"
+                width={220}
+                height={440}
+                className="app-screenshot"
+              />
+            </div>
           </div>
           <div className="screenshot-item">
-            <Image
-              src="/5.png"
-              alt="Feature 2"
-              width={220}
-              height={440}
-              className="app-screenshot"
-            />
+            <div className="screenshot-wrapper">
+              <Image
+                src="/5.png"
+                alt="Feature 2"
+                width={220}
+                height={440}
+                className="app-screenshot"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -3995,19 +4010,30 @@ function FeaturesSection() {
           position: relative;
         }
 
+        .screenshot-wrapper {
+          position: relative;
+          border-radius: 32px;
+          overflow: hidden;
+          box-shadow:
+            0 35px 90px rgba(229, 9, 20, 0.6),
+            0 0 0 2px rgba(255, 255, 255, 0.1);
+          transition: all 0.5s ease;
+        }
+
+        .screenshot-wrapper:hover {
+          transform: translateY(-12px) scale(1.05);
+          box-shadow:
+            0 40px 100px rgba(229, 9, 20, 0.7),
+            0 0 0 3px ${colors.netflixRed},
+            0 0 60px rgba(229, 9, 20, 0.5);
+        }
+
         .app-screenshot {
+          border-radius: 32px;
           width: 100%;
           max-width: 220px;
           height: auto;
-          border-radius: 24px;
-          box-shadow:
-            0 20px 60px rgba(229, 9, 20, 0.3),
-            0 0 0 1px rgba(255, 255, 255, 0.08);
-          transition: transform 0.3s ease;
-        }
-
-        .app-screenshot:hover {
-          transform: scale(1.05);
+          display: block;
         }
 
         @media (max-width: 1024px) {
