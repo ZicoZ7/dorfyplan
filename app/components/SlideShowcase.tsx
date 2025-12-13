@@ -13,6 +13,7 @@ export default function SlideShowcase() {
         <VisionSection />
         <MarketOpportunitySection />
         <ShopWhatYouSeeSection />
+        <OutfitManagementSection />
       </div>
 
       <style jsx global>{`
@@ -1430,6 +1431,475 @@ function ShopWhatYouSeeSection() {
           .platform-tag {
             font-size: 0.8rem;
             padding: 6px 12px;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function OutfitManagementSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="outfit-section">
+      <div className="outfit-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          Build Your <span className="highlight">Digital Closet</span>
+        </h2>
+
+        <p className={`outfit-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          Organize, create, and monetize your wardrobe with AI-powered features
+        </p>
+
+        {/* GIF Showcases */}
+        <div className={`gif-showcase ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+          <div className="gif-wrapper">
+            <Image
+              src="/fits.gif"
+              alt="Create and organize your outfits"
+              width={300}
+              height={600}
+              className="gif-image"
+              unoptimized
+            />
+            <div className="gif-label">Create Fits</div>
+          </div>
+          <div className="gif-wrapper">
+            <Image
+              src="/pieces.gif"
+              alt="Categorize your wardrobe pieces"
+              width={300}
+              height={600}
+              className="gif-image"
+              unoptimized
+            />
+            <div className="gif-label">Organize Pieces</div>
+          </div>
+        </div>
+
+        {/* Feature Grid */}
+        <div className={`outfit-features-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
+          <div className="outfit-feature-card">
+            <div className="feature-icon">👕</div>
+            <h3>Add Your Outfits</h3>
+            <p>Upload photos of your wardrobe items and let Dorfy automatically identify and categorize each piece using AI</p>
+          </div>
+
+          <div className="outfit-feature-card">
+            <div className="feature-icon">🎨</div>
+            <h3>Create Fits</h3>
+            <p>Mix and match your items to create stunning outfit combinations. Dorfy helps you visualize different looks effortlessly</p>
+          </div>
+
+          <div className="outfit-feature-card">
+            <div className="feature-icon">🏷️</div>
+            <h3>Smart Categorization</h3>
+            <p>AI automatically organizes your items by type, color, season, and style - making it easy to find what you need</p>
+          </div>
+
+          <div className="outfit-feature-card">
+            <div className="feature-icon">💸</div>
+            <h3>Resell & Discover</h3>
+            <p>List items you no longer wear and discover unique pieces from other users in the community marketplace</p>
+          </div>
+        </div>
+
+        {/* Marketplace Revenue Model */}
+        <div className={`marketplace-box ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.7s' }}>
+          <div className="marketplace-header">
+            <h3>🛍️ Community Marketplace</h3>
+          </div>
+          <div className="marketplace-content">
+            <div className="marketplace-feature">
+              <div className="feature-number">1</div>
+              <div className="feature-text">
+                <h4>Users Resell Their Items</h4>
+                <p>Built-in marketplace where users can list and sell their pre-owned fashion items to the community</p>
+              </div>
+            </div>
+            <div className="marketplace-feature">
+              <div className="feature-number">2</div>
+              <div className="feature-text">
+                <h4>Deep Link Integration</h4>
+                <p>Seamless third-party platform integration with deep link affiliate tracking for every transaction</p>
+              </div>
+            </div>
+            <div className="marketplace-feature">
+              <div className="feature-number">3</div>
+              <div className="feature-text">
+                <h4>Commission on Sales</h4>
+                <p>We earn commission on marketplace transactions while connecting buyers with sellers efficiently</p>
+              </div>
+            </div>
+          </div>
+          <div className="marketplace-stats">
+            <div className="stat-item">
+              <span className="stat-icon">💰</span>
+              <span className="stat-text">Revenue from Marketplace Fees</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-icon">🔗</span>
+              <span className="stat-text">Affiliate Commission via Deep Links</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .outfit-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          background:
+            radial-gradient(circle at 80% 20%, rgba(229, 9, 20, 0.08) 0%, transparent 50%),
+            linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(229, 9, 20, 0.03) 100%);
+        }
+
+        .outfit-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+        }
+
+        .outfit-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 700px;
+          opacity: 0;
+        }
+
+        .gif-showcase {
+          display: flex;
+          gap: 40px;
+          flex-wrap: wrap;
+          justify-content: center;
+          opacity: 0;
+        }
+
+        .gif-wrapper {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          align-items: center;
+        }
+
+        .gif-image {
+          border-radius: 30px;
+          box-shadow:
+            0 30px 80px rgba(229, 9, 20, 0.5),
+            0 0 0 1px rgba(255, 255, 255, 0.1);
+          width: 100%;
+          max-width: 280px;
+          height: auto;
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .gif-image:hover {
+          transform: translateY(-10px) scale(1.05);
+          box-shadow:
+            0 35px 90px rgba(229, 9, 20, 0.6),
+            0 0 0 2px ${colors.netflixRed};
+        }
+
+        .gif-label {
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: ${colors.white};
+          text-align: center;
+          padding: 12px 24px;
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.2) 0%, rgba(26, 26, 26, 0.8) 100%);
+          border: 1px solid rgba(229, 9, 20, 0.4);
+          border-radius: 12px;
+          backdrop-filter: blur(10px);
+        }
+
+        .outfit-features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 24px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .outfit-feature-card {
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(40, 40, 40, 0.7) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.2);
+          border-radius: 20px;
+          padding: 32px 24px;
+          text-align: center;
+          transition: all 0.4s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .outfit-feature-card:hover {
+          transform: translateY(-8px);
+          border-color: ${colors.netflixRed};
+          box-shadow: 0 20px 60px rgba(229, 9, 20, 0.5);
+        }
+
+        .feature-icon {
+          font-size: 3.5rem;
+          margin-bottom: 16px;
+          filter: drop-shadow(0 4px 10px rgba(229, 9, 20, 0.3));
+        }
+
+        .outfit-feature-card h3 {
+          font-size: 1.35rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .outfit-feature-card p {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .marketplace-box {
+          width: 100%;
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(40, 40, 40, 0.8) 100%);
+          border: 2px solid ${colors.netflixRed};
+          border-radius: 24px;
+          padding: 40px 32px;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 20px 60px rgba(229, 9, 20, 0.4);
+          opacity: 0;
+        }
+
+        .marketplace-header {
+          text-align: center;
+          margin-bottom: 32px;
+        }
+
+        .marketplace-header h3 {
+          font-size: clamp(1.8rem, 4vw, 2.5rem);
+          font-weight: 900;
+          color: ${colors.white};
+          margin: 0;
+        }
+
+        .marketplace-content {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          margin-bottom: 32px;
+        }
+
+        .marketplace-feature {
+          display: flex;
+          gap: 20px;
+          align-items: flex-start;
+          padding: 24px;
+          background: rgba(229, 9, 20, 0.08);
+          border-radius: 16px;
+          border: 1px solid rgba(229, 9, 20, 0.3);
+          transition: all 0.3s ease;
+        }
+
+        .marketplace-feature:hover {
+          background: rgba(229, 9, 20, 0.15);
+          border-color: ${colors.netflixRed};
+          transform: translateX(8px);
+        }
+
+        .feature-number {
+          flex-shrink: 0;
+          width: 48px;
+          height: 48px;
+          background: ${colors.netflixRed};
+          color: ${colors.white};
+          font-size: 1.5rem;
+          font-weight: 900;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 15px rgba(229, 9, 20, 0.5);
+        }
+
+        .feature-text h4 {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin: 0 0 8px 0;
+        }
+
+        .feature-text p {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .marketplace-stats {
+          display: flex;
+          gap: 24px;
+          flex-wrap: wrap;
+          justify-content: center;
+          padding-top: 24px;
+          border-top: 1px solid rgba(229, 9, 20, 0.3);
+        }
+
+        .stat-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 16px 24px;
+          background: rgba(229, 9, 20, 0.1);
+          border-radius: 12px;
+          border: 1px solid rgba(229, 9, 20, 0.2);
+          transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+          background: rgba(229, 9, 20, 0.2);
+          border-color: ${colors.netflixRed};
+          transform: scale(1.05);
+        }
+
+        .stat-icon {
+          font-size: 2rem;
+        }
+
+        .stat-text {
+          font-size: 1rem;
+          font-weight: 600;
+          color: ${colors.white};
+        }
+
+        @media (max-width: 1024px) {
+          .outfit-features-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .outfit-section {
+            padding: 60px 20px;
+          }
+
+          .outfit-content {
+            gap: 35px;
+          }
+
+          .gif-showcase {
+            gap: 30px;
+          }
+
+          .gif-image {
+            max-width: 240px;
+          }
+
+          .gif-label {
+            font-size: 1.1rem;
+            padding: 10px 20px;
+          }
+
+          .outfit-features-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+
+          .outfit-feature-card {
+            padding: 28px 20px;
+          }
+
+          .feature-icon {
+            font-size: 3rem;
+          }
+
+          .outfit-feature-card h3 {
+            font-size: 1.2rem;
+          }
+
+          .outfit-feature-card p {
+            font-size: 0.95rem;
+          }
+
+          .marketplace-box {
+            padding: 32px 24px;
+          }
+
+          .marketplace-feature {
+            flex-direction: column;
+            gap: 16px;
+            padding: 20px;
+          }
+
+          .feature-number {
+            width: 44px;
+            height: 44px;
+            font-size: 1.3rem;
+          }
+
+          .feature-text h4 {
+            font-size: 1.15rem;
+          }
+
+          .feature-text p {
+            font-size: 0.95rem;
+          }
+
+          .marketplace-stats {
+            flex-direction: column;
+            gap: 16px;
+          }
+
+          .stat-item {
+            padding: 14px 20px;
+          }
+
+          .stat-icon {
+            font-size: 1.8rem;
+          }
+
+          .stat-text {
+            font-size: 0.95rem;
           }
         }
       `}</style>
