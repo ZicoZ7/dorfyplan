@@ -108,14 +108,16 @@ function IntroSection() {
 
         <div className={`content-wrapper ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.4s' }}>
           <div className="app-preview">
-            <Image
-              src="/homepage.jpg"
-              alt="Dorfy App Homepage"
-              width={300}
-              height={600}
-              className="phone-mockup"
-              priority
-            />
+            <div className="homepage-wrapper">
+              <Image
+                src="/homepage.jpg"
+                alt="Dorfy App Homepage"
+                width={300}
+                height={600}
+                className="phone-mockup"
+                priority
+              />
+            </div>
           </div>
 
           <div className="info-container">
@@ -211,20 +213,30 @@ function IntroSection() {
           flex: 0 0 auto;
         }
 
-        .phone-mockup {
-          border-radius: 30px;
+        .homepage-wrapper {
+          position: relative;
+          border-radius: 32px;
+          overflow: hidden;
           box-shadow:
-            0 25px 70px rgba(229, 9, 20, 0.4),
-            0 0 0 10px rgba(255, 255, 255, 0.1);
-          object-fit: cover;
+            0 35px 90px rgba(229, 9, 20, 0.6),
+            0 0 0 2px rgba(255, 255, 255, 0.1);
+          transition: all 0.5s ease;
+        }
+
+        .homepage-wrapper:hover {
+          transform: translateY(-12px) scale(1.05);
+          box-shadow:
+            0 40px 100px rgba(229, 9, 20, 0.7),
+            0 0 0 3px ${colors.netflixRed},
+            0 0 60px rgba(229, 9, 20, 0.5);
+        }
+
+        .phone-mockup {
+          border-radius: 32px;
           width: 100%;
           max-width: 300px;
           height: auto;
-          transition: transform 0.3s ease;
-        }
-
-        .phone-mockup:hover {
-          transform: translateY(-10px);
+          display: block;
         }
 
         .info-container {
@@ -1825,6 +1837,9 @@ function OutfitManagementSection() {
         @media (max-width: 768px) {
           .outfit-section {
             padding: 60px 20px;
+            background:
+              radial-gradient(circle at 50% 30%, rgba(229, 9, 20, 0.08) 0%, transparent 60%),
+              linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(229, 9, 20, 0.03) 100%);
           }
 
           .outfit-content {
