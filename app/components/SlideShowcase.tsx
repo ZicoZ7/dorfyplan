@@ -16,6 +16,7 @@ export default function SlideShowcase() {
         <OutfitManagementSection />
         <TryOnSection />
         <BrandPartnershipSection />
+        <VideoScannerSection />
       </div>
 
       <style jsx global>{`
@@ -3117,6 +3118,707 @@ function BrandPartnershipSection() {
 
           .stat-label {
             font-size: 1rem;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function VideoScannerSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="video-scanner-section">
+      <div className="scanner-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          AI-Powered <span className="highlight">Video Scanner</span>
+        </h2>
+
+        <p className={`scanner-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          Scan and analyze videos from anywhere - local files, Instagram, TikTok, or YouTube
+        </p>
+
+        {/* Platform Integration */}
+        <div className={`platform-badges ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.2s' }}>
+          <div className="platform-badge">
+            <span className="badge-emoji">📱</span>
+            <span>Local Videos</span>
+          </div>
+          <div className="platform-badge">
+            <span className="badge-emoji">📷</span>
+            <span>Instagram</span>
+          </div>
+          <div className="platform-badge">
+            <span className="badge-emoji">🎵</span>
+            <span>TikTok</span>
+          </div>
+          <div className="platform-badge">
+            <span className="badge-emoji">▶️</span>
+            <span>YouTube</span>
+          </div>
+        </div>
+
+        {/* Video GIF Showcases */}
+        <div className={`video-showcase ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.4s' }}>
+          <div className="video-example">
+            <div className="video-gif-wrapper">
+              <Image
+                src="/videoshows.gif"
+                alt="Video Scanner - Movies & TV Shows Analysis"
+                width={300}
+                height={600}
+                className="video-gif"
+                unoptimized
+              />
+            </div>
+            <div className="example-label">
+              <div className="label-icon">🎬</div>
+              <h3>Movies & TV Shows</h3>
+              <p>Identify content, watch trailers, see ratings</p>
+            </div>
+          </div>
+
+          <div className="video-example">
+            <div className="video-gif-wrapper">
+              <Image
+                src="/videocook.gif"
+                alt="Video Scanner - Cooking & Recipe Analysis"
+                width={300}
+                height={600}
+                className="video-gif"
+                unoptimized
+              />
+            </div>
+            <div className="example-label">
+              <div className="label-icon">👨‍🍳</div>
+              <h3>Cooking & Recipes</h3>
+              <p>Get recipes, calorie estimates, instructions</p>
+            </div>
+          </div>
+        </div>
+
+        {/* AI Features Grid */}
+        <div className={`ai-features-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.6s' }}>
+          <div className="ai-feature-card">
+            <div className="feature-icon">🎭</div>
+            <h3>Ask About Content</h3>
+            <p>&quot;What show is this?&quot; - Instantly identify movies and TV shows with direct integration to watch trailers and see ratings</p>
+          </div>
+
+          <div className="ai-feature-card">
+            <div className="feature-icon">🍳</div>
+            <h3>Cooking Guidance</h3>
+            <p>&quot;How to cook this?&quot; - Get step-by-step recipes, ingredient lists, and calorie estimations for any dish in the video</p>
+          </div>
+
+          <div className="ai-feature-card">
+            <div className="feature-icon">🛠️</div>
+            <h3>How-To Instructions</h3>
+            <p>&quot;How to do this?&quot; - Receive detailed instructions and guidance for activities, projects, or tasks shown in videos</p>
+          </div>
+
+          <div className="ai-feature-card">
+            <div className="feature-icon">📝</div>
+            <h3>Smart Summaries</h3>
+            <p>&quot;Summarize it&quot; - Get concise, AI-generated summaries of video content with key points and timestamps</p>
+          </div>
+
+          <div className="ai-feature-card">
+            <div className="feature-icon">💬</div>
+            <h3>Ask Anything</h3>
+            <p>Natural language queries about any aspect of the video - characters, locations, objects, actions, or context</p>
+          </div>
+
+          <div className="ai-feature-card">
+            <div className="feature-icon">⏱️</div>
+            <h3>Time-Based Analysis</h3>
+            <p>Jump to specific moments, get frame-by-frame breakdowns, and explore detailed scene analysis with timestamps</p>
+          </div>
+        </div>
+
+        {/* Future Feature - Video Shopping */}
+        <div className={`future-feature-box ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.8s' }}>
+          <div className="future-header">
+            <div className="future-badge">Coming Soon</div>
+            <h3>🛍️ Shop Items from Videos</h3>
+          </div>
+          <p className="future-description">
+            We&apos;re working on revolutionary technology to identify and shop products directly from any video content.
+            Imagine seeing an outfit, furniture, or gadget in a video and buying it instantly - all powered by AI visual recognition.
+          </p>
+          <div className="future-benefits">
+            <div className="benefit-item">
+              <span className="check-icon">✓</span>
+              <span>Identify products in real-time</span>
+            </div>
+            <div className="benefit-item">
+              <span className="check-icon">✓</span>
+              <span>Find similar items across platforms</span>
+            </div>
+            <div className="benefit-item">
+              <span className="check-icon">✓</span>
+              <span>One-click purchase integration</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Capability Stats */}
+        <div className={`capability-stats ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '1s' }}>
+          <div className="capability-stat">
+            <div className="stat-icon">🎯</div>
+            <div className="stat-value">99%</div>
+            <div className="stat-label">Content Recognition Accuracy</div>
+          </div>
+          <div className="capability-stat">
+            <div className="stat-icon">⚡</div>
+            <div className="stat-value">&lt;10-20s</div>
+            <div className="stat-label">Average Analysis Time</div>
+          </div>
+          <div className="capability-stat">
+            <div className="stat-icon">🌐</div>
+            <div className="stat-value">50+</div>
+            <div className="stat-label">Supported Languages</div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .video-scanner-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          background:
+            radial-gradient(circle at 70% 30%, rgba(229, 9, 20, 0.1) 0%, transparent 60%),
+            linear-gradient(180deg, rgba(229, 9, 20, 0.05) 0%, rgba(0,0,0,0) 100%);
+          position: relative;
+        }
+
+        .scanner-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+          background: linear-gradient(135deg, ${colors.netflixRed}, #ff4444);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .scanner-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 800px;
+          opacity: 0;
+        }
+
+        .platform-badges {
+          display: flex;
+          gap: 16px;
+          flex-wrap: wrap;
+          justify-content: center;
+          opacity: 0;
+        }
+
+        .platform-badge {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 24px;
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(26, 26, 26, 0.9) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.3);
+          border-radius: 50px;
+          font-size: 1.05rem;
+          font-weight: 600;
+          color: ${colors.white};
+          transition: all 0.3s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .platform-badge:hover {
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.25) 0%, rgba(26, 26, 26, 1) 100%);
+          border-color: ${colors.netflixRed};
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(229, 9, 20, 0.4);
+        }
+
+        .badge-emoji {
+          font-size: 1.4rem;
+        }
+
+        .video-showcase {
+          display: flex;
+          gap: 60px;
+          flex-wrap: wrap;
+          justify-content: center;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .video-example {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 24px;
+          flex: 0 0 auto;
+        }
+
+        .video-gif-wrapper {
+          position: relative;
+          border-radius: 32px;
+          overflow: hidden;
+          box-shadow:
+            0 35px 90px rgba(229, 9, 20, 0.6),
+            0 0 0 2px rgba(255, 255, 255, 0.1);
+          transition: all 0.5s ease;
+        }
+
+        .video-gif-wrapper:hover {
+          transform: translateY(-12px) scale(1.05);
+          box-shadow:
+            0 40px 100px rgba(229, 9, 20, 0.7),
+            0 0 0 3px ${colors.netflixRed},
+            0 0 60px rgba(229, 9, 20, 0.5);
+        }
+
+        .video-gif {
+          border-radius: 32px;
+          width: 100%;
+          max-width: 300px;
+          height: auto;
+          display: block;
+        }
+
+        .example-label {
+          text-align: center;
+          padding: 20px 28px;
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(40, 40, 40, 0.85) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.3);
+          border-radius: 20px;
+          backdrop-filter: blur(10px);
+          max-width: 340px;
+          transition: all 0.3s ease;
+        }
+
+        .example-label:hover {
+          border-color: ${colors.netflixRed};
+          box-shadow: 0 10px 40px rgba(229, 9, 20, 0.4);
+        }
+
+        .label-icon {
+          font-size: 2.5rem;
+          margin-bottom: 12px;
+          filter: drop-shadow(0 4px 12px rgba(229, 9, 20, 0.4));
+        }
+
+        .example-label h3 {
+          font-size: 1.4rem;
+          font-weight: 800;
+          color: ${colors.white};
+          margin: 0 0 8px 0;
+        }
+
+        .example-label p {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          margin: 0;
+          line-height: 1.5;
+        }
+
+        .ai-features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 24px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .ai-feature-card {
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(40, 40, 40, 0.7) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.25);
+          border-radius: 20px;
+          padding: 32px 28px;
+          text-align: center;
+          transition: all 0.4s ease;
+          backdrop-filter: blur(10px);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .ai-feature-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(90deg, ${colors.netflixRed}, #ff4444);
+          transform: scaleX(0);
+          transition: transform 0.4s ease;
+        }
+
+        .ai-feature-card:hover::before {
+          transform: scaleX(1);
+        }
+
+        .ai-feature-card:hover {
+          transform: translateY(-10px);
+          border-color: ${colors.netflixRed};
+          box-shadow: 0 25px 70px rgba(229, 9, 20, 0.5);
+          background: linear-gradient(135deg, rgba(40, 40, 40, 0.95) 0%, rgba(26, 26, 26, 0.9) 100%);
+        }
+
+        .feature-icon {
+          font-size: 3.5rem;
+          margin-bottom: 16px;
+          filter: drop-shadow(0 4px 12px rgba(229, 9, 20, 0.3));
+          transition: transform 0.3s ease;
+        }
+
+        .ai-feature-card:hover .feature-icon {
+          transform: scale(1.15) rotate(-5deg);
+        }
+
+        .ai-feature-card h3 {
+          font-size: 1.35rem;
+          font-weight: 800;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .ai-feature-card p {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          line-height: 1.7;
+          margin: 0;
+        }
+
+        .future-feature-box {
+          width: 100%;
+          background: linear-gradient(135deg, rgba(40, 40, 40, 0.95) 0%, rgba(26, 26, 26, 0.9) 100%);
+          border: 3px dashed rgba(229, 9, 20, 0.4);
+          border-radius: 24px;
+          padding: 44px 40px;
+          backdrop-filter: blur(10px);
+          opacity: 0;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .future-feature-box::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at center, rgba(229, 9, 20, 0.1) 0%, transparent 70%);
+          animation: pulse 3s ease-in-out infinite;
+          pointer-events: none;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.6; }
+        }
+
+        .future-header {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+          margin-bottom: 24px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .future-badge {
+          display: inline-block;
+          padding: 8px 20px;
+          background: linear-gradient(135deg, ${colors.netflixRed} 0%, #ff4444 100%);
+          color: ${colors.white};
+          font-size: 0.9rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          border-radius: 50px;
+          box-shadow: 0 4px 15px rgba(229, 9, 20, 0.5);
+        }
+
+        .future-header h3 {
+          font-size: clamp(1.8rem, 4vw, 2.4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          margin: 0;
+          text-align: center;
+        }
+
+        .future-description {
+          font-size: clamp(1.05rem, 2vw, 1.2rem);
+          color: ${colors.textLight};
+          line-height: 1.8;
+          text-align: center;
+          margin: 0 0 28px 0;
+          position: relative;
+          z-index: 1;
+        }
+
+        .future-benefits {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          max-width: 600px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 1;
+        }
+
+        .benefit-item {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          padding: 16px 24px;
+          background: rgba(229, 9, 20, 0.1);
+          border: 1px solid rgba(229, 9, 20, 0.3);
+          border-radius: 12px;
+          font-size: 1.05rem;
+          font-weight: 600;
+          color: ${colors.white};
+          transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+          background: rgba(229, 9, 20, 0.2);
+          border-color: ${colors.netflixRed};
+          transform: translateX(8px);
+        }
+
+        .check-icon {
+          font-size: 1.5rem;
+          color: ${colors.netflixRed};
+          font-weight: 900;
+          flex-shrink: 0;
+        }
+
+        .capability-stats {
+          display: flex;
+          gap: 32px;
+          flex-wrap: wrap;
+          justify-content: center;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .capability-stat {
+          flex: 1;
+          min-width: 220px;
+          max-width: 300px;
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.12) 0%, rgba(26, 26, 26, 0.9) 100%);
+          border: 2px solid ${colors.netflixRed};
+          border-radius: 20px;
+          padding: 36px 28px;
+          text-align: center;
+          transition: all 0.4s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .capability-stat:hover {
+          transform: translateY(-10px) scale(1.05);
+          box-shadow: 0 25px 70px rgba(229, 9, 20, 0.6);
+          border-color: #ff4444;
+        }
+
+        .stat-icon {
+          font-size: 3rem;
+          margin-bottom: 12px;
+          filter: drop-shadow(0 4px 15px rgba(229, 9, 20, 0.5));
+        }
+
+        .stat-value {
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
+          font-weight: 900;
+          color: ${colors.netflixRed};
+          text-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+          margin-bottom: 12px;
+          line-height: 1;
+        }
+
+        .stat-label {
+          font-size: clamp(1rem, 2vw, 1.1rem);
+          font-weight: 600;
+          color: ${colors.white};
+          line-height: 1.4;
+        }
+
+        @media (max-width: 1024px) {
+          .ai-features-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .video-scanner-section {
+            padding: 60px 20px;
+          }
+
+          .scanner-content {
+            gap: 35px;
+          }
+
+          .platform-badges {
+            gap: 12px;
+          }
+
+          .platform-badge {
+            padding: 10px 20px;
+            font-size: 1rem;
+          }
+
+          .badge-emoji {
+            font-size: 1.2rem;
+          }
+
+          .video-showcase {
+            gap: 40px;
+          }
+
+          .video-gif {
+            max-width: 260px;
+          }
+
+          .example-label {
+            padding: 18px 24px;
+            max-width: 300px;
+          }
+
+          .label-icon {
+            font-size: 2rem;
+          }
+
+          .example-label h3 {
+            font-size: 1.25rem;
+          }
+
+          .example-label p {
+            font-size: 0.95rem;
+          }
+
+          .ai-features-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+
+          .ai-feature-card {
+            padding: 28px 24px;
+          }
+
+          .feature-icon {
+            font-size: 3rem;
+          }
+
+          .ai-feature-card h3 {
+            font-size: 1.25rem;
+          }
+
+          .ai-feature-card p {
+            font-size: 0.95rem;
+          }
+
+          .future-feature-box {
+            padding: 36px 28px;
+          }
+
+          .future-badge {
+            font-size: 0.85rem;
+            padding: 7px 18px;
+          }
+
+          .future-description {
+            font-size: 1rem;
+          }
+
+          .benefit-item {
+            padding: 14px 20px;
+            font-size: 1rem;
+          }
+
+          .check-icon {
+            font-size: 1.3rem;
+          }
+
+          .capability-stats {
+            gap: 20px;
+          }
+
+          .capability-stat {
+            min-width: 100%;
+            padding: 32px 24px;
+          }
+
+          .stat-icon {
+            font-size: 2.5rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .platform-badges {
+            flex-direction: column;
+            width: 100%;
+            max-width: 280px;
+          }
+
+          .platform-badge {
+            justify-content: center;
+          }
+
+          .video-gif {
+            max-width: 240px;
+          }
+
+          .future-benefits {
+            gap: 12px;
+          }
+
+          .benefit-item {
+            padding: 12px 18px;
+            font-size: 0.95rem;
           }
         }
       `}</style>
