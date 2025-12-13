@@ -10,6 +10,7 @@ export default function SlideShowcase() {
       <div className="main-container">
         <IntroSection />
         <FeaturesSection />
+        <MarketOpportunitySection />
       </div>
 
       <style jsx global>{`
@@ -337,6 +338,340 @@ function IntroSection() {
           .download-btn {
             padding: 14px 28px;
             font-size: 1rem;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function MarketOpportunitySection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [animateCharts, setAnimateCharts] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            setTimeout(() => setAnimateCharts(true), 300);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const marketData = {
+    global: { value: 325, label: 'Global Market', description: 'E-commerce Fashion & Entertainment' },
+    us: { value: 98, label: 'US Market', description: 'North America' },
+    europe: { value: 87, label: 'Europe Market', description: 'European Union' },
+    asia: { value: 140, label: 'Asia-Pacific', description: 'Emerging Markets' }
+  };
+
+  return (
+    <section ref={sectionRef} className="market-section">
+      <div className="market-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          Market <span className="highlight">Opportunity</span>
+        </h2>
+
+        <p className={`market-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          Tapping into the $325B+ global social commerce & entertainment discovery market
+        </p>
+
+        {/* Global Market Overview */}
+        <div className={`market-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+          {Object.entries(marketData).map(([key, data], index) => (
+            <div key={key} className="market-card" style={{ animationDelay: `${0.1 * (index + 1)}s` }}>
+              <div className="market-value">
+                <span className="currency">$</span>
+                <span className={`amount ${animateCharts ? 'count-up' : ''}`}>
+                  {data.value}
+                </span>
+                <span className="unit">B</span>
+              </div>
+              <h3>{data.label}</h3>
+              <p>{data.description}</p>
+              <div className="market-bar">
+                <div
+                  className="market-fill"
+                  style={{
+                    width: animateCharts ? `${(data.value / 325) * 100}%` : '0%',
+                    transitionDelay: `${0.3 + index * 0.1}s`
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Key Metrics */}
+        <div className={`metrics-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.6s' }}>
+          <div className="metric-card">
+            <div className="metric-icon">📈</div>
+            <div className="metric-value">47%</div>
+            <div className="metric-label">Annual Growth Rate</div>
+          </div>
+          <div className="metric-card">
+            <div className="metric-icon">🎯</div>
+            <div className="metric-value">$12B</div>
+            <div className="metric-label">Target Market Share</div>
+          </div>
+          <div className="metric-card">
+            <div className="metric-icon">💰</div>
+            <div className="metric-value">85%</div>
+            <div className="metric-label">Gross Margin Potential</div>
+          </div>
+          <div className="metric-card">
+            <div className="metric-icon">🌍</div>
+            <div className="metric-value">2.5B</div>
+            <div className="metric-label">Addressable Users</div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .market-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(229, 9, 20, 0.05) 50%, rgba(0,0,0,0) 100%);
+        }
+
+        .market-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .market-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 800px;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+        }
+
+        .market-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 24px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .market-card {
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(40, 40, 40, 0.7) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.3);
+          border-radius: 20px;
+          padding: 32px 24px;
+          text-align: center;
+          transition: all 0.4s ease;
+          backdrop-filter: blur(10px);
+          position: relative;
+          overflow: hidden;
+          opacity: 0;
+          animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .market-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(90deg, ${colors.netflixRed}, #ff4444);
+          transform: scaleX(0);
+          transition: transform 0.6s ease;
+        }
+
+        .market-card:hover::before {
+          transform: scaleX(1);
+        }
+
+        .market-card:hover {
+          transform: translateY(-8px);
+          border-color: ${colors.netflixRed};
+          box-shadow: 0 20px 60px rgba(229, 9, 20, 0.4);
+        }
+
+        .market-value {
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
+          font-weight: 900;
+          color: ${colors.white};
+          margin-bottom: 12px;
+          display: flex;
+          align-items: baseline;
+          justify-content: center;
+          gap: 4px;
+        }
+
+        .currency, .unit {
+          font-size: 0.5em;
+          color: ${colors.netflixRed};
+          font-weight: 700;
+        }
+
+        .amount {
+          display: inline-block;
+        }
+
+        .amount.count-up {
+          animation: countUp 1.5s ease-out forwards;
+        }
+
+        @keyframes countUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .market-card h3 {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin: 0 0 8px 0;
+        }
+
+        .market-card p {
+          font-size: 0.9rem;
+          color: ${colors.textLight};
+          margin: 0 0 16px 0;
+        }
+
+        .market-bar {
+          width: 100%;
+          height: 8px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 10px;
+          overflow: hidden;
+          margin-top: 16px;
+        }
+
+        .market-fill {
+          height: 100%;
+          background: linear-gradient(90deg, ${colors.netflixRed}, #ff4444);
+          border-radius: 10px;
+          transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+        }
+
+        .metrics-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 20px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .metric-card {
+          background: rgba(26, 26, 26, 0.8);
+          border: 1px solid rgba(229, 9, 20, 0.2);
+          border-radius: 16px;
+          padding: 28px 20px;
+          text-align: center;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .metric-card:hover {
+          transform: translateY(-5px);
+          border-color: ${colors.netflixRed};
+          box-shadow: 0 10px 30px rgba(229, 9, 20, 0.3);
+        }
+
+        .metric-icon {
+          font-size: 2.5rem;
+          margin-bottom: 12px;
+        }
+
+        .metric-value {
+          font-size: clamp(1.8rem, 3vw, 2.5rem);
+          font-weight: 900;
+          color: ${colors.netflixRed};
+          margin-bottom: 8px;
+        }
+
+        .metric-label {
+          font-size: 0.95rem;
+          color: ${colors.textLight};
+          font-weight: 500;
+        }
+
+        @media (max-width: 1024px) {
+          .market-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .metrics-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .market-section {
+            padding: 60px 20px;
+          }
+
+          .market-content {
+            gap: 35px;
+          }
+
+          .market-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+
+          .market-card {
+            padding: 24px 20px;
+          }
+
+          .metrics-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
+
+          .metric-card {
+            padding: 20px 16px;
+          }
+
+          .metric-icon {
+            font-size: 2rem;
           }
         }
       `}</style>
