@@ -14,6 +14,7 @@ export default function SlideShowcase() {
         <MarketOpportunitySection />
         <ShopWhatYouSeeSection />
         <OutfitManagementSection />
+        <TryOnSection />
       </div>
 
       <style jsx global>{`
@@ -1900,6 +1901,557 @@ function OutfitManagementSection() {
 
           .stat-text {
             font-size: 0.95rem;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function TryOnSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="tryon-section">
+      <div className="tryon-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          Virtual <span className="highlight">Try-On</span> Experience
+        </h2>
+
+        <p className={`tryon-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          Try outfits from your closet or discover looks from other users - then shop instantly
+        </p>
+
+        {/* GIF Showcases */}
+        <div className={`tryon-gifs ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+          <div className="tryon-gif-wrapper">
+            <Image
+              src="/tryoutfit.gif"
+              alt="Try on outfits virtually"
+              width={300}
+              height={600}
+              className="tryon-gif-image"
+              unoptimized
+            />
+            <div className="tryon-gif-label">Virtual Try-On</div>
+          </div>
+          <div className="tryon-gif-wrapper">
+            <Image
+              src="/trytab.gif"
+              alt="Browse and try outfits from feed"
+              width={300}
+              height={600}
+              className="tryon-gif-image"
+              unoptimized
+            />
+            <div className="tryon-gif-label">Try-On Tab</div>
+          </div>
+        </div>
+
+        {/* Features Grid */}
+        <div className={`tryon-features-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
+          <div className="tryon-feature-card">
+            <div className="tryon-feature-icon">🎭</div>
+            <h3>Try Your Closet</h3>
+            <p>Virtually try on any outfit from your digital wardrobe. See how different combinations look on you before wearing them</p>
+          </div>
+
+          <div className="tryon-feature-card">
+            <div className="tryon-feature-icon">👥</div>
+            <h3>Discover User Fits</h3>
+            <p>Browse the community feed and try on outfits from created fits by other users. Get inspired by trending looks and styles</p>
+          </div>
+
+          <div className="tryon-feature-card">
+            <div className="tryon-feature-icon">🛍️</div>
+            <h3>Shop Similar</h3>
+            <p>Love an outfit? Hit "Shop Similar" to find and purchase matching items across Amazon, Walmart, eBay, and more platforms</p>
+          </div>
+
+          <div className="tryon-feature-card">
+            <div className="tryon-feature-icon">💳</div>
+            <h3>Direct Purchase</h3>
+            <p>If users are reselling items from their closet, buy directly from them instantly through the integrated marketplace</p>
+          </div>
+        </div>
+
+        {/* Shopping Flow Box */}
+        <div className={`shopping-flow-box ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.7s' }}>
+          <div className="flow-header">
+            <h3>⚡ Seamless Shopping Journey</h3>
+          </div>
+          <div className="flow-steps">
+            <div className="flow-step">
+              <div className="step-number">1</div>
+              <div className="step-content">
+                <h4>Browse & Try</h4>
+                <p>Explore outfits from your closet or community feed. Try them on virtually using AI</p>
+              </div>
+            </div>
+            <div className="flow-arrow">→</div>
+            <div className="flow-step">
+              <div className="step-number">2</div>
+              <div className="step-content">
+                <h4>Choose Path</h4>
+                <p>Click "Shop Similar" for alternatives or "Buy Now" if the user is reselling the item</p>
+              </div>
+            </div>
+            <div className="flow-arrow">→</div>
+            <div className="flow-step">
+              <div className="step-number">3</div>
+              <div className="step-content">
+                <h4>Complete Purchase</h4>
+                <p>Buy directly from users or through affiliate platforms - we earn commission on both</p>
+              </div>
+            </div>
+          </div>
+          <div className="flow-benefits">
+            <div className="benefit-badge">
+              <span className="badge-icon">✨</span>
+              <span className="badge-text">Instant Virtual Try-On</span>
+            </div>
+            <div className="benefit-badge">
+              <span className="badge-icon">🎯</span>
+              <span className="badge-text">Multiple Purchase Options</span>
+            </div>
+            <div className="benefit-badge">
+              <span className="badge-icon">💰</span>
+              <span className="badge-text">Dual Revenue Streams</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .tryon-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          background: linear-gradient(180deg, rgba(229, 9, 20, 0.03) 0%, rgba(0,0,0,0) 50%, rgba(229, 9, 20, 0.05) 100%);
+        }
+
+        .tryon-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+          background: linear-gradient(90deg, ${colors.netflixRed}, #ff4444);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .tryon-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 750px;
+          opacity: 0;
+        }
+
+        .tryon-gifs {
+          display: flex;
+          gap: 50px;
+          flex-wrap: wrap;
+          justify-content: center;
+          opacity: 0;
+        }
+
+        .tryon-gif-wrapper {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          align-items: center;
+        }
+
+        .tryon-gif-image {
+          border-radius: 32px;
+          box-shadow:
+            0 35px 90px rgba(229, 9, 20, 0.6),
+            0 0 0 2px rgba(255, 255, 255, 0.15);
+          width: 100%;
+          max-width: 300px;
+          height: auto;
+          transition: all 0.5s ease;
+          position: relative;
+        }
+
+        .tryon-gif-image:hover {
+          transform: translateY(-15px) scale(1.08);
+          box-shadow:
+            0 40px 100px rgba(229, 9, 20, 0.7),
+            0 0 0 3px ${colors.netflixRed},
+            0 0 60px rgba(229, 9, 20, 0.4);
+        }
+
+        .tryon-gif-label {
+          font-size: 1.3rem;
+          font-weight: 800;
+          color: ${colors.white};
+          text-align: center;
+          padding: 14px 28px;
+          background: linear-gradient(135deg, ${colors.netflixRed} 0%, #ff4444 100%);
+          border-radius: 16px;
+          box-shadow: 0 8px 25px rgba(229, 9, 20, 0.5);
+          transition: all 0.3s ease;
+        }
+
+        .tryon-gif-label:hover {
+          transform: scale(1.05);
+          box-shadow: 0 12px 35px rgba(229, 9, 20, 0.7);
+        }
+
+        .tryon-features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+          gap: 28px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .tryon-feature-card {
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(40, 40, 40, 0.8) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.25);
+          border-radius: 24px;
+          padding: 36px 28px;
+          text-align: center;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          backdrop-filter: blur(15px);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .tryon-feature-card::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.1) 0%, transparent 100%);
+          opacity: 0;
+          transition: opacity 0.4s ease;
+        }
+
+        .tryon-feature-card:hover::before {
+          opacity: 1;
+        }
+
+        .tryon-feature-card:hover {
+          transform: translateY(-12px) scale(1.03);
+          border-color: ${colors.netflixRed};
+          box-shadow: 0 25px 70px rgba(229, 9, 20, 0.6);
+        }
+
+        .tryon-feature-icon {
+          font-size: 4rem;
+          margin-bottom: 20px;
+          filter: drop-shadow(0 6px 15px rgba(229, 9, 20, 0.4));
+          transition: transform 0.3s ease;
+        }
+
+        .tryon-feature-card:hover .tryon-feature-icon {
+          transform: scale(1.2) rotate(5deg);
+        }
+
+        .tryon-feature-card h3 {
+          font-size: 1.4rem;
+          font-weight: 800;
+          color: ${colors.white};
+          margin: 0 0 14px 0;
+        }
+
+        .tryon-feature-card p {
+          font-size: 1.05rem;
+          color: ${colors.textLight};
+          line-height: 1.7;
+          margin: 0;
+        }
+
+        .shopping-flow-box {
+          width: 100%;
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.98) 0%, rgba(40, 40, 40, 0.9) 100%);
+          border: 3px solid ${colors.netflixRed};
+          border-radius: 28px;
+          padding: 48px 40px;
+          backdrop-filter: blur(15px);
+          box-shadow: 0 25px 70px rgba(229, 9, 20, 0.5);
+          opacity: 0;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .shopping-flow-box::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(229, 9, 20, 0.15) 0%, transparent 70%);
+          animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.6; }
+        }
+
+        .flow-header {
+          text-align: center;
+          margin-bottom: 40px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .flow-header h3 {
+          font-size: clamp(2rem, 4.5vw, 2.8rem);
+          font-weight: 900;
+          color: ${colors.white};
+          margin: 0;
+          text-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
+        }
+
+        .flow-steps {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 20px;
+          margin-bottom: 40px;
+          flex-wrap: wrap;
+          position: relative;
+          z-index: 1;
+        }
+
+        .flow-step {
+          flex: 1;
+          min-width: 220px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+          padding: 28px 24px;
+          background: rgba(229, 9, 20, 0.1);
+          border: 2px solid rgba(229, 9, 20, 0.4);
+          border-radius: 20px;
+          transition: all 0.3s ease;
+        }
+
+        .flow-step:hover {
+          background: rgba(229, 9, 20, 0.18);
+          border-color: ${colors.netflixRed};
+          transform: translateY(-6px);
+          box-shadow: 0 15px 40px rgba(229, 9, 20, 0.4);
+        }
+
+        .step-number {
+          width: 56px;
+          height: 56px;
+          background: linear-gradient(135deg, ${colors.netflixRed} 0%, #ff4444 100%);
+          color: ${colors.white};
+          font-size: 1.8rem;
+          font-weight: 900;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 8px 25px rgba(229, 9, 20, 0.6);
+        }
+
+        .step-content h4 {
+          font-size: 1.3rem;
+          font-weight: 800;
+          color: ${colors.white};
+          margin: 0 0 10px 0;
+          text-align: center;
+        }
+
+        .step-content p {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          line-height: 1.6;
+          margin: 0;
+          text-align: center;
+        }
+
+        .flow-arrow {
+          font-size: 2.5rem;
+          color: ${colors.netflixRed};
+          font-weight: 900;
+          flex-shrink: 0;
+        }
+
+        .flow-benefits {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+          justify-content: center;
+          padding-top: 32px;
+          border-top: 2px solid rgba(229, 9, 20, 0.3);
+          position: relative;
+          z-index: 1;
+        }
+
+        .benefit-badge {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 14px 24px;
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.2) 0%, rgba(26, 26, 26, 0.9) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.4);
+          border-radius: 50px;
+          transition: all 0.3s ease;
+        }
+
+        .benefit-badge:hover {
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.3) 0%, rgba(26, 26, 26, 1) 100%);
+          border-color: ${colors.netflixRed};
+          transform: scale(1.08);
+          box-shadow: 0 8px 25px rgba(229, 9, 20, 0.4);
+        }
+
+        .badge-icon {
+          font-size: 1.8rem;
+        }
+
+        .badge-text {
+          font-size: 1.05rem;
+          font-weight: 700;
+          color: ${colors.white};
+        }
+
+        @media (max-width: 1024px) {
+          .tryon-features-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .flow-steps {
+            flex-direction: column;
+          }
+
+          .flow-arrow {
+            transform: rotate(90deg);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .tryon-section {
+            padding: 60px 20px;
+          }
+
+          .tryon-content {
+            gap: 35px;
+          }
+
+          .tryon-gifs {
+            gap: 35px;
+          }
+
+          .tryon-gif-image {
+            max-width: 260px;
+          }
+
+          .tryon-gif-label {
+            font-size: 1.15rem;
+            padding: 12px 24px;
+          }
+
+          .tryon-features-grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
+          }
+
+          .tryon-feature-card {
+            padding: 32px 24px;
+          }
+
+          .tryon-feature-icon {
+            font-size: 3.5rem;
+          }
+
+          .tryon-feature-card h3 {
+            font-size: 1.3rem;
+          }
+
+          .tryon-feature-card p {
+            font-size: 1rem;
+          }
+
+          .shopping-flow-box {
+            padding: 36px 28px;
+          }
+
+          .flow-step {
+            min-width: 100%;
+            padding: 24px 20px;
+          }
+
+          .step-number {
+            width: 52px;
+            height: 52px;
+            font-size: 1.6rem;
+          }
+
+          .step-content h4 {
+            font-size: 1.2rem;
+          }
+
+          .step-content p {
+            font-size: 0.95rem;
+          }
+
+          .flow-benefits {
+            flex-direction: column;
+            gap: 16px;
+          }
+
+          .benefit-badge {
+            padding: 12px 20px;
+          }
+
+          .badge-icon {
+            font-size: 1.6rem;
+          }
+
+          .badge-text {
+            font-size: 1rem;
           }
         }
       `}</style>
