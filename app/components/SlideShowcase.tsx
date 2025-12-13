@@ -3895,42 +3895,54 @@ function AIChatModelSection() {
           </div>
         </div>
 
-        {/* Features Grid */}
-        <div className={`ai-chat-features-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.7s' }}>
-          <div className="ai-chat-feature-card">
-            <div className="chat-feature-icon">🎬</div>
-            <h3>Movie Intelligence</h3>
-            <p>Search movies, get cast details, plot summaries, ratings, and discover similar titles. Ask where to watch and get streaming platform recommendations</p>
+        {/* Features List - Simple Text */}
+        <div className={`features-list-simple ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.7s' }}>
+          <div className="feature-item-simple">
+            <span className="feature-emoji">🎬</span>
+            <div className="feature-text">
+              <h3>Movie Intelligence</h3>
+              <p>Search movies, get cast details, plot summaries, ratings, and discover similar titles. Ask where to watch and get streaming platform recommendations</p>
+            </div>
           </div>
 
-          <div className="ai-chat-feature-card">
-            <div className="chat-feature-icon">🎮</div>
-            <h3>Game Discovery</h3>
-            <p>Find games, compare prices across platforms, check availability, read reviews, and get recommendations. Shop from Amazon, Walmart, eBay & more</p>
+          <div className="feature-item-simple">
+            <span className="feature-emoji">🎮</span>
+            <div className="feature-text">
+              <h3>Game Discovery</h3>
+              <p>Find games, compare prices across platforms, check availability, read reviews, and get recommendations. Shop from Amazon, Walmart, eBay & more</p>
+            </div>
           </div>
 
-          <div className="ai-chat-feature-card">
-            <div className="chat-feature-icon">🛒</div>
-            <h3>Smart Shopping</h3>
-            <p>Search products across multiple platforms including Amazon, Walmart, AliExpress, eBay. Compare prices and find the best deals instantly</p>
+          <div className="feature-item-simple">
+            <span className="feature-emoji">🛒</span>
+            <div className="feature-text">
+              <h3>Smart Shopping</h3>
+              <p>Search products across multiple platforms including Amazon, Walmart, AliExpress, eBay. Compare prices and find the best deals instantly</p>
+            </div>
           </div>
 
-          <div className="ai-chat-feature-card">
-            <div className="chat-feature-icon">🏪</div>
-            <h3>Dorfy Brand Stores</h3>
-            <p>Browse integrated brand stores and discover exclusive collections. Direct access to partnered brands with seamless affiliate tracking</p>
+          <div className="feature-item-simple">
+            <span className="feature-emoji">🏪</span>
+            <div className="feature-text">
+              <h3>Dorfy Brand Stores</h3>
+              <p>Browse integrated brand stores and discover exclusive collections. Direct access to partnered brands with seamless affiliate tracking</p>
+            </div>
           </div>
 
-          <div className="ai-chat-feature-card">
-            <div className="chat-feature-icon">👥</div>
-            <h3>User Resell Marketplace</h3>
-            <p>Discover items from community members reselling their goods. Chat can show user listings alongside retail options for unique finds</p>
+          <div className="feature-item-simple">
+            <span className="feature-emoji">👥</span>
+            <div className="feature-text">
+              <h3>User Resell Marketplace</h3>
+              <p>Discover items from community members reselling their goods. Chat can show user listings alongside retail options for unique finds</p>
+            </div>
           </div>
 
-          <div className="ai-chat-feature-card">
-            <div className="chat-feature-icon">💰</div>
-            <h3>Price Comparison</h3>
-            <p>Get instant price comparisons across all platforms. AI suggests the best deals, shipping options, and available discounts</p>
+          <div className="feature-item-simple">
+            <span className="feature-emoji">💰</span>
+            <div className="feature-text">
+              <h3>Price Comparison</h3>
+              <p>Get instant price comparisons across all platforms. AI suggests the best deals, shipping options, and available discounts</p>
+            </div>
           </div>
         </div>
 
@@ -4116,318 +4128,38 @@ function AIChatModelSection() {
           font-size: 1.5rem;
         }
 
-        .ai-chat-features-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 24px;
+        .features-list-simple {
           width: 100%;
-          opacity: 0;
-        }
-
-        .ai-chat-feature-card {
-          background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(40, 40, 40, 0.7) 100%);
-          border: 2px solid rgba(229, 9, 20, 0.2);
-          border-radius: 20px;
-          padding: 32px 28px;
-          text-align: center;
-          transition: all 0.4s ease;
-          backdrop-filter: blur(10px);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .ai-chat-feature-card::before {
-          content: '';
-          position: absolute;
-          top: -2px;
-          left: -2px;
-          right: -2px;
-          bottom: -2px;
-          background: linear-gradient(135deg, ${colors.netflixRed}, #ff4444, ${colors.netflixRed});
-          border-radius: 20px;
-          opacity: 0;
-          transition: opacity 0.4s ease;
-          z-index: -1;
-        }
-
-        .ai-chat-feature-card:hover::before {
-          opacity: 1;
-        }
-
-        .ai-chat-feature-card:hover {
-          transform: translateY(-10px) scale(1.02);
-          border-color: transparent;
-          box-shadow: 0 25px 70px rgba(229, 9, 20, 0.5);
-        }
-
-        .chat-feature-icon {
-          font-size: 3.5rem;
-          margin-bottom: 16px;
-          filter: drop-shadow(0 4px 10px rgba(229, 9, 20, 0.3));
-        }
-
-        .ai-chat-feature-card h3 {
-          font-size: 1.4rem;
-          font-weight: 700;
-          color: ${colors.white};
-          margin: 0 0 12px 0;
-        }
-
-        .ai-chat-feature-card p {
-          font-size: 1rem;
-          color: ${colors.textLight};
-          line-height: 1.7;
-          margin: 0;
-        }
-
-        .platform-integration-box {
-          width: 100%;
-          background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(40, 40, 40, 0.8) 100%);
-          border: 2px solid ${colors.netflixRed};
-          border-radius: 24px;
-          padding: 44px 36px;
-          backdrop-filter: blur(10px);
-          box-shadow: 0 25px 70px rgba(229, 9, 20, 0.5);
-          opacity: 0;
-        }
-
-        .integration-header {
-          text-align: center;
-          margin-bottom: 36px;
-        }
-
-        .integration-header h3 {
-          font-size: clamp(2rem, 4.5vw, 2.8rem);
-          font-weight: 900;
-          color: ${colors.white};
-          margin: 0;
-        }
-
-        .integration-content {
+          max-width: 900px;
           display: flex;
           flex-direction: column;
-          gap: 28px;
-          margin-bottom: 36px;
+          gap: 32px;
+          opacity: 0;
         }
 
-        .integration-section h4 {
-          font-size: 1.35rem;
-          font-weight: 700;
-          color: ${colors.white};
-          margin: 0 0 16px 0;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-
-        .platform-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 12px;
-        }
-
-        .platform-tag {
-          background: rgba(229, 9, 20, 0.15);
-          border: 1px solid rgba(229, 9, 20, 0.3);
-          color: ${colors.white};
-          padding: 10px 18px;
-          border-radius: 20px;
-          font-size: 0.9rem;
-          font-weight: 600;
-          transition: all 0.3s ease;
-        }
-
-        .platform-tag:hover {
-          background: rgba(229, 9, 20, 0.25);
-          border-color: ${colors.netflixRed};
-          transform: translateY(-3px);
-        }
-
-        .platform-tag.featured {
-          background: linear-gradient(135deg, ${colors.netflixRed} 0%, #ff4444 100%);
-          border-color: ${colors.netflixRed};
-          box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
-          font-weight: 700;
-        }
-
-        .platform-tag.featured:hover {
-          box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6);
-        }
-
-        .integration-benefits {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-          padding-top: 24px;
-          border-top: 1px solid rgba(229, 9, 20, 0.3);
-        }
-
-        .benefit-item {
+        .feature-item-simple {
           display: flex;
           gap: 20px;
           align-items: flex-start;
-          padding: 20px;
-          background: rgba(229, 9, 20, 0.08);
-          border-radius: 16px;
-          border: 1px solid rgba(229, 9, 20, 0.2);
-          transition: all 0.3s ease;
         }
 
-        .benefit-item:hover {
-          background: rgba(229, 9, 20, 0.15);
-          border-color: ${colors.netflixRed};
-          transform: translateX(8px);
-        }
-
-        .benefit-icon {
+        .feature-emoji {
           font-size: 2.5rem;
           flex-shrink: 0;
         }
 
-        .benefit-text h4 {
-          font-size: 1.2rem;
+        .feature-text h3 {
+          font-size: 1.4rem;
           font-weight: 700;
           color: ${colors.white};
           margin: 0 0 8px 0;
         }
 
-        .benefit-text p {
-          font-size: 1rem;
-          color: ${colors.textLight};
-          line-height: 1.6;
-          margin: 0;
-        }
-
-        .ai-revenue-box {
-          width: 100%;
-          background: linear-gradient(135deg, rgba(229, 9, 20, 0.2) 0%, rgba(26, 26, 26, 0.95) 100%);
-          border: 3px solid ${colors.netflixRed};
-          border-radius: 28px;
-          padding: 48px 40px;
-          backdrop-filter: blur(10px);
-          box-shadow: 0 30px 80px rgba(229, 9, 20, 0.6);
-          opacity: 0;
-        }
-
-        .ai-revenue-header {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 16px;
-          margin-bottom: 40px;
-        }
-
-        .revenue-icon-chat {
-          font-size: 3.5rem;
-          filter: drop-shadow(0 4px 20px rgba(229, 9, 20, 0.6));
-        }
-
-        .ai-revenue-header h3 {
-          font-size: clamp(2rem, 4.5vw, 2.5rem);
-          font-weight: 900;
-          color: ${colors.white};
-          margin: 0;
-        }
-
-        .ai-revenue-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 24px;
-          margin-bottom: 40px;
-        }
-
-        .revenue-stream {
-          display: flex;
-          gap: 20px;
-          align-items: flex-start;
-          padding: 28px;
-          background: rgba(26, 26, 26, 0.8);
-          border-radius: 20px;
-          border: 2px solid rgba(229, 9, 20, 0.3);
-          transition: all 0.4s ease;
-        }
-
-        .revenue-stream:hover {
-          background: rgba(229, 9, 20, 0.1);
-          border-color: ${colors.netflixRed};
-          transform: translateY(-5px);
-          box-shadow: 0 15px 40px rgba(229, 9, 20, 0.4);
-        }
-
-        .stream-number {
-          flex-shrink: 0;
-          width: 56px;
-          height: 56px;
-          background: ${colors.netflixRed};
-          color: ${colors.white};
-          font-size: 1.8rem;
-          font-weight: 900;
-          border-radius: 14px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
-        }
-
-        .stream-content h4 {
-          font-size: 1.3rem;
-          font-weight: 700;
-          color: ${colors.white};
-          margin: 0 0 10px 0;
-        }
-
-        .stream-content p {
-          font-size: 1rem;
+        .feature-text p {
+          font-size: 1.05rem;
           color: ${colors.textLight};
           line-height: 1.7;
           margin: 0;
-        }
-
-        .revenue-stats-chat {
-          display: flex;
-          gap: 28px;
-          flex-wrap: wrap;
-          justify-content: center;
-          padding-top: 32px;
-          border-top: 2px solid rgba(229, 9, 20, 0.4);
-        }
-
-        .stat-badge-chat {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 12px;
-          padding: 28px 36px;
-          background: rgba(229, 9, 20, 0.15);
-          border: 2px solid ${colors.netflixRed};
-          border-radius: 18px;
-          min-width: 240px;
-          transition: all 0.3s ease;
-        }
-
-        .stat-badge-chat:hover {
-          background: rgba(229, 9, 20, 0.25);
-          transform: scale(1.08);
-          box-shadow: 0 10px 35px rgba(229, 9, 20, 0.5);
-        }
-
-        .stat-icon-chat {
-          font-size: 2.8rem;
-        }
-
-        .stat-value-chat {
-          font-size: clamp(2.5rem, 5vw, 3.5rem);
-          font-weight: 900;
-          color: ${colors.netflixRed};
-          text-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
-        }
-
-        .stat-label-chat {
-          font-size: 1rem;
-          font-weight: 600;
-          color: ${colors.white};
-          text-align: center;
-          max-width: 200px;
         }
 
         /* Responsive Design */
@@ -4481,128 +4213,26 @@ function AIChatModelSection() {
           font-size: clamp(1.3rem, 2.6vw, 1.5rem);
         }
 
-        .ai-chat-features-grid {
-          grid-template-columns: repeat(auto-fit, minmax(clamp(260px, 24vw, 280px), 1fr));
-          gap: clamp(20px, 3vw, 24px);
+        .features-list-simple {
+          gap: clamp(24px, 5vw, 32px);
         }
 
-        .ai-chat-feature-card {
-          padding: clamp(28px, 5vw, 32px) clamp(24px, 4vw, 28px);
-        }
-
-        .chat-feature-icon {
-          font-size: clamp(3rem, 6vw, 3.5rem);
-        }
-
-        .ai-chat-feature-card h3 {
-          font-size: clamp(1.25rem, 2.5vw, 1.4rem);
-        }
-
-        .ai-chat-feature-card p {
-          font-size: clamp(0.95rem, 2vw, 1rem);
-        }
-
-        .platform-integration-box {
-          padding: clamp(36px, 7vw, 44px) clamp(28px, 5vw, 36px);
-        }
-
-        .integration-content {
-          gap: clamp(20px, 4vw, 28px);
-        }
-
-        .integration-section h4 {
-          font-size: clamp(1.2rem, 2.4vw, 1.35rem);
-        }
-
-        .platform-tags {
-          gap: clamp(8px, 2vw, 12px);
-        }
-
-        .platform-tag {
-          padding: clamp(8px, 2vw, 10px) clamp(14px, 3vw, 18px);
-          font-size: clamp(0.85rem, 1.7vw, 0.9rem);
-        }
-
-        .integration-benefits {
+        .feature-item-simple {
           gap: clamp(16px, 3vw, 20px);
         }
 
-        .benefit-item {
-          padding: clamp(16px, 3vw, 20px);
-          flex-direction: column;
-          gap: clamp(12px, 2.4vw, 20px);
+        .feature-emoji {
+          font-size: clamp(2rem, 4vw, 2.5rem);
         }
 
-        .benefit-icon {
-          font-size: clamp(2.2rem, 4.4vw, 2.5rem);
+        .feature-text h3 {
+          font-size: clamp(1.2rem, 2.4vw, 1.4rem);
         }
 
-        .benefit-text h4 {
-          font-size: clamp(1.1rem, 2.2vw, 1.2rem);
+        .feature-text p {
+          font-size: clamp(1rem, 2vw, 1.05rem);
         }
 
-        .benefit-text p {
-          font-size: clamp(0.95rem, 2vw, 1rem);
-        }
-
-        .ai-revenue-box {
-          padding: clamp(40px, 8vw, 48px) clamp(32px, 6vw, 40px);
-        }
-
-        .ai-revenue-header {
-          flex-direction: column;
-          gap: clamp(12px, 2.4vw, 16px);
-          margin-bottom: clamp(32px, 6vw, 40px);
-        }
-
-        .revenue-icon-chat {
-          font-size: clamp(3rem, 6vw, 3.5rem);
-        }
-
-        .ai-revenue-grid {
-          grid-template-columns: repeat(auto-fit, minmax(clamp(260px, 24vw, 280px), 1fr));
-          gap: clamp(20px, 4vw, 24px);
-          margin-bottom: clamp(32px, 6vw, 40px);
-        }
-
-        .revenue-stream {
-          padding: clamp(24px, 5vw, 28px);
-          flex-direction: column;
-          gap: clamp(16px, 3vw, 20px);
-        }
-
-        .stream-number {
-          width: clamp(50px, 10vw, 56px);
-          height: clamp(50px, 10vw, 56px);
-          font-size: clamp(1.6rem, 3.2vw, 1.8rem);
-        }
-
-        .stream-content h4 {
-          font-size: clamp(1.2rem, 2.4vw, 1.3rem);
-        }
-
-        .stream-content p {
-          font-size: clamp(0.95rem, 2vw, 1rem);
-        }
-
-        .revenue-stats-chat {
-          gap: clamp(20px, 4vw, 28px);
-          flex-direction: column;
-        }
-
-        .stat-badge-chat {
-          padding: clamp(24px, 5vw, 28px) clamp(28px, 6vw, 36px);
-          min-width: auto;
-          width: 100%;
-        }
-
-        .stat-icon-chat {
-          font-size: clamp(2.5rem, 5vw, 2.8rem);
-        }
-
-        .stat-label-chat {
-          font-size: clamp(0.95rem, 2vw, 1rem);
-        }
       `}</style>
     </section>
   );
