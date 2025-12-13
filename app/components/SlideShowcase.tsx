@@ -15,6 +15,7 @@ export default function SlideShowcase() {
         <ShopWhatYouSeeSection />
         <OutfitManagementSection />
         <TryOnSection />
+        <BrandPartnershipSection />
       </div>
 
       <style jsx global>{`
@@ -2451,6 +2452,670 @@ function TryOnSection() {
           }
 
           .badge-text {
+            font-size: 1rem;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function BrandPartnershipSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="partnership-section">
+      <div className="partnership-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          Brand <span className="highlight">Partnership</span> & Growth
+        </h2>
+
+        <p className={`partnership-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          Accelerating growth through strategic brand collaborations and premium subscription services
+        </p>
+
+        {/* Free Integration Offer */}
+        <div className={`free-offer-box ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+          <div className="offer-header">
+            <div className="offer-icon">🤝</div>
+            <h3>Free Brand Integration</h3>
+          </div>
+          <div className="offer-content">
+            <p className="offer-description">
+              We collaborate with small to mid-sized clothing brands, offering <strong>FREE integration</strong> of their products into our app&apos;s Brand Store feed. We negotiate affiliate partnerships and introduce the Dorfy platform to their existing customer base.
+            </p>
+            <div className="win-win-grid">
+              <div className="win-box">
+                <h4>🎯 Brands Win</h4>
+                <ul>
+                  <li>Virtual try-on for their customers</li>
+                  <li>Free product promotion & exposure</li>
+                  <li>Access to our growing user base</li>
+                  <li>No upfront costs or risks</li>
+                </ul>
+              </div>
+              <div className="win-box">
+                <h4>✨ We Win</h4>
+                <ul>
+                  <li>Gain their customer base</li>
+                  <li>Rapid content & product growth</li>
+                  <li>Increased platform credibility</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Premium Subscription Features */}
+        <div className={`subscription-box ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
+          <div className="subscription-header">
+            <h3>💎 Premium Monthly Subscription For Brands</h3>
+            <p>Unlock powerful growth tools and placement options</p>
+          </div>
+
+          <div className="features-grid">
+            <div className="feature-item">
+              <div className="item-icon">📍</div>
+              <h4>Multi-Feed Placement</h4>
+              <p>Showcase products in Bees feed (user feed), Fits feed (outfit inspiration), Brand Store feed, and Home page prime locations</p>
+            </div>
+
+            <div className="feature-item">
+              <div className="item-icon">🔔</div>
+              <h4>Notification Promotions</h4>
+              <p>Send rich push notifications with product images directly to targeted users, driving immediate engagement and sales</p>
+            </div>
+
+            <div className="feature-item">
+              <div className="item-icon">📊</div>
+              <h4>Analytics Dashboard</h4>
+              <p>Comprehensive charts showing user visits, page clicks, conversion rates, engagement metrics, and detailed performance insights</p>
+            </div>
+
+            <div className="feature-item">
+              <div className="item-icon">🎨</div>
+              <h4>AI Image Studio</h4>
+              <p>Generate studio-quality product photos using our AI model - create professional ads without expensive photoshoots</p>
+            </div>
+
+            <div className="feature-item">
+              <div className="item-icon">🎬</div>
+              <h4>Video Ad Generation</h4>
+              <p>Automatically create engaging video advertisements for your products using cutting-edge AI technology</p>
+            </div>
+
+            <div className="feature-item">
+              <div className="item-icon">🏪</div>
+              <h4>Custom Pages</h4>
+              <p>Dedicated brand profile and custom product view pages with full personalization and branding control</p>
+            </div>
+
+            <div className="feature-item">
+              <div className="item-icon">⚡</div>
+              <h4>FOMO Features</h4>
+              <p>Real-time order notifications, live purchase counts, and urgency indicators that boost sales by up to 20%</p>
+            </div>
+
+            <div className="feature-item">
+              <div className="item-icon">🚀</div>
+              <h4>Priority Support</h4>
+              <p>Dedicated account manager, priority customer support, and exclusive early access to new features and tools</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Video Generation Demo */}
+        <div className={`video-demo-box ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.7s' }}>
+          <h3 className="demo-title">🎥 AI Video Generation in Action</h3>
+          <p className="demo-subtitle">See how our AI creates professional video ads automatically</p>
+          <div className="twitter-video-wrapper">
+            <blockquote className="twitter-tweet">
+              <a href="https://x.com/i/status/1998720751806066916">View Video Demo</a>
+            </blockquote>
+            <div className="twitter-video-placeholder">
+              <div className="placeholder-content">
+                <div className="play-icon">▶</div>
+                <p>AI-Generated Product Video Ad</p>
+                <a
+                  href="https://x.com/i/status/1998720751806066916"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="view-demo-btn"
+                >
+                  Watch Demo on Twitter
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Revenue Impact Summary */}
+        <div className={`impact-stats ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.9s' }}>
+          <div className="stat-box">
+            <div className="stat-number">20%</div>
+            <div className="stat-label">Sales Increase with FOMO</div>
+          </div>
+          <div className="stat-box">
+            <div className="stat-number">5X</div>
+            <div className="stat-label">Brand Visibility Boost</div>
+          </div>
+          <div className="stat-box">
+            <div className="stat-number">∞</div>
+            <div className="stat-label">Scalable Growth Potential</div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .partnership-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          background:
+            radial-gradient(circle at 30% 40%, rgba(229, 9, 20, 0.12) 0%, transparent 60%),
+            linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(229, 9, 20, 0.05) 100%);
+          position: relative;
+        }
+
+        .partnership-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+          position: relative;
+          display: inline-block;
+        }
+
+        .partnership-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 800px;
+          opacity: 0;
+        }
+
+        .free-offer-box {
+          width: 100%;
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(40, 40, 40, 0.85) 100%);
+          border: 3px solid ${colors.netflixRed};
+          border-radius: 28px;
+          padding: 44px 40px;
+          backdrop-filter: blur(15px);
+          box-shadow: 0 25px 70px rgba(229, 9, 20, 0.5);
+          opacity: 0;
+        }
+
+        .offer-header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin-bottom: 28px;
+        }
+
+        .offer-icon {
+          font-size: 3.5rem;
+          filter: drop-shadow(0 4px 15px rgba(229, 9, 20, 0.5));
+        }
+
+        .offer-header h3 {
+          font-size: clamp(2rem, 4.5vw, 2.8rem);
+          font-weight: 900;
+          color: ${colors.white};
+          margin: 0;
+        }
+
+        .offer-content {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+        }
+
+        .offer-description {
+          font-size: clamp(1.05rem, 2vw, 1.2rem);
+          color: ${colors.textLight};
+          line-height: 1.8;
+          text-align: center;
+          margin: 0;
+        }
+
+        .offer-description strong {
+          color: ${colors.netflixRed};
+          font-weight: 800;
+        }
+
+        .win-win-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 28px;
+        }
+
+        .win-box {
+          background: rgba(229, 9, 20, 0.08);
+          border: 2px solid rgba(229, 9, 20, 0.3);
+          border-radius: 20px;
+          padding: 32px 28px;
+          transition: all 0.3s ease;
+        }
+
+        .win-box:hover {
+          background: rgba(229, 9, 20, 0.15);
+          border-color: ${colors.netflixRed};
+          transform: translateY(-6px);
+          box-shadow: 0 15px 45px rgba(229, 9, 20, 0.4);
+        }
+
+        .win-box h4 {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: ${colors.white};
+          margin: 0 0 20px 0;
+          text-align: center;
+        }
+
+        .win-box ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+        }
+
+        .win-box li {
+          font-size: 1.05rem;
+          color: ${colors.textLight};
+          padding-left: 28px;
+          position: relative;
+          line-height: 1.6;
+        }
+
+        .win-box li::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: ${colors.netflixRed};
+          font-weight: 900;
+          font-size: 1.3rem;
+        }
+
+        .subscription-box {
+          width: 100%;
+          background: linear-gradient(135deg, rgba(40, 40, 40, 0.9) 0%, rgba(26, 26, 26, 0.95) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.4);
+          border-radius: 24px;
+          padding: 48px 40px;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 20px 60px rgba(229, 9, 20, 0.3);
+          opacity: 0;
+        }
+
+        .subscription-header {
+          text-align: center;
+          margin-bottom: 40px;
+        }
+
+        .subscription-header h3 {
+          font-size: clamp(2rem, 4.5vw, 2.6rem);
+          font-weight: 900;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .subscription-header p {
+          font-size: clamp(1rem, 2vw, 1.2rem);
+          color: ${colors.textLight};
+          margin: 0;
+        }
+
+        .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 24px;
+        }
+
+        .feature-item {
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(40, 40, 40, 0.6) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.2);
+          border-radius: 18px;
+          padding: 28px 24px;
+          transition: all 0.4s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .feature-item:hover {
+          transform: translateY(-8px);
+          border-color: ${colors.netflixRed};
+          box-shadow: 0 20px 60px rgba(229, 9, 20, 0.5);
+          background: linear-gradient(135deg, rgba(40, 40, 40, 0.95) 0%, rgba(26, 26, 26, 0.9) 100%);
+        }
+
+        .item-icon {
+          font-size: 3rem;
+          margin-bottom: 16px;
+          filter: drop-shadow(0 4px 10px rgba(229, 9, 20, 0.3));
+        }
+
+        .feature-item h4 {
+          font-size: 1.3rem;
+          font-weight: 800;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .feature-item p {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          line-height: 1.7;
+          margin: 0;
+        }
+
+        .video-demo-box {
+          width: 100%;
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(40, 40, 40, 0.85) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.3);
+          border-radius: 24px;
+          padding: 44px 40px;
+          backdrop-filter: blur(10px);
+          opacity: 0;
+          text-align: center;
+        }
+
+        .demo-title {
+          font-size: clamp(1.8rem, 4vw, 2.4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .demo-subtitle {
+          font-size: clamp(1rem, 2vw, 1.2rem);
+          color: ${colors.textLight};
+          margin: 0 0 32px 0;
+        }
+
+        .twitter-video-wrapper {
+          max-width: 600px;
+          margin: 0 auto;
+        }
+
+        .twitter-tweet {
+          display: none;
+        }
+
+        .twitter-video-placeholder {
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(40, 40, 40, 0.8) 100%);
+          border: 2px solid ${colors.netflixRed};
+          border-radius: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .twitter-video-placeholder:hover {
+          border-color: #ff4444;
+          box-shadow: 0 15px 50px rgba(229, 9, 20, 0.5);
+        }
+
+        .twitter-video-placeholder::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at center, rgba(229, 9, 20, 0.2) 0%, transparent 70%);
+          animation: pulse 3s ease-in-out infinite;
+        }
+
+        .placeholder-content {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+
+        .play-icon {
+          width: 80px;
+          height: 80px;
+          background: ${colors.netflixRed};
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2.5rem;
+          color: ${colors.white};
+          box-shadow: 0 10px 40px rgba(229, 9, 20, 0.6);
+          transition: all 0.3s ease;
+        }
+
+        .twitter-video-placeholder:hover .play-icon {
+          transform: scale(1.15);
+          box-shadow: 0 15px 50px rgba(229, 9, 20, 0.8);
+        }
+
+        .placeholder-content p {
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin: 0;
+        }
+
+        .view-demo-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 14px 32px;
+          background: linear-gradient(135deg, ${colors.netflixRed} 0%, #ff4444 100%);
+          color: ${colors.white};
+          font-size: 1.05rem;
+          font-weight: 700;
+          text-decoration: none;
+          border-radius: 50px;
+          transition: all 0.3s ease;
+          box-shadow: 0 8px 25px rgba(229, 9, 20, 0.4);
+        }
+
+        .view-demo-btn:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 12px 35px rgba(229, 9, 20, 0.6);
+        }
+
+        .impact-stats {
+          display: flex;
+          gap: 32px;
+          flex-wrap: wrap;
+          justify-content: center;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .stat-box {
+          flex: 1;
+          min-width: 220px;
+          max-width: 320px;
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(26, 26, 26, 0.9) 100%);
+          border: 2px solid ${colors.netflixRed};
+          border-radius: 20px;
+          padding: 36px 28px;
+          text-align: center;
+          transition: all 0.4s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .stat-box:hover {
+          transform: translateY(-10px) scale(1.05);
+          box-shadow: 0 25px 70px rgba(229, 9, 20, 0.6);
+          border-color: #ff4444;
+        }
+
+        .stat-number {
+          font-size: clamp(3rem, 6vw, 4.5rem);
+          font-weight: 900;
+          color: ${colors.netflixRed};
+          text-shadow: 0 0 40px rgba(229, 9, 20, 0.7);
+          margin-bottom: 12px;
+          line-height: 1;
+        }
+
+        .stat-label {
+          font-size: clamp(1rem, 2vw, 1.2rem);
+          font-weight: 600;
+          color: ${colors.white};
+          line-height: 1.4;
+        }
+
+        @media (max-width: 1024px) {
+          .features-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .win-win-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .partnership-section {
+            padding: 60px 20px;
+          }
+
+          .partnership-content {
+            gap: 35px;
+          }
+
+          .free-offer-box {
+            padding: 36px 28px;
+          }
+
+          .offer-header {
+            flex-direction: column;
+            gap: 12px;
+          }
+
+          .offer-icon {
+            font-size: 3rem;
+          }
+
+          .win-box {
+            padding: 28px 24px;
+          }
+
+          .win-box h4 {
+            font-size: 1.35rem;
+          }
+
+          .win-box li {
+            font-size: 1rem;
+          }
+
+          .subscription-box {
+            padding: 36px 28px;
+          }
+
+          .features-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+
+          .feature-item {
+            padding: 24px 20px;
+          }
+
+          .item-icon {
+            font-size: 2.5rem;
+          }
+
+          .feature-item h4 {
+            font-size: 1.2rem;
+          }
+
+          .feature-item p {
+            font-size: 0.95rem;
+          }
+
+          .video-demo-box {
+            padding: 32px 24px;
+          }
+
+          .play-icon {
+            width: 70px;
+            height: 70px;
+            font-size: 2rem;
+          }
+
+          .placeholder-content p {
+            font-size: 1.1rem;
+          }
+
+          .view-demo-btn {
+            padding: 12px 28px;
+            font-size: 1rem;
+          }
+
+          .impact-stats {
+            gap: 20px;
+          }
+
+          .stat-box {
+            min-width: 100%;
+            padding: 32px 24px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .offer-description {
+            font-size: 1rem;
+          }
+
+          .stat-number {
+            font-size: 3rem;
+          }
+
+          .stat-label {
             font-size: 1rem;
           }
         }
