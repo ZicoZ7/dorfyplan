@@ -2573,23 +2573,13 @@ function BrandPartnershipSection() {
           <h3 className="demo-title">🎥 AI Video Generation in Action</h3>
           <p className="demo-subtitle">See how our AI creates professional video ads automatically</p>
           <div className="twitter-video-wrapper">
-            <blockquote className="twitter-tweet">
-              <a href="https://x.com/i/status/1998720751806066916">View Video Demo</a>
-            </blockquote>
-            <div className="twitter-video-placeholder">
-              <div className="placeholder-content">
-                <div className="play-icon">▶</div>
-                <p>AI-Generated Product Video Ad</p>
-                <a
-                  href="https://x.com/i/status/1998720751806066916"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="view-demo-btn"
-                >
-                  Watch Demo on Twitter
-                </a>
-              </div>
-            </div>
+            <video
+              controls
+              className="twitter-video"
+            >
+              <source src="/twittervideo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
 
@@ -4176,6 +4166,81 @@ function AIChatModelSection() {
           </div>
         </div>
 
+        {/* About the Founder */}
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '1.7s' }}>
+          About the <span className="highlight">Founder</span>
+        </h2>
+
+        <div className={`founder-content ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '1.8s' }}>
+          {/* Photos Grid */}
+          <div className="founder-photos">
+            <div className="founder-photo-wrapper">
+              <Image
+                src="/photo2.jpg"
+                alt="Sharif (Zico) Zafar"
+                width={300}
+                height={300}
+                className="founder-photo"
+              />
+            </div>
+            <div className="founder-photo-wrapper">
+              <Image
+                src="/photo1.jpg"
+                alt="Sharif (Zico) Zafar"
+                width={300}
+                height={300}
+                className="founder-photo"
+              />
+            </div>
+            <div className="founder-photo-wrapper">
+              <Image
+                src="/photo.jpg"
+                alt="Sharif (Zico) Zafar"
+                width={300}
+                height={300}
+                className="founder-photo"
+              />
+            </div>
+          </div>
+
+          {/* Founder Info */}
+          <div className="founder-info">
+            <h3>Sharif (Zico) Zafar</h3>
+            <p className="founder-vision">Want to build ecosystems like big companies, not just apps</p>
+
+            <div className="founder-links">
+              <a
+                href="https://x.com/Zicozafar79"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="founder-link"
+              >
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Twitter / X
+              </a>
+
+              <a
+                href="https://zicoz7.github.io/demo_heroxshorts2/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="founder-link"
+              >
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                HeroXShorts - AI Video Creator
+              </a>
+            </div>
+
+            <div className="project-description">
+              <h4>Other Project: HeroXShorts</h4>
+              <p>For creators making long-form content to viral short forms with AI</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <style jsx>{`
@@ -4586,6 +4651,118 @@ function AIChatModelSection() {
           text-align: center;
         }
 
+        .founder-content {
+          display: flex;
+          flex-direction: column;
+          gap: 50px;
+          width: 100%;
+          max-width: 1000px;
+          opacity: 0;
+        }
+
+        .founder-photos {
+          display: flex;
+          gap: 24px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .founder-photo-wrapper {
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow:
+            0 20px 60px rgba(229, 9, 20, 0.5),
+            0 0 0 2px rgba(255, 255, 255, 0.1);
+          transition: all 0.4s ease;
+        }
+
+        .founder-photo-wrapper:hover {
+          transform: translateY(-10px) scale(1.05);
+          box-shadow:
+            0 30px 80px rgba(229, 9, 20, 0.6),
+            0 0 0 2px ${colors.netflixRed};
+        }
+
+        .founder-photo {
+          border-radius: 20px;
+          width: 100%;
+          max-width: 200px;
+          height: auto;
+          display: block;
+        }
+
+        .founder-info {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          align-items: center;
+          text-align: center;
+        }
+
+        .founder-info h3 {
+          font-size: 2.5rem;
+          font-weight: 900;
+          color: ${colors.white};
+          margin: 0;
+        }
+
+        .founder-vision {
+          font-size: 1.3rem;
+          color: ${colors.textLight};
+          font-weight: 500;
+          margin: 0;
+          max-width: 600px;
+        }
+
+        .founder-links {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .founder-link {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background: ${colors.netflixRed};
+          color: ${colors.white};
+          padding: 14px 28px;
+          border-radius: 50px;
+          text-decoration: none;
+          font-size: 1.05rem;
+          font-weight: 700;
+          transition: all 0.3s ease;
+          box-shadow: 0 8px 30px rgba(229, 9, 20, 0.4);
+        }
+
+        .founder-link:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 12px 40px rgba(229, 9, 20, 0.6);
+        }
+
+        .project-description {
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(26, 26, 26, 0.9) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.4);
+          border-radius: 16px;
+          padding: 24px 32px;
+          max-width: 700px;
+        }
+
+        .project-description h4 {
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .project-description p {
+          font-size: 1.05rem;
+          color: ${colors.textLight};
+          margin: 0;
+          line-height: 1.6;
+        }
+
         /* Responsive Design */
         .ai-chat-section {
           padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
@@ -4726,6 +4903,51 @@ function AIChatModelSection() {
 
         .additional-label {
           font-size: clamp(1.1rem, 2.2vw, 1.2rem);
+        }
+
+        .founder-content {
+          gap: clamp(40px, 8vw, 50px);
+        }
+
+        .founder-photos {
+          gap: clamp(20px, 4vw, 24px);
+        }
+
+        .founder-photo {
+          max-width: clamp(160px, 18vw, 200px);
+        }
+
+        .founder-info {
+          gap: clamp(20px, 4vw, 24px);
+        }
+
+        .founder-info h3 {
+          font-size: clamp(2rem, 4.5vw, 2.5rem);
+        }
+
+        .founder-vision {
+          font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+        }
+
+        .founder-links {
+          gap: clamp(16px, 3vw, 20px);
+        }
+
+        .founder-link {
+          padding: clamp(12px, 2.4vw, 14px) clamp(24px, 5vw, 28px);
+          font-size: clamp(1rem, 2vw, 1.05rem);
+        }
+
+        .project-description {
+          padding: clamp(20px, 4vw, 24px) clamp(28px, 5.5vw, 32px);
+        }
+
+        .project-description h4 {
+          font-size: clamp(1.25rem, 2.5vw, 1.4rem);
+        }
+
+        .project-description p {
+          font-size: clamp(1rem, 2vw, 1.05rem);
         }
 
       `}</style>
