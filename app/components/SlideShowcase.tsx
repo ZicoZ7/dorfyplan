@@ -3946,6 +3946,96 @@ function AIChatModelSection() {
           </div>
         </div>
 
+        {/* Movies Discovery & Bees Feed Features */}
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.8s' }}>
+          Movies Discovery & <span className="highlight">Bees Feed</span> Features
+        </h2>
+
+        <div className={`movies-bees-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.9s' }}>
+          <div className="media-item">
+            <div className="media-wrapper">
+              <Image
+                src="/bees.gif"
+                alt="Bees Feed"
+                width={300}
+                height={600}
+                className="media-image"
+                unoptimized
+              />
+            </div>
+            <div className="media-label">Bees Feed</div>
+          </div>
+
+          <div className="media-item">
+            <div className="media-wrapper">
+              <Image
+                src="/cast.gif"
+                alt="Cast"
+                width={300}
+                height={600}
+                className="media-image"
+                unoptimized
+              />
+            </div>
+            <div className="media-label">Cast</div>
+          </div>
+
+          <div className="media-item">
+            <div className="media-wrapper">
+              <Image
+                src="/similarshows.gif"
+                alt="Similar Shows"
+                width={300}
+                height={600}
+                className="media-image"
+                unoptimized
+              />
+            </div>
+            <div className="media-label">Similar Shows</div>
+          </div>
+
+          <div className="media-item">
+            <div className="media-wrapper">
+              <Image
+                src="/slotmoive.gif"
+                alt="Slot Movie"
+                width={300}
+                height={600}
+                className="media-image"
+                unoptimized
+              />
+            </div>
+            <div className="media-label">Slot Movie</div>
+          </div>
+
+          <div className="media-item">
+            <div className="media-wrapper">
+              <Image
+                src="/wheretowatch.gif"
+                alt="Where to Watch"
+                width={300}
+                height={600}
+                className="media-image"
+                unoptimized
+              />
+            </div>
+            <div className="media-label">Where to Watch</div>
+          </div>
+
+          <div className="media-item">
+            <div className="media-wrapper">
+              <Image
+                src="/rating.jpg"
+                alt="Rating"
+                width={300}
+                height={600}
+                className="media-image"
+              />
+            </div>
+            <div className="media-label">Rating</div>
+          </div>
+        </div>
+
       </div>
 
       <style jsx>{`
@@ -4162,6 +4252,53 @@ function AIChatModelSection() {
           margin: 0;
         }
 
+        .movies-bees-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 32px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .media-item {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          align-items: center;
+        }
+
+        .media-wrapper {
+          position: relative;
+          border-radius: 24px;
+          overflow: hidden;
+          box-shadow:
+            0 20px 60px rgba(229, 9, 20, 0.5),
+            0 0 0 2px rgba(255, 255, 255, 0.1);
+          transition: all 0.4s ease;
+        }
+
+        .media-wrapper:hover {
+          transform: translateY(-10px) scale(1.03);
+          box-shadow:
+            0 30px 80px rgba(229, 9, 20, 0.6),
+            0 0 0 2px ${colors.netflixRed};
+        }
+
+        .media-image {
+          border-radius: 24px;
+          width: 100%;
+          max-width: 300px;
+          height: auto;
+          display: block;
+        }
+
+        .media-label {
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: ${colors.white};
+          text-align: center;
+        }
+
         /* Responsive Design */
         .ai-chat-section {
           padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
@@ -4231,6 +4368,23 @@ function AIChatModelSection() {
 
         .feature-text p {
           font-size: clamp(1rem, 2vw, 1.05rem);
+        }
+
+        .movies-bees-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 22vw, 260px), 1fr));
+          gap: clamp(24px, 5vw, 32px);
+        }
+
+        .media-item {
+          gap: clamp(12px, 2.4vw, 16px);
+        }
+
+        .media-image {
+          max-width: clamp(260px, 28vw, 300px);
+        }
+
+        .media-label {
+          font-size: clamp(1.1rem, 2.2vw, 1.2rem);
         }
 
       `}</style>
