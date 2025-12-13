@@ -3780,8 +3780,8 @@ function AIChatModelSection() {
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: '100px'
+        threshold: 0.01,
+        rootMargin: '200px'
       }
     );
 
@@ -4968,7 +4968,10 @@ function FeaturesSection() {
           }
         });
       },
-      { threshold: 0.2 }
+      {
+        threshold: 0.1,
+        rootMargin: '100px'
+      }
     );
 
     if (sectionRef.current) {
