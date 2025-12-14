@@ -18,6 +18,7 @@ export default function SlideShowcase() {
         <TryOnSection />
         <BrandPartnershipSection />
         <VideoScannerSection />
+        <ClothingBrandSection />
         <AIChatModelSection />
       </div>
 
@@ -3760,6 +3761,460 @@ function VideoScannerSection() {
         }
 
         .stat-icon {
+          font-size: clamp(2.5rem, 5vw, 3rem);
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function ClothingBrandSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '100px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="clothing-brand-section">
+      <div className="brand-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          Our <span className="highlight">Side Hustle</span>
+        </h2>
+
+        <p className={`brand-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          After building trust with our community, we&apos;re launching our own limited drop clothing brand - <strong>Do</strong>
+        </p>
+
+        <div className={`content-layout ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+          {/* Left side - Image showcase */}
+          <div className="brand-image-showcase">
+            <div className="brand-showcase-wrapper">
+              <Image
+                src={getAssetPath("/clothes.png")}
+                alt="Do - Limited Drop Clothing Brand"
+                width={500}
+                height={500}
+                className="brand-showcase-image"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Right side - Brand Info */}
+          <div className="brand-info-content">
+            <div className="brand-box">
+              <div className="box-icon">👕</div>
+              <h3>Limited Drops</h3>
+              <p>Exclusive clothing collections released in limited quantities. Once they&apos;re gone, they&apos;re gone - creating scarcity and demand</p>
+            </div>
+
+            <div className="brand-box">
+              <div className="box-icon">🎯</div>
+              <h3>Community First</h3>
+              <p>Leveraging our established user base and trust to launch successful clothing drops with built-in demand from day one</p>
+            </div>
+
+            <div className="brand-box">
+              <div className="box-icon">💰</div>
+              <h3>Revenue Diversification</h3>
+              <p>A strategic side hustle that complements our platform while creating an additional revenue stream beyond commissions</p>
+            </div>
+
+            {/* Strategy Box */}
+            <div className="strategy-box">
+              <div className="strategy-header">
+                <div className="strategy-icon">🚀</div>
+                <h3>Launch Strategy</h3>
+              </div>
+              <div className="strategy-details">
+                <div className="strategy-item">
+                  <span className="step-number">1</span>
+                  <span className="step-text">Build trust & community through Dorfy platform</span>
+                </div>
+                <div className="strategy-item">
+                  <span className="step-number">2</span>
+                  <span className="step-text">Drop limited clothing collections to engaged users</span>
+                </div>
+                <div className="strategy-item">
+                  <span className="step-number">3</span>
+                  <span className="step-text">Create hype and demand through scarcity tactics</span>
+                </div>
+                <div className="strategy-item">
+                  <span className="step-number">4</span>
+                  <span className="step-text">Scale brand alongside platform growth</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Brand Benefits */}
+        <div className={`brand-benefits ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
+          <div className="benefit-card">
+            <div className="benefit-icon">⚡</div>
+            <div className="benefit-value">Built-In Audience</div>
+            <div className="benefit-label">No Cold Start Problem</div>
+          </div>
+          <div className="benefit-card">
+            <div className="benefit-icon">🔥</div>
+            <div className="benefit-value">Limited Drops</div>
+            <div className="benefit-label">Creates Urgency & FOMO</div>
+          </div>
+          <div className="benefit-card">
+            <div className="benefit-icon">💎</div>
+            <div className="benefit-value">Brand Synergy</div>
+            <div className="benefit-label">Complements Core Platform</div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .clothing-brand-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(229, 9, 20, 0.05) 50%, rgba(0,0,0,0) 100%);
+          position: relative;
+        }
+
+        .brand-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+        }
+
+        .brand-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 800px;
+          opacity: 0;
+        }
+
+        .brand-subtitle strong {
+          color: ${colors.netflixRed};
+          font-weight: 800;
+          font-size: 1.1em;
+        }
+
+        .content-layout {
+          display: flex;
+          gap: 60px;
+          width: 100%;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: wrap;
+          opacity: 0;
+        }
+
+        .brand-image-showcase {
+          flex: 0 0 auto;
+          position: relative;
+        }
+
+        .brand-showcase-wrapper {
+          position: relative;
+          border-radius: 24px;
+          overflow: hidden;
+          box-shadow:
+            0 35px 90px rgba(229, 9, 20, 0.6),
+            0 0 0 2px rgba(255, 255, 255, 0.1);
+          transition: all 0.5s ease;
+        }
+
+        .brand-showcase-wrapper:hover {
+          transform: translateY(-12px) scale(1.05);
+          box-shadow:
+            0 40px 100px rgba(229, 9, 20, 0.7),
+            0 0 0 3px ${colors.netflixRed},
+            0 0 60px rgba(229, 9, 20, 0.5);
+        }
+
+        .brand-showcase-image {
+          border-radius: 24px;
+          width: 100%;
+          max-width: 450px;
+          height: auto;
+          display: block;
+        }
+
+        .brand-info-content {
+          flex: 1;
+          min-width: 320px;
+          max-width: 600px;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
+        .brand-box {
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(40, 40, 40, 0.6) 100%);
+          border: 1px solid rgba(229, 9, 20, 0.2);
+          border-radius: 16px;
+          padding: 24px;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .brand-box:hover {
+          transform: translateX(10px);
+          border-color: rgba(229, 9, 20, 0.5);
+          box-shadow: 0 10px 40px rgba(229, 9, 20, 0.3);
+        }
+
+        .box-icon {
+          font-size: 2.5rem;
+          margin-bottom: 12px;
+        }
+
+        .brand-box h3 {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin: 0 0 10px 0;
+        }
+
+        .brand-box p {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .strategy-box {
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(26, 26, 26, 0.9) 100%);
+          border: 2px solid ${colors.netflixRed};
+          border-radius: 20px;
+          padding: 28px;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 15px 50px rgba(229, 9, 20, 0.4);
+        }
+
+        .strategy-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 20px;
+        }
+
+        .strategy-icon {
+          font-size: 2.5rem;
+        }
+
+        .strategy-header h3 {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: ${colors.white};
+          margin: 0;
+        }
+
+        .strategy-details {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .strategy-item {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          padding: 14px 18px;
+          background: rgba(229, 9, 20, 0.1);
+          border: 1px solid rgba(229, 9, 20, 0.3);
+          border-radius: 12px;
+          transition: all 0.3s ease;
+        }
+
+        .strategy-item:hover {
+          background: rgba(229, 9, 20, 0.2);
+          border-color: ${colors.netflixRed};
+          transform: translateX(8px);
+        }
+
+        .step-number {
+          flex-shrink: 0;
+          width: 36px;
+          height: 36px;
+          background: ${colors.netflixRed};
+          color: ${colors.white};
+          font-size: 1.2rem;
+          font-weight: 900;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 12px rgba(229, 9, 20, 0.5);
+        }
+
+        .step-text {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          font-weight: 500;
+        }
+
+        .brand-benefits {
+          display: flex;
+          gap: 28px;
+          flex-wrap: wrap;
+          justify-content: center;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .benefit-card {
+          flex: 1;
+          min-width: 240px;
+          max-width: 340px;
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.12) 0%, rgba(26, 26, 26, 0.9) 100%);
+          border: 2px solid ${colors.netflixRed};
+          border-radius: 20px;
+          padding: 32px 24px;
+          text-align: center;
+          transition: all 0.4s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .benefit-card:hover {
+          transform: translateY(-10px) scale(1.05);
+          box-shadow: 0 25px 70px rgba(229, 9, 20, 0.6);
+          border-color: #ff4444;
+        }
+
+        .benefit-icon {
+          font-size: 3rem;
+          margin-bottom: 12px;
+          filter: drop-shadow(0 4px 15px rgba(229, 9, 20, 0.5));
+        }
+
+        .benefit-value {
+          font-size: clamp(1.5rem, 3vw, 2rem);
+          font-weight: 900;
+          color: ${colors.netflixRed};
+          text-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+          margin-bottom: 8px;
+          line-height: 1.2;
+        }
+
+        .benefit-label {
+          font-size: clamp(0.95rem, 2vw, 1.1rem);
+          font-weight: 600;
+          color: ${colors.white};
+          line-height: 1.4;
+        }
+
+        /* Adaptive responsive design using clamp and flex-wrap */
+        .clothing-brand-section {
+          padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
+        }
+
+        .brand-content {
+          gap: clamp(35px, 8vw, 50px);
+        }
+
+        .content-layout {
+          gap: clamp(30px, 6vw, 60px);
+        }
+
+        .brand-showcase-image {
+          max-width: clamp(320px, 35vw, 450px);
+        }
+
+        .brand-info-content {
+          gap: clamp(20px, 4vw, 24px);
+        }
+
+        .brand-box {
+          padding: clamp(20px, 4vw, 24px);
+        }
+
+        .box-icon {
+          font-size: clamp(2rem, 4vw, 2.5rem);
+        }
+
+        .brand-box h3 {
+          font-size: clamp(1.2rem, 2.5vw, 1.3rem);
+        }
+
+        .brand-box p {
+          font-size: clamp(0.95rem, 2vw, 1rem);
+        }
+
+        .strategy-box {
+          padding: clamp(24px, 5vw, 28px);
+        }
+
+        .strategy-icon {
+          font-size: clamp(2rem, 4vw, 2.5rem);
+        }
+
+        .strategy-header h3 {
+          font-size: clamp(1.3rem, 2.5vw, 1.5rem);
+        }
+
+        .strategy-item {
+          padding: clamp(12px, 2.4vw, 14px) clamp(16px, 3.2vw, 18px);
+        }
+
+        .step-number {
+          width: clamp(32px, 6vw, 36px);
+          height: clamp(32px, 6vw, 36px);
+          font-size: clamp(1.1rem, 2.2vw, 1.2rem);
+        }
+
+        .step-text {
+          font-size: clamp(0.95rem, 2vw, 1rem);
+        }
+
+        .brand-benefits {
+          gap: clamp(20px, 4vw, 28px);
+        }
+
+        .benefit-card {
+          min-width: clamp(220px, 25vw, 240px);
+          padding: clamp(28px, 5vw, 32px) clamp(20px, 4vw, 24px);
+        }
+
+        .benefit-icon {
           font-size: clamp(2.5rem, 5vw, 3rem);
         }
       `}</style>
