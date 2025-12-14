@@ -1981,6 +1981,64 @@ function TryOnSection() {
           </div>
         </div>
 
+        {/* Image Gallery */}
+        <div className={`tryon-gallery ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.6s' }}>
+          <div className="gallery-image-wrapper">
+            <Image
+              src={getAssetPath("/8.jpg")}
+              alt="Try-on example"
+              width={300}
+              height={600}
+              className="gallery-image"
+            />
+          </div>
+          <div className="gallery-image-wrapper">
+            <Image
+              src={getAssetPath("/13.jpg")}
+              alt="Try-on example"
+              width={300}
+              height={600}
+              className="gallery-image"
+            />
+          </div>
+          <div className="gallery-image-wrapper">
+            <Image
+              src={getAssetPath("/9.jpg")}
+              alt="Try-on example"
+              width={300}
+              height={600}
+              className="gallery-image"
+            />
+          </div>
+          <div className="gallery-image-wrapper">
+            <Image
+              src={getAssetPath("/10.jpg")}
+              alt="Try-on example"
+              width={300}
+              height={600}
+              className="gallery-image"
+            />
+          </div>
+          <div className="gallery-image-wrapper">
+            <Image
+              src={getAssetPath("/11.jpg")}
+              alt="Try-on example"
+              width={300}
+              height={600}
+              className="gallery-image"
+            />
+          </div>
+          <div className="gallery-image-wrapper">
+            <Image
+              src={getAssetPath("/12.jpg")}
+              alt="Try-on example"
+              width={300}
+              height={600}
+              className="gallery-image"
+            />
+          </div>
+        </div>
+
         {/* Shopping Flow Box */}
         <div className={`shopping-flow-box ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.7s' }}>
           <div className="flow-header">
@@ -2195,6 +2253,39 @@ function TryOnSection() {
           color: ${colors.textLight};
           line-height: 1.7;
           margin: 0;
+        }
+
+        .tryon-gallery {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 24px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .gallery-image-wrapper {
+          position: relative;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow:
+            0 20px 60px rgba(229, 9, 20, 0.4),
+            0 0 0 2px rgba(255, 255, 255, 0.1);
+          transition: all 0.4s ease;
+        }
+
+        .gallery-image-wrapper:hover {
+          transform: translateY(-8px) scale(1.03);
+          box-shadow:
+            0 25px 70px rgba(229, 9, 20, 0.6),
+            0 0 0 2px ${colors.netflixRed},
+            0 0 40px rgba(229, 9, 20, 0.4);
+        }
+
+        .gallery-image {
+          border-radius: 20px;
+          width: 100%;
+          height: auto;
+          display: block;
         }
 
         .shopping-flow-box {
