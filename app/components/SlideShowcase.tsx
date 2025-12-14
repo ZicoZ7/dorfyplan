@@ -19,6 +19,7 @@ export default function SlideShowcase() {
         <BrandPartnershipSection />
         <VideoScannerSection />
         <ClothingBrandSection />
+        <ChallengesSection />
         <AIChatModelSection />
       </div>
 
@@ -4216,6 +4217,531 @@ function ClothingBrandSection() {
 
         .benefit-icon {
           font-size: clamp(2.5rem, 5vw, 3rem);
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function ChallengesSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '100px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="challenges-section">
+      <div className="challenges-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          Community <span className="highlight">Gamify Challenges & Rewards</span>
+        </h2>
+
+        <p className={`challenges-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          Engage with the community, showcase your style, and win exclusive rewards
+        </p>
+
+        {/* Main Challenges Grid */}
+        <div className={`challenges-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+
+          {/* User Engagement Challenges */}
+          <div className="challenge-card user-challenge">
+            <div className="challenge-header">
+              <div className="challenge-badge">Monthly</div>
+              <div className="challenge-icon">🏆</div>
+            </div>
+            <h3>Best Outfit of the Month</h3>
+            <p className="challenge-description">
+              Show off your style! Submit your best outfit combinations and let the community vote. Top-rated outfits win exclusive prizes and recognition.
+            </p>
+
+            <div className="rewards-box">
+              <h4>🎁 Prizes Include:</h4>
+              <div className="reward-items">
+                <div className="reward-item">
+                  <span className="reward-icon">💰</span>
+                  <span>Cash Rewards</span>
+                </div>
+                <div className="reward-item">
+                  <span className="reward-icon">👕</span>
+                  <span>Free Items from "Do" Brand</span>
+                </div>
+                <div className="reward-item">
+                  <span className="reward-icon">⭐</span>
+                  <span>Featured Profile Spotlight</span>
+                </div>
+                <div className="reward-item">
+                  <span className="reward-icon">🎟️</span>
+                  <span>Exclusive Early Access</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="participation-stats">
+              <div className="stat">
+                <span className="stat-value">10K+</span>
+                <span className="stat-label">Monthly Participants</span>
+              </div>
+              <div className="stat">
+                <span className="stat-value">$500+</span>
+                <span className="stat-label">Prize Pool</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Additional Challenges */}
+        <div className={`mini-challenges ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
+          <div className="mini-challenge-card">
+            <div className="mini-icon">🎨</div>
+            <h4>Style Creator Challenge</h4>
+            <p>Create the most unique outfit combinations using AI try-on</p>
+            <div className="mini-reward">Prize: Premium Subscription</div>
+          </div>
+
+          <div className="mini-challenge-card">
+            <div className="mini-icon">📸</div>
+            <h4>Product Scanner Challenge</h4>
+            <p>Scan & share the most items from videos and images</p>
+            <div className="mini-reward">Prize: Shopping Credits</div>
+          </div>
+
+          <div className="mini-challenge-card">
+            <div className="mini-icon">🤝</div>
+            <h4>Referral Champion</h4>
+            <p>Invite friends and build your community network</p>
+            <div className="mini-reward">Prize: Lifetime Benefits</div>
+          </div>
+        </div>
+
+      </div>
+
+      <style jsx>{`
+        .challenges-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          background:
+            radial-gradient(circle at 50% 20%, rgba(229, 9, 20, 0.1) 0%, transparent 60%),
+            linear-gradient(180deg, rgba(229, 9, 20, 0.05) 0%, rgba(0,0,0,0) 100%);
+          position: relative;
+        }
+
+        .challenges-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+        }
+
+        .challenges-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 800px;
+          opacity: 0;
+        }
+
+        .challenges-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+          gap: 32px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .challenge-card {
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(40, 40, 40, 0.85) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.3);
+          border-radius: 24px;
+          padding: 36px 32px;
+          backdrop-filter: blur(10px);
+          transition: all 0.4s ease;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .challenge-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(90deg, ${colors.netflixRed}, #ff4444);
+          transform: scaleX(0);
+          transition: transform 0.4s ease;
+        }
+
+        .challenge-card:hover::before {
+          transform: scaleX(1);
+        }
+
+        .challenge-card:hover {
+          transform: translateY(-10px);
+          border-color: ${colors.netflixRed};
+          box-shadow: 0 25px 70px rgba(229, 9, 20, 0.5);
+        }
+
+        .challenge-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+
+        .challenge-badge {
+          display: inline-block;
+          padding: 6px 16px;
+          background: linear-gradient(135deg, ${colors.netflixRed} 0%, #ff4444 100%);
+          color: ${colors.white};
+          font-size: 0.85rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          border-radius: 20px;
+          box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+        }
+
+        .challenge-badge.whop-inspired {
+          background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+          box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+        }
+
+        .challenge-icon {
+          font-size: 3rem;
+          filter: drop-shadow(0 4px 12px rgba(229, 9, 20, 0.5));
+        }
+
+        .challenge-card h3 {
+          font-size: clamp(1.6rem, 3vw, 2rem);
+          font-weight: 900;
+          color: ${colors.white};
+          margin: 0 0 16px 0;
+        }
+
+        .challenge-description {
+          font-size: 1.05rem;
+          color: ${colors.textLight};
+          line-height: 1.7;
+          margin: 0 0 24px 0;
+        }
+
+        .rewards-box {
+          background: rgba(229, 9, 20, 0.08);
+          border: 1px solid rgba(229, 9, 20, 0.3);
+          border-radius: 16px;
+          padding: 24px;
+          margin-bottom: 24px;
+        }
+
+        .rewards-box h4 {
+          font-size: 1.2rem;
+          font-weight: 800;
+          color: ${colors.white};
+          margin: 0 0 16px 0;
+        }
+
+        .reward-items {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 12px;
+        }
+
+        .reward-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 16px;
+          background: rgba(26, 26, 26, 0.6);
+          border: 1px solid rgba(229, 9, 20, 0.2);
+          border-radius: 10px;
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: ${colors.white};
+          transition: all 0.3s ease;
+        }
+
+        .reward-item:hover {
+          background: rgba(229, 9, 20, 0.15);
+          border-color: ${colors.netflixRed};
+          transform: translateX(5px);
+        }
+
+        .reward-icon {
+          font-size: 1.3rem;
+          flex-shrink: 0;
+        }
+
+        .participation-stats {
+          display: flex;
+          gap: 24px;
+          justify-content: space-around;
+          padding-top: 20px;
+          border-top: 1px solid rgba(229, 9, 20, 0.2);
+        }
+
+        .stat {
+          text-align: center;
+        }
+
+        .stat-value {
+          display: block;
+          font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+          font-weight: 900;
+          color: ${colors.netflixRed};
+          text-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+          line-height: 1;
+          margin-bottom: 8px;
+        }
+
+        .stat-label {
+          font-size: 0.9rem;
+          color: ${colors.textLight};
+          font-weight: 600;
+        }
+
+        .mini-challenges {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 24px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .mini-challenge-card {
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(40, 40, 40, 0.7) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.2);
+          border-radius: 20px;
+          padding: 28px 24px;
+          text-align: center;
+          transition: all 0.4s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .mini-challenge-card:hover {
+          transform: translateY(-8px);
+          border-color: ${colors.netflixRed};
+          box-shadow: 0 20px 60px rgba(229, 9, 20, 0.4);
+        }
+
+        .mini-icon {
+          font-size: 3rem;
+          margin-bottom: 16px;
+          filter: drop-shadow(0 4px 10px rgba(229, 9, 20, 0.3));
+        }
+
+        .mini-challenge-card h4 {
+          font-size: 1.3rem;
+          font-weight: 800;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .mini-challenge-card p {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          line-height: 1.6;
+          margin: 0 0 16px 0;
+        }
+
+        .mini-reward {
+          display: inline-block;
+          padding: 8px 18px;
+          background: linear-gradient(135deg, ${colors.netflixRed} 0%, #ff4444 100%);
+          color: ${colors.white};
+          font-size: 0.9rem;
+          font-weight: 700;
+          border-radius: 20px;
+          box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+        }
+
+        .engagement-benefits {
+          width: 100%;
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(40, 40, 40, 0.85) 100%);
+          border: 2px solid ${colors.netflixRed};
+          border-radius: 24px;
+          padding: 40px 36px;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 20px 60px rgba(229, 9, 20, 0.4);
+          opacity: 0;
+        }
+
+        .benefit-highlight {
+          display: flex;
+          gap: 24px;
+          align-items: center;
+          margin-bottom: 32px;
+          padding-bottom: 32px;
+          border-bottom: 2px solid rgba(229, 9, 20, 0.3);
+        }
+
+        .highlight-icon {
+          font-size: 4rem;
+          flex-shrink: 0;
+          filter: drop-shadow(0 4px 15px rgba(229, 9, 20, 0.5));
+        }
+
+        .highlight-content h3 {
+          font-size: clamp(1.6rem, 3vw, 2rem);
+          font-weight: 900;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .highlight-content p {
+          font-size: 1.05rem;
+          color: ${colors.textLight};
+          line-height: 1.7;
+          margin: 0;
+        }
+
+        .benefit-stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 24px;
+        }
+
+        .benefit-stat {
+          text-align: center;
+          padding: 24px;
+          background: rgba(229, 9, 20, 0.1);
+          border: 1px solid rgba(229, 9, 20, 0.3);
+          border-radius: 16px;
+          transition: all 0.3s ease;
+        }
+
+        .benefit-stat:hover {
+          transform: translateY(-5px);
+          background: rgba(229, 9, 20, 0.15);
+          border-color: ${colors.netflixRed};
+          box-shadow: 0 10px 30px rgba(229, 9, 20, 0.3);
+        }
+
+        .benefit-stat-icon {
+          font-size: 2.5rem;
+          margin-bottom: 12px;
+        }
+
+        .benefit-stat-value {
+          display: block;
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
+          font-weight: 900;
+          color: ${colors.netflixRed};
+          text-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+          line-height: 1;
+          margin-bottom: 8px;
+        }
+
+        .benefit-stat-label {
+          font-size: 1rem;
+          font-weight: 600;
+          color: ${colors.white};
+          line-height: 1.4;
+        }
+
+        /* Adaptive responsive design */
+        .challenges-section {
+          padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
+        }
+
+        .challenges-content {
+          gap: clamp(35px, 8vw, 50px);
+        }
+
+        .challenges-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(320px, 45vw, 500px), 1fr));
+          gap: clamp(24px, 4vw, 32px);
+        }
+
+        .challenge-card {
+          padding: clamp(28px, 5vw, 36px) clamp(24px, 4vw, 32px);
+        }
+
+        .challenge-icon {
+          font-size: clamp(2.5rem, 5vw, 3rem);
+        }
+
+        .reward-items {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(180px, 20vw, 200px), 1fr));
+        }
+
+        .mini-challenges {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(260px, 25vw, 280px), 1fr));
+          gap: clamp(20px, 3vw, 24px);
+        }
+
+        .mini-challenge-card {
+          padding: clamp(24px, 4vw, 28px) clamp(20px, 3vw, 24px);
+        }
+
+        .mini-icon {
+          font-size: clamp(2.5rem, 5vw, 3rem);
+        }
+
+        .engagement-benefits {
+          padding: clamp(32px, 6vw, 40px) clamp(28px, 5vw, 36px);
+        }
+
+        .benefit-highlight {
+          flex-direction: column;
+          text-align: center;
+          gap: clamp(16px, 3vw, 24px);
+        }
+
+        .highlight-icon {
+          font-size: clamp(3rem, 6vw, 4rem);
+        }
+
+        .benefit-stats-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 22vw, 220px), 1fr));
+          gap: clamp(20px, 3vw, 24px);
+        }
+
+        .benefit-stat {
+          padding: clamp(20px, 4vw, 24px);
+        }
+
+        .benefit-stat-icon {
+          font-size: clamp(2rem, 4vw, 2.5rem);
         }
       `}</style>
     </section>
