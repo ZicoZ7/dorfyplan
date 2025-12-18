@@ -386,11 +386,8 @@ function DesignShowcaseSection() {
     return () => observer.disconnect();
   }, []);
 
-  // All images excluding homepage, ngl, map, and twitter video
+  // All images excluding homepage, ngl, map, clothes, photo, photo1, photo2, and twitter video
   const showcaseImages = [
-    { src: '/photo.jpg', alt: 'App Design 1' },
-    { src: '/photo1.jpg', alt: 'App Design 2' },
-    { src: '/photo2.jpg', alt: 'App Design 3' },
     { src: '/rating.jpg', alt: 'Rating Feature' },
     { src: '/chat1.jpg', alt: 'Chat Interface 1' },
     { src: '/chat2.jpg', alt: 'Chat Interface 2' },
@@ -406,7 +403,6 @@ function DesignShowcaseSection() {
     { src: '/5.png', alt: 'Design 5' },
     { src: '/6.png', alt: 'Design 6' },
     { src: '/scanitem.png', alt: 'Scan Item Feature' },
-    { src: '/clothes.png', alt: 'Clothes Feature' },
     { src: '/workoutlogs.png', alt: 'Workout Logs' },
     { src: '/statschart.png', alt: 'Stats Chart' },
     { src: '/videocook.gif', alt: 'Video Cook Feature' },
@@ -502,10 +498,9 @@ function DesignShowcaseSection() {
 
         .showcase-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
           gap: 24px;
           width: 100%;
-          opacity: 0;
         }
 
         .showcase-item {
@@ -540,11 +535,11 @@ function DesignShowcaseSection() {
           border-radius: 20px;
         }
 
-        /* Mobile responsiveness */
+        /* Mobile responsiveness - 3 columns */
         @media (max-width: 768px) {
           .showcase-grid {
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
           }
 
           .showcase-image-wrapper {
@@ -558,16 +553,16 @@ function DesignShowcaseSection() {
 
         @media (max-width: 480px) {
           .showcase-grid {
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
           }
 
           .design-showcase-section {
-            padding: clamp(40px, 8vw, 60px) clamp(16px, 3vw, 20px);
+            padding: 40px 12px;
           }
 
           .showcase-content {
-            gap: clamp(30px, 6vw, 40px);
+            gap: 30px;
           }
         }
 
@@ -581,8 +576,8 @@ function DesignShowcaseSection() {
         }
 
         .showcase-grid {
-          gap: clamp(16px, 3vw, 24px);
-          grid-template-columns: repeat(auto-fill, minmax(clamp(140px, 20vw, 250px), 1fr));
+          gap: clamp(12px, 3vw, 24px);
+          grid-template-columns: repeat(auto-fit, minmax(clamp(100px, 20vw, 220px), 1fr));
         }
 
         .showcase-image-wrapper {
