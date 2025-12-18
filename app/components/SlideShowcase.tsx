@@ -597,6 +597,251 @@ function DesignShowcaseSection() {
   );
 }
 
+function FeaturesSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '100px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="features-section">
+      <div className="features-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          Main <span className="highlight">Features</span>
+        </h2>
+
+        <div className={`features-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.2s' }}>
+          <div className="feature-card" style={{ animationDelay: '0.1s' }}>
+            <div className="card-icon">👗</div>
+            <h3>Closet & Try On</h3>
+            <p>Build your digital wardrobe and try outfits virtually</p>
+          </div>
+
+          <div className="feature-card" style={{ animationDelay: '0.2s' }}>
+            <div className="card-icon">🔍</div>
+            <h3>Image Search</h3>
+            <p>Find similar items by uploading any image & Shop</p>
+          </div>
+
+          <div className="feature-card" style={{ animationDelay: '0.3s' }}>
+            <div className="card-icon">📹</div>
+            <h3>Video Scanner</h3>
+            <p>Scan videos to identify Movies/Games/summerize & more..</p>
+          </div>
+
+          <div className="feature-card" style={{ animationDelay: '0.4s' }}>
+            <div className="card-icon">🛒</div>
+            <h3>Multi-Platform</h3>
+            <p>Compare and shop products across multiple platforms in one place</p>
+          </div>
+        </div>
+
+        <div className={`screenshots-container ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
+          <div className="screenshot-item">
+            <div className="screenshot-wrapper">
+              <Image
+                src={getAssetPath("/6.png")}
+                alt="Feature 1"
+                width={220}
+                height={440}
+                className="app-screenshot"
+              />
+            </div>
+          </div>
+          <div className="screenshot-item">
+            <div className="screenshot-wrapper">
+              <Image
+                src={getAssetPath("/5.png")}
+                alt="Feature 2"
+                width={220}
+                height={440}
+                className="app-screenshot"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .features-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+        }
+
+        .features-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 60px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+        }
+
+        .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 24px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .feature-card {
+          background: rgba(26, 26, 26, 0.6);
+          border: 1px solid rgba(229, 9, 20, 0.3);
+          border-radius: 16px;
+          padding: 32px 24px;
+          text-align: center;
+          transition: all 0.4s ease;
+          backdrop-filter: blur(10px);
+          opacity: 0;
+          animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .feature-card:hover {
+          transform: translateY(-8px);
+          border-color: ${colors.netflixRed};
+          box-shadow: 0 12px 40px rgba(229, 9, 20, 0.4);
+          background: rgba(26, 26, 26, 0.85);
+        }
+
+        .card-icon {
+          font-size: 3rem;
+          margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .feature-card p {
+          font-size: 0.95rem;
+          color: ${colors.textLight};
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        .screenshots-container {
+          display: flex;
+          gap: 40px;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-top: 20px;
+          opacity: 0;
+        }
+
+        .screenshot-item {
+          position: relative;
+        }
+
+        .screenshot-wrapper {
+          position: relative;
+          border-radius: 32px;
+          overflow: hidden;
+          box-shadow:
+            0 35px 90px rgba(229, 9, 20, 0.6),
+            0 0 0 2px rgba(255, 255, 255, 0.1);
+          transition: all 0.5s ease;
+        }
+
+        .screenshot-wrapper:hover {
+          transform: translateY(-12px) scale(1.05);
+          box-shadow:
+            0 40px 100px rgba(229, 9, 20, 0.7),
+            0 0 0 3px ${colors.netflixRed},
+            0 0 60px rgba(229, 9, 20, 0.5);
+        }
+
+        .app-screenshot {
+          border-radius: 32px;
+          width: 100%;
+          max-width: 220px;
+          height: auto;
+          display: block;
+        }
+
+        /* Adaptive responsive design using clamp and grid auto-fit */
+        .features-section {
+          padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
+        }
+
+        .features-content {
+          gap: clamp(40px, 8vw, 60px);
+        }
+
+        .features-grid {
+          grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 20vw, 250px), 1fr));
+          gap: clamp(20px, 3vw, 24px);
+        }
+
+        .feature-card {
+          padding: clamp(24px, 4vw, 32px) clamp(20px, 3vw, 24px);
+        }
+
+        .card-icon {
+          font-size: clamp(2.5rem, 5vw, 3rem);
+          margin-bottom: clamp(12px, 2vw, 16px);
+        }
+
+        .feature-card h3 {
+          font-size: clamp(1.1rem, 2.2vw, 1.25rem);
+        }
+
+        .feature-card p {
+          font-size: clamp(0.9rem, 2vw, 0.95rem);
+        }
+
+        .screenshots-container {
+          gap: clamp(24px, 5vw, 40px);
+        }
+
+        .app-screenshot {
+          max-width: clamp(160px, 20vw, 220px);
+        }
+      `}</style>
+    </section>
+  );
+}
+
 function VisionSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -6258,251 +6503,6 @@ function AIChatModelSection() {
           font-size: clamp(1rem, 2vw, 1.05rem);
         }
 
-      `}</style>
-    </section>
-  );
-}
-
-function FeaturesSection() {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '100px'
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <section ref={sectionRef} className="features-section">
-      <div className="features-content">
-        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
-          Main <span className="highlight">Features</span>
-        </h2>
-
-        <div className={`features-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.2s' }}>
-          <div className="feature-card" style={{ animationDelay: '0.1s' }}>
-            <div className="card-icon">👗</div>
-            <h3>Closet & Try On</h3>
-            <p>Build your digital wardrobe and try outfits virtually</p>
-          </div>
-
-          <div className="feature-card" style={{ animationDelay: '0.2s' }}>
-            <div className="card-icon">🔍</div>
-            <h3>Image Search</h3>
-            <p>Find similar items by uploading any image & Shop</p>
-          </div>
-
-          <div className="feature-card" style={{ animationDelay: '0.3s' }}>
-            <div className="card-icon">📹</div>
-            <h3>Video Scanner</h3>
-            <p>Scan videos to identify Movies/Games/summerize & more..</p>
-          </div>
-
-          <div className="feature-card" style={{ animationDelay: '0.4s' }}>
-            <div className="card-icon">🛒</div>
-            <h3>Multi-Platform</h3>
-            <p>Compare and shop products across multiple platforms in one place</p>
-          </div>
-        </div>
-
-        <div className={`screenshots-container ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
-          <div className="screenshot-item">
-            <div className="screenshot-wrapper">
-              <Image
-                src={getAssetPath("/6.png")}
-                alt="Feature 1"
-                width={220}
-                height={440}
-                className="app-screenshot"
-              />
-            </div>
-          </div>
-          <div className="screenshot-item">
-            <div className="screenshot-wrapper">
-              <Image
-                src={getAssetPath("/5.png")}
-                alt="Feature 2"
-                width={220}
-                height={440}
-                className="app-screenshot"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <style jsx>{`
-        .features-section {
-          width: 100%;
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 80px 24px;
-        }
-
-        .features-content {
-          max-width: 1200px;
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 60px;
-        }
-
-        .section-title {
-          font-size: clamp(2.5rem, 6vw, 4rem);
-          font-weight: 900;
-          color: ${colors.white};
-          text-align: center;
-          margin: 0;
-          opacity: 0;
-        }
-
-        .highlight {
-          color: ${colors.netflixRed};
-        }
-
-        .features-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 24px;
-          width: 100%;
-          opacity: 0;
-        }
-
-        .feature-card {
-          background: rgba(26, 26, 26, 0.6);
-          border: 1px solid rgba(229, 9, 20, 0.3);
-          border-radius: 16px;
-          padding: 32px 24px;
-          text-align: center;
-          transition: all 0.4s ease;
-          backdrop-filter: blur(10px);
-          opacity: 0;
-          animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        .feature-card:hover {
-          transform: translateY(-8px);
-          border-color: ${colors.netflixRed};
-          box-shadow: 0 12px 40px rgba(229, 9, 20, 0.4);
-          background: rgba(26, 26, 26, 0.85);
-        }
-
-        .card-icon {
-          font-size: 3rem;
-          margin-bottom: 16px;
-        }
-
-        .feature-card h3 {
-          font-size: 1.25rem;
-          font-weight: 700;
-          color: ${colors.white};
-          margin: 0 0 12px 0;
-        }
-
-        .feature-card p {
-          font-size: 0.95rem;
-          color: ${colors.textLight};
-          line-height: 1.5;
-          margin: 0;
-        }
-
-        .screenshots-container {
-          display: flex;
-          gap: 40px;
-          justify-content: center;
-          flex-wrap: wrap;
-          margin-top: 20px;
-          opacity: 0;
-        }
-
-        .screenshot-item {
-          position: relative;
-        }
-
-        .screenshot-wrapper {
-          position: relative;
-          border-radius: 32px;
-          overflow: hidden;
-          box-shadow:
-            0 35px 90px rgba(229, 9, 20, 0.6),
-            0 0 0 2px rgba(255, 255, 255, 0.1);
-          transition: all 0.5s ease;
-        }
-
-        .screenshot-wrapper:hover {
-          transform: translateY(-12px) scale(1.05);
-          box-shadow:
-            0 40px 100px rgba(229, 9, 20, 0.7),
-            0 0 0 3px ${colors.netflixRed},
-            0 0 60px rgba(229, 9, 20, 0.5);
-        }
-
-        .app-screenshot {
-          border-radius: 32px;
-          width: 100%;
-          max-width: 220px;
-          height: auto;
-          display: block;
-        }
-
-        /* Adaptive responsive design using clamp and grid auto-fit */
-        .features-section {
-          padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
-        }
-
-        .features-content {
-          gap: clamp(40px, 8vw, 60px);
-        }
-
-        .features-grid {
-          grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 20vw, 250px), 1fr));
-          gap: clamp(20px, 3vw, 24px);
-        }
-
-        .feature-card {
-          padding: clamp(24px, 4vw, 32px) clamp(20px, 3vw, 24px);
-        }
-
-        .card-icon {
-          font-size: clamp(2.5rem, 5vw, 3rem);
-          margin-bottom: clamp(12px, 2vw, 16px);
-        }
-
-        .feature-card h3 {
-          font-size: clamp(1.1rem, 2.2vw, 1.25rem);
-        }
-
-        .feature-card p {
-          font-size: clamp(0.9rem, 2vw, 0.95rem);
-        }
-
-        .screenshots-container {
-          gap: clamp(24px, 5vw, 40px);
-        }
-
-        .app-screenshot {
-          max-width: clamp(160px, 20vw, 220px);
-        }
       `}</style>
     </section>
   );
