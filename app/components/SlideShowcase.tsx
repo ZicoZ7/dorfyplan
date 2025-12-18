@@ -10,6 +10,7 @@ export default function SlideShowcase() {
     <>
       <div className="main-container">
         <IntroSection />
+        <DesignShowcaseSection />
         <FeaturesSection />
         <VisionSection />
         <MarketOpportunitySection />
@@ -356,6 +357,240 @@ function IntroSection() {
 
         .intro-content {
           gap: clamp(40px, 8vw, 50px);
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function DesignShowcaseSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // All images excluding homepage, ngl, map, and twitter video
+  const showcaseImages = [
+    { src: '/photo.jpg', alt: 'App Design 1' },
+    { src: '/photo1.jpg', alt: 'App Design 2' },
+    { src: '/photo2.jpg', alt: 'App Design 3' },
+    { src: '/rating.jpg', alt: 'Rating Feature' },
+    { src: '/chat1.jpg', alt: 'Chat Interface 1' },
+    { src: '/chat2.jpg', alt: 'Chat Interface 2' },
+    { src: '/chat3.jpg', alt: 'Chat Interface 3' },
+    { src: '/chat4.jpg', alt: 'Chat Interface 4' },
+    { src: '/chat5.jpg', alt: 'Chat Interface 5' },
+    { src: '/8.jpg', alt: 'Design 8' },
+    { src: '/9.jpg', alt: 'Design 9' },
+    { src: '/10.jpg', alt: 'Design 10' },
+    { src: '/11.jpg', alt: 'Design 11' },
+    { src: '/12.jpg', alt: 'Design 12' },
+    { src: '/13.jpg', alt: 'Design 13' },
+    { src: '/5.png', alt: 'Design 5' },
+    { src: '/6.png', alt: 'Design 6' },
+    { src: '/scanitem.png', alt: 'Scan Item Feature' },
+    { src: '/clothes.png', alt: 'Clothes Feature' },
+    { src: '/workoutlogs.png', alt: 'Workout Logs' },
+    { src: '/statschart.png', alt: 'Stats Chart' },
+    { src: '/videocook.gif', alt: 'Video Cook Feature' },
+    { src: '/wheretowatch.gif', alt: 'Where to Watch' },
+    { src: '/slotmoive.gif', alt: 'Slot Movie' },
+    { src: '/chatmovie.gif', alt: 'Chat Movie' },
+    { src: '/scanfood.gif', alt: 'Scan Food' },
+    { src: '/tryoutfit.gif', alt: 'Try Outfit' },
+    { src: '/bees.gif', alt: 'Bees Feature' },
+    { src: '/cast.gif', alt: 'Cast Feature' },
+    { src: '/pieces.gif', alt: 'Pieces Feature' },
+    { src: '/similarshows.gif', alt: 'Similar Shows' },
+    { src: '/fits.gif', alt: 'Fits Feature' },
+    { src: '/trytab.gif', alt: 'Try Tab' },
+    { src: '/videoshows.gif', alt: 'Video Shows' },
+    { src: '/swipemovie.gif', alt: 'Swipe Movie' },
+  ];
+
+  return (
+    <section ref={sectionRef} className="design-showcase-section">
+      <div className="showcase-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          Design <span className="highlight">Showcase</span>
+        </h2>
+
+        <p className={`showcase-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          Explore the design of Dorfy
+        </p>
+
+        <div className={`showcase-grid ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+          {showcaseImages.map((image, index) => (
+            <div
+              key={index}
+              className="showcase-item"
+              style={{ animationDelay: `${0.05 * index}s` }}
+            >
+              <div className="showcase-image-wrapper">
+                <Image
+                  src={getAssetPath(image.src)}
+                  alt={image.alt}
+                  width={300}
+                  height={600}
+                  className="showcase-img"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style jsx>{`
+        .design-showcase-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(229, 9, 20, 0.05) 50%, rgba(0,0,0,0) 100%);
+        }
+
+        .showcase-content {
+          max-width: 1400px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+        }
+
+        .showcase-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 700px;
+          opacity: 0;
+        }
+
+        .showcase-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          gap: 24px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .showcase-item {
+          position: relative;
+          opacity: 0;
+          animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .showcase-image-wrapper {
+          position: relative;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow:
+            0 20px 60px rgba(229, 9, 20, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.1);
+          transition: all 0.4s ease;
+          background: rgba(26, 26, 26, 0.5);
+        }
+
+        .showcase-image-wrapper:hover {
+          transform: translateY(-8px) scale(1.03);
+          box-shadow:
+            0 30px 80px rgba(229, 9, 20, 0.6),
+            0 0 0 2px ${colors.netflixRed},
+            0 0 40px rgba(229, 9, 20, 0.4);
+        }
+
+        .showcase-img {
+          width: 100%;
+          height: auto;
+          display: block;
+          border-radius: 20px;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+          .showcase-grid {
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 16px;
+          }
+
+          .showcase-image-wrapper {
+            border-radius: 12px;
+          }
+
+          .showcase-img {
+            border-radius: 12px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .showcase-grid {
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 12px;
+          }
+
+          .design-showcase-section {
+            padding: clamp(40px, 8vw, 60px) clamp(16px, 3vw, 20px);
+          }
+
+          .showcase-content {
+            gap: clamp(30px, 6vw, 40px);
+          }
+        }
+
+        /* Adaptive responsive design using clamp */
+        .design-showcase-section {
+          padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
+        }
+
+        .showcase-content {
+          gap: clamp(35px, 8vw, 50px);
+        }
+
+        .showcase-grid {
+          gap: clamp(16px, 3vw, 24px);
+          grid-template-columns: repeat(auto-fill, minmax(clamp(140px, 20vw, 250px), 1fr));
+        }
+
+        .showcase-image-wrapper {
+          border-radius: clamp(12px, 3vw, 20px);
+        }
+
+        .showcase-img {
+          border-radius: clamp(12px, 3vw, 20px);
         }
       `}</style>
     </section>
