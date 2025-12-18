@@ -437,17 +437,28 @@ function DesignShowcaseSection() {
             <div
               key={index}
               className="showcase-item"
-              style={{ animationDelay: `${0.05 * index}s` }}
+              style={{ animationDelay: `${0.02 * index}s` }}
             >
               <div className="showcase-image-wrapper">
-                <Image
-                  src={getAssetPath(image.src)}
-                  alt={image.alt}
-                  width={300}
-                  height={600}
-                  className="showcase-img"
-                  loading="lazy"
-                />
+                {image.src.endsWith('.gif') ? (
+                  <img
+                    src={getAssetPath(image.src)}
+                    alt={image.alt}
+                    className="showcase-img"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <Image
+                    src={getAssetPath(image.src)}
+                    alt={image.alt}
+                    width={200}
+                    height={400}
+                    className="showcase-img"
+                    loading="lazy"
+                    quality={60}
+                  />
+                )}
               </div>
             </div>
           ))}
