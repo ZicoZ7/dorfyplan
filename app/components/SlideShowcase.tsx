@@ -440,13 +440,12 @@ function DesignShowcaseSection() {
               style={{ animationDelay: `${0.02 * index}s` }}
             >
               <div className="showcase-image-wrapper">
+                <div className="image-skeleton"></div>
                 {image.src.endsWith('.gif') ? (
                   <img
                     src={getAssetPath(image.src)}
                     alt={image.alt}
                     className="showcase-img"
-                    loading="lazy"
-                    decoding="async"
                   />
                 ) : (
                   <Image
@@ -455,8 +454,8 @@ function DesignShowcaseSection() {
                     width={200}
                     height={400}
                     className="showcase-img"
-                    loading="lazy"
-                    quality={60}
+                    quality={50}
+                    priority={index < 6}
                   />
                 )}
               </div>
@@ -544,6 +543,34 @@ function DesignShowcaseSection() {
           height: auto;
           display: block;
           border-radius: 20px;
+          position: relative;
+          z-index: 2;
+        }
+
+        .image-skeleton {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, rgba(40, 40, 40, 0.5) 25%, rgba(60, 60, 60, 0.5) 50%, rgba(40, 40, 40, 0.5) 75%);
+          background-size: 200% 100%;
+          animation: shimmer 1.5s infinite;
+          border-radius: 20px;
+          z-index: 1;
+        }
+
+        @keyframes shimmer {
+          0% {
+            background-position: 200% 0;
+          }
+          100% {
+            background-position: -200% 0;
+          }
+        }
+
+        .showcase-img:not([src=""]) ~ .image-skeleton {
+          display: none;
         }
 
         /* Mobile responsiveness - 3 columns */
