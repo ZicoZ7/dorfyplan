@@ -281,6 +281,10 @@ function HeroSection() {
           Make informed purchasing decisions with transparent pricing and comprehensive product comparisons.
         </p>
 
+        <p className="verification-text">
+          Impact-Site-Verification: b624e01b-3e94-4ef6-807a-d2a0f142aa3b
+        </p>
+
         <div className={`hero-buttons ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
           <a href="#contact" className="cta-primary">Get in Touch</a>
           <a href="#overview" className="cta-secondary">Learn More</a>
@@ -363,6 +367,14 @@ function HeroSection() {
           line-height: 1.6;
           margin: 0;
           opacity: 0;
+        }
+
+        .verification-text {
+          font-size: 0.75rem;
+          color: rgba(255, 255, 255, 0.3);
+          text-align: center;
+          margin: 8px 0 0 0;
+          font-family: monospace;
         }
 
         .hero-buttons {
