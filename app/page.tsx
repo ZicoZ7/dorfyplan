@@ -1,5 +1,5 @@
-import SlideShowcase from './components/SlideShowcase';
+import LandingPage from './components/LandingPage';
 
 export default function Home() {
-  return <SlideShowcase />;
+  return <LandingPage />;
 }
