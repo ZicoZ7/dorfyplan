@@ -282,7 +282,7 @@ function HeroSection() {
         </p>
 
         <p className="verification-text">
-          Impact-Site-Verification: b624e01b-3e94-4ef6-807a-d2a0f142aa3b
+          Impact-Site-Verification: 71c0ad51-3de8-4266-af45-e147d9f28e3d
         </p>
 
         <div className={`hero-buttons ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
