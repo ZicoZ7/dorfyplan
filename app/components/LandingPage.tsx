@@ -123,6 +123,7 @@ function Navigation({ onMobileAppClick }: { onMobileAppClick: () => void }) {
           <a href="#overview" className="nav-link">Overview</a>
           <a href="#audience" className="nav-link">Audience</a>
           <a href="#contact" className="nav-link">Contact</a>
+          <a href="/privacy" className="nav-link">Privacy</a>
           <button onClick={onMobileAppClick} className="mobile-app-btn">
             Mobile App Plan
           </button>
@@ -1860,6 +1861,9 @@ function ContactSection() {
 
         <footer className={`footer ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.4s' }}>
           <p>&copy; {new Date().getFullYear()} Dorfy. All rights reserved.</p>
+          <div className="footer-links">
+            <a href="/privacy" className="footer-link">Privacy Policy</a>
+          </div>
         </footer>
       </div>
 
@@ -2028,7 +2032,25 @@ function ContactSection() {
         .footer p {
           font-size: 0.9rem;
           color: ${colors.textLight};
-          margin: 0;
+          margin: 0 0 12px 0;
+        }
+
+        .footer-links {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          margin-top: 12px;
+        }
+
+        .footer-link {
+          color: ${colors.textLight};
+          text-decoration: none;
+          font-size: 0.9rem;
+          transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+          color: ${colors.netflixRed};
         }
 
         @media (max-width: 768px) {
