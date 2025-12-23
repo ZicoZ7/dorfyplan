@@ -197,27 +197,8 @@ function Navigation() {
 }
 
 function PrivacyContent() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section ref={sectionRef} className="privacy-section">
@@ -628,7 +609,6 @@ function PrivacyContent() {
         .privacy-header {
           text-align: center;
           margin-bottom: 60px;
-          opacity: 0;
         }
 
         .privacy-header h1 {
@@ -652,7 +632,6 @@ function PrivacyContent() {
         }
 
         .privacy-body {
-          opacity: 0;
         }
 
         .disclaimer-box,
