@@ -91,7 +91,7 @@ function Navigation() {
   }, []);
 
   const handleBackToHome = () => {
-    router.push('/');
+    router.push('/dorfyplan');
   };
 
   return (

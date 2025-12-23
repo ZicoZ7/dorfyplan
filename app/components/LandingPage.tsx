@@ -123,7 +123,7 @@ function Navigation({ onMobileAppClick }: { onMobileAppClick: () => void }) {
           <a href="#overview" className="nav-link">Overview</a>
           <a href="#audience" className="nav-link">Audience</a>
           <a href="#contact" className="nav-link">Contact</a>
-          <a href="/privacy" className="nav-link">Privacy</a>
+          <a href="/dorfyplan/privacy" className="nav-link">Privacy</a>
           <button onClick={onMobileAppClick} className="mobile-app-btn">
             Mobile App Plan
           </button>
@@ -1862,7 +1862,7 @@ function ContactSection() {
         <footer className={`footer ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.4s' }}>
           <p>&copy; {new Date().getFullYear()} Dorfy. All rights reserved.</p>
           <div className="footer-links">
-            <a href="/privacy" className="footer-link">Privacy Policy</a>
+            <a href="/dorfyplan/privacy" className="footer-link">Privacy Policy</a>
           </div>
         </footer>
       </div>
