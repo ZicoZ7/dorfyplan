@@ -73,7 +73,14 @@ export default function HomePage() {
           <div className="header-section">
             <h1 className="name">Sharif (Zico) Zafar</h1>
             <p className="title">AI Developer</p>
-            <p className="skills">Next.js • React • Expo & React Native • Python • Docker • Swift</p>
+            <div className="skills-wrapper">
+              <span className="skill-item">Next.js</span>
+              <span className="skill-item">React</span>
+              <span className="skill-item">Expo & React Native</span>
+              <span className="skill-item">Python</span>
+              <span className="skill-item">Docker</span>
+              <span className="skill-item">Swift</span>
+            </div>
           </div>
 
           <div className="divider"></div>
@@ -82,7 +89,7 @@ export default function HomePage() {
             <h2 className="section-title">Work Experience & Projects</h2>
 
             <div className="project-grid">
-              <Link href="/showcase" className="project-card">
+              <Link href="/mobile-app" className="project-card">
                 <div className="project-logo">
                   <Image
                     src={getAssetPath("/dofylogogo.png")}
@@ -93,6 +100,7 @@ export default function HomePage() {
                 </div>
                 <h3>Dorfy Mobile App</h3>
                 <p>Community hub for fashion, entertainment & shopping</p>
+                <div className="visit-indicator">View Showcase →</div>
               </Link>
 
               <a
@@ -111,6 +119,7 @@ export default function HomePage() {
                 </div>
                 <h3>Herox Shorts</h3>
                 <p>Short-form video platform</p>
+                <div className="visit-indicator">Visit Site →</div>
               </a>
 
               <a
@@ -130,7 +139,43 @@ export default function HomePage() {
                 <h3>Pollinations.ai</h3>
                 <p className="opensource-tag">Open-source AI for people who make things</p>
                 <p className="project-desc">A community-driven platform where developers, artists, and tinkerers build together. No gatekeeping, no corporate nonsense — just good tools and good people.</p>
+                <div className="visit-indicator">Visit Site →</div>
               </a>
+            </div>
+          </section>
+
+          <div className="divider"></div>
+
+          <section className="gallery-section">
+            <h2 className="section-title">Gallery</h2>
+            <div className="photo-grid">
+              <div className="photo-card">
+                <Image
+                  src={getAssetPath("/photo.jpg")}
+                  alt="Photo 1"
+                  width={400}
+                  height={400}
+                  className="gallery-photo"
+                />
+              </div>
+              <div className="photo-card">
+                <Image
+                  src={getAssetPath("/photo1.jpg")}
+                  alt="Photo 2"
+                  width={400}
+                  height={400}
+                  className="gallery-photo"
+                />
+              </div>
+              <div className="photo-card">
+                <Image
+                  src={getAssetPath("/photo2.jpg")}
+                  alt="Photo 3"
+                  width={400}
+                  height={400}
+                  className="gallery-photo"
+                />
+              </div>
             </div>
           </section>
 
@@ -233,6 +278,50 @@ export default function HomePage() {
           line-height: 1.6;
         }
 
+        .skills-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          justify-content: center;
+          margin-top: 20px;
+        }
+
+        .skill-item {
+          padding: 8px 16px;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 6px;
+          font-size: 0.9rem;
+          color: #aaa;
+          animation: skillFadeIn 0.6s ease-out backwards;
+          transition: all 0.3s ease;
+        }
+
+        .skill-item:nth-child(1) { animation-delay: 0.1s; }
+        .skill-item:nth-child(2) { animation-delay: 0.2s; }
+        .skill-item:nth-child(3) { animation-delay: 0.3s; }
+        .skill-item:nth-child(4) { animation-delay: 0.4s; }
+        .skill-item:nth-child(5) { animation-delay: 0.5s; }
+        .skill-item:nth-child(6) { animation-delay: 0.6s; }
+
+        .skill-item:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.3);
+          transform: translateY(-2px) scale(1.05);
+          color: #fff;
+        }
+
+        @keyframes skillFadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
         .divider {
           width: 100%;
           height: 1px;
@@ -264,17 +353,50 @@ export default function HomePage() {
           padding: 32px 24px;
           text-decoration: none;
           color: #fff;
-          transition: all 0.3s ease;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           display: flex;
           flex-direction: column;
           align-items: center;
           text-align: center;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .project-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+          opacity: 0;
+          transition: opacity 0.4s ease;
         }
 
         .project-card:hover {
           background: rgba(255, 255, 255, 0.08);
           border-color: rgba(255, 255, 255, 0.3);
-          transform: translateY(-4px);
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-card:hover::before {
+          opacity: 1;
+        }
+
+        .visit-indicator {
+          margin-top: auto;
+          padding-top: 16px;
+          font-size: 0.9rem;
+          color: #666;
+          font-weight: 500;
+          transition: all 0.3s ease;
+        }
+
+        .project-card:hover .visit-indicator {
+          color: #fff;
+          transform: translateX(4px);
         }
 
         .project-logo {
@@ -312,6 +434,57 @@ export default function HomePage() {
           margin-top: 8px;
           font-size: 0.9rem;
           color: #888;
+        }
+
+        .gallery-section {
+          margin-bottom: 60px;
+        }
+
+        .photo-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 24px;
+        }
+
+        .photo-card {
+          border-radius: 16px;
+          overflow: hidden;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          animation: photoFadeIn 0.8s ease-out backwards;
+        }
+
+        .photo-card:nth-child(1) { animation-delay: 0.1s; }
+        .photo-card:nth-child(2) { animation-delay: 0.2s; }
+        .photo-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .photo-card:hover {
+          transform: translateY(-8px) scale(1.05);
+          border-color: rgba(255, 255, 255, 0.3);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-photo {
+          width: 100%;
+          height: auto;
+          display: block;
+          transition: transform 0.4s ease;
+        }
+
+        .photo-card:hover .gallery-photo {
+          transform: scale(1.1);
+        }
+
+        @keyframes photoFadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
         }
 
         .contact-section {
