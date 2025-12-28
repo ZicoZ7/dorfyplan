@@ -137,6 +137,16 @@ function IntroSection() {
                 priority
               />
             </div>
+            <div className="homepage-wrapper">
+              <Image
+                src={getAssetPath("/4.jpg")}
+                alt="Dorfy Mini Apps"
+                width={300}
+                height={600}
+                className="phone-mockup"
+                priority
+              />
+            </div>
           </div>
 
           <div className="info-container">
@@ -230,6 +240,10 @@ function IntroSection() {
 
         .app-preview {
           flex: 0 0 auto;
+          display: flex;
+          gap: 24px;
+          flex-wrap: wrap;
+          justify-content: center;
         }
 
         .homepage-wrapper {
@@ -388,6 +402,9 @@ function DesignShowcaseSection() {
 
   // All images excluding homepage, ngl, map, clothes, photo, photo1, photo2, and twitter video
   const showcaseImages = [
+    { src: '/1.jpg', alt: 'Find Similar Products' },
+    { src: '/2.jpg', alt: 'Digital Closet & Outfits' },
+    { src: '/3.jpg', alt: 'Image Search Feature' },
     { src: '/rating.jpg', alt: 'Rating Feature' },
     { src: '/chat1.jpg', alt: 'Chat Interface 1' },
     { src: '/chat2.jpg', alt: 'Chat Interface 2' },
@@ -517,6 +534,7 @@ function DesignShowcaseSection() {
           position: relative;
           opacity: 0;
           animation: fadeInUp 0.6s ease-out forwards;
+          aspect-ratio: 9 / 16;
         }
 
         .showcase-image-wrapper {
@@ -528,6 +546,8 @@ function DesignShowcaseSection() {
             0 0 0 1px rgba(255, 255, 255, 0.1);
           transition: all 0.4s ease;
           background: rgba(26, 26, 26, 0.5);
+          width: 100%;
+          height: 100%;
         }
 
         .showcase-image-wrapper:hover {
@@ -540,7 +560,8 @@ function DesignShowcaseSection() {
 
         .showcase-img {
           width: 100%;
-          height: auto;
+          height: 100%;
+          object-fit: cover;
           display: block;
           border-radius: 20px;
           position: relative;
@@ -573,34 +594,51 @@ function DesignShowcaseSection() {
           display: none;
         }
 
-        /* Mobile responsiveness - 3 columns */
+        /* Mobile responsiveness - optimized for better image fitting */
         @media (max-width: 768px) {
           .showcase-grid {
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 10px;
+          }
+
+          .showcase-item {
+            aspect-ratio: 9 / 16;
           }
 
           .showcase-image-wrapper {
-            border-radius: 12px;
+            border-radius: 10px;
           }
 
           .showcase-img {
-            border-radius: 12px;
+            border-radius: 10px;
+            object-fit: cover;
           }
         }
 
         @media (max-width: 480px) {
           .showcase-grid {
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            gap: 6px;
+          }
+
+          .showcase-item {
+            aspect-ratio: 9 / 16;
           }
 
           .design-showcase-section {
-            padding: 40px 12px;
+            padding: 40px 8px;
           }
 
           .showcase-content {
-            gap: 30px;
+            gap: 25px;
+          }
+
+          .showcase-image-wrapper {
+            border-radius: 8px;
+          }
+
+          .showcase-img {
+            border-radius: 8px;
           }
         }
 
