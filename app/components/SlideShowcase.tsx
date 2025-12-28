@@ -16,9 +16,13 @@ export default function SlideShowcase() {
         <MarketOpportunitySection />
         <ShopWhatYouSeeSection />
         <OutfitManagementSection />
+        <CreatorEconomySection />
         <TryOnSection />
         <BrandPartnershipSection />
+        <CleanEatsFoodSection />
+        <EntertainmentSceneShoppingSection />
         <VideoScannerSection />
+        <ShopifyIntegrationSection />
         <ClothingBrandSection />
         <ChallengesSection />
         <AIChatModelSection />
@@ -534,7 +538,6 @@ function DesignShowcaseSection() {
           position: relative;
           opacity: 0;
           animation: fadeInUp 0.6s ease-out forwards;
-          aspect-ratio: 9 / 16;
         }
 
         .showcase-image-wrapper {
@@ -546,8 +549,6 @@ function DesignShowcaseSection() {
             0 0 0 1px rgba(255, 255, 255, 0.1);
           transition: all 0.4s ease;
           background: rgba(26, 26, 26, 0.5);
-          width: 100%;
-          height: 100%;
         }
 
         .showcase-image-wrapper:hover {
@@ -560,8 +561,8 @@ function DesignShowcaseSection() {
 
         .showcase-img {
           width: 100%;
-          height: 100%;
-          object-fit: cover;
+          height: auto;
+          object-fit: contain;
           display: block;
           border-radius: 20px;
           position: relative;
@@ -601,17 +602,12 @@ function DesignShowcaseSection() {
             gap: 10px;
           }
 
-          .showcase-item {
-            aspect-ratio: 9 / 16;
-          }
-
           .showcase-image-wrapper {
             border-radius: 10px;
           }
 
           .showcase-img {
             border-radius: 10px;
-            object-fit: cover;
           }
         }
 
@@ -619,10 +615,6 @@ function DesignShowcaseSection() {
           .showcase-grid {
             grid-template-columns: repeat(3, 1fr);
             gap: 6px;
-          }
-
-          .showcase-item {
-            aspect-ratio: 9 / 16;
           }
 
           .design-showcase-section {
@@ -2438,6 +2430,345 @@ function OutfitManagementSection() {
   );
 }
 
+function CreatorEconomySection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="creator-economy-section">
+      <div className="creator-economy-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          Creator <span className="highlight">Economy</span>
+        </h2>
+
+        <p className={`section-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          Turn your users into your marketing team
+        </p>
+
+        <div className={`creator-flow ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+          <div className="flow-step">
+            <div className="step-badge">01</div>
+            <div className="step-icon">📸</div>
+            <h3>Upload Your Fits</h3>
+            <p>Incentivize users to upload their outfit photos and style combinations to share with the community</p>
+            <div className="step-connector"></div>
+          </div>
+
+          <div className="flow-step">
+            <div className="step-badge">02</div>
+            <div className="step-icon">💰</div>
+            <h3>70/30 Revenue Split</h3>
+            <p>When someone buys a product through a user&apos;s upload, split the affiliate commission 70/30 - you keep 70%</p>
+            <div className="step-connector"></div>
+          </div>
+
+          <div className="flow-step">
+            <div className="step-badge">03</div>
+            <div className="step-icon">🤝</div>
+            <h3>Community Marketing</h3>
+            <p>Transform your user base into active promoters who earn while helping others discover great fashion</p>
+          </div>
+        </div>
+
+        <div className={`ai-wardrobe-box ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
+          <div className="wardrobe-header">
+            <span className="wardrobe-icon">🤖</span>
+            <h3>AI Wardrobe Integration</h3>
+          </div>
+          <div className="wardrobe-content">
+            <div className="wardrobe-step">
+              <div className="step-number">1</div>
+              <div className="step-text">
+                <h4>Upload Existing Closet</h4>
+                <p>Users upload photos of items they already own to build their digital wardrobe</p>
+              </div>
+            </div>
+            <div className="wardrobe-step">
+              <div className="step-number">2</div>
+              <div className="step-text">
+                <h4>AI-Powered Recommendations</h4>
+                <p>&quot;You already own these jeans—buy this shirt to complete the look&quot;</p>
+              </div>
+            </div>
+            <div className="wardrobe-step">
+              <div className="step-number">3</div>
+              <div className="step-text">
+                <h4>High-Value Personalization</h4>
+                <p>Maximize conversions by suggesting items that complement what users already have</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .creator-economy-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          background: linear-gradient(180deg, rgba(229, 9, 20, 0.03) 0%, rgba(0,0,0,0) 50%, rgba(229, 9, 20, 0.03) 100%);
+        }
+
+        .creator-economy-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+        }
+
+        .section-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 700px;
+          opacity: 0;
+        }
+
+        .creator-flow {
+          display: flex;
+          gap: 0;
+          width: 100%;
+          opacity: 0;
+          position: relative;
+        }
+
+        .flow-step {
+          flex: 1;
+          position: relative;
+          padding: 40px 30px;
+          background: transparent;
+          border-left: 4px solid rgba(229, 9, 20, 0.3);
+          transition: all 0.4s ease;
+        }
+
+        .flow-step:first-child {
+          border-left: none;
+        }
+
+        .flow-step:hover {
+          background: rgba(229, 9, 20, 0.05);
+          border-left-color: ${colors.netflixRed};
+        }
+
+        .flow-step:hover .step-badge {
+          transform: scale(1.2) rotate(360deg);
+          box-shadow: 0 0 40px rgba(229, 9, 20, 0.8);
+        }
+
+        .step-badge {
+          position: absolute;
+          top: -15px;
+          left: 20px;
+          width: 50px;
+          height: 50px;
+          background: ${colors.netflixRed};
+          color: ${colors.white};
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.2rem;
+          font-weight: 900;
+          box-shadow: 0 4px 20px rgba(229, 9, 20, 0.5);
+          transition: all 0.5s ease;
+          z-index: 2;
+        }
+
+        .step-icon {
+          font-size: 4rem;
+          margin-bottom: 20px;
+          display: block;
+        }
+
+        .flow-step h3 {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .flow-step p {
+          font-size: 1.05rem;
+          color: ${colors.textLight};
+          line-height: 1.7;
+          margin: 0;
+        }
+
+        .step-connector {
+          position: absolute;
+          top: 10px;
+          right: -30px;
+          width: 60px;
+          height: 2px;
+          background: linear-gradient(90deg, rgba(229, 9, 20, 0.5), transparent);
+          z-index: 1;
+        }
+
+        .flow-step:last-child .step-connector {
+          display: none;
+        }
+
+        .ai-wardrobe-box {
+          width: 100%;
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(26, 26, 26, 0.9) 100%);
+          border: 2px solid ${colors.netflixRed};
+          border-radius: 24px;
+          padding: 40px;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 20px 60px rgba(229, 9, 20, 0.4);
+          opacity: 0;
+        }
+
+        .wardrobe-header {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          margin-bottom: 32px;
+          justify-content: center;
+        }
+
+        .wardrobe-icon {
+          font-size: 3rem;
+        }
+
+        .wardrobe-header h3 {
+          font-size: clamp(1.5rem, 3vw, 2rem);
+          font-weight: 800;
+          color: ${colors.white};
+          margin: 0;
+        }
+
+        .wardrobe-content {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
+        .wardrobe-step {
+          display: flex;
+          gap: 20px;
+          align-items: flex-start;
+          background: rgba(0, 0, 0, 0.3);
+          padding: 24px;
+          border-radius: 16px;
+          border: 1px solid rgba(229, 9, 20, 0.2);
+          transition: all 0.3s ease;
+        }
+
+        .wardrobe-step:hover {
+          border-color: rgba(229, 9, 20, 0.5);
+          background: rgba(0, 0, 0, 0.5);
+        }
+
+        .step-number {
+          flex-shrink: 0;
+          width: 48px;
+          height: 48px;
+          background: ${colors.netflixRed};
+          color: ${colors.white};
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+          font-weight: 900;
+        }
+
+        .step-text h4 {
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin: 0 0 8px 0;
+        }
+
+        .step-text p {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        @media (max-width: 768px) {
+          .creator-economy-section {
+            padding: clamp(60px, 10vw, 80px) clamp(20px, 4vw, 24px);
+          }
+
+          .creator-flow {
+            flex-direction: column;
+          }
+
+          .flow-step {
+            border-left: none;
+            border-top: 4px solid rgba(229, 9, 20, 0.3);
+            padding: 50px 20px 30px 20px;
+          }
+
+          .flow-step:first-child {
+            border-top: none;
+          }
+
+          .step-badge {
+            left: 50%;
+            transform: translateX(-50%);
+          }
+
+          .step-connector {
+            display: none;
+          }
+
+          .ai-wardrobe-box {
+            padding: clamp(24px, 5vw, 40px);
+          }
+
+          .wardrobe-step {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
 function TryOnSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -3729,6 +4060,798 @@ function BrandPartnershipSection() {
 
         .stat-label {
           font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function CleanEatsFoodSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="clean-eats-section">
+      <div className="clean-eats-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          Clean Eats & <span className="highlight">Food Scanner</span>
+        </h2>
+
+        <p className={`section-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          From nutrition scanning to instant grocery cart checkout
+        </p>
+
+        <div className={`food-timeline ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+          <div className="timeline-item left">
+            <div className="timeline-dot">🛒</div>
+            <div className="timeline-content">
+              <h3>Instacart/Amazon Fresh Integration</h3>
+              <p>When users scan a recipe or ingredient, add a &quot;Buy Ingredients&quot; button that fills a cart on Instacart. Affiliate payout on groceries is volume-based and very steady.</p>
+            </div>
+          </div>
+
+          <div className="timeline-item right">
+            <div className="timeline-dot">🥗</div>
+            <div className="timeline-content">
+              <h3>Diet-Specific Filters <span className="premium-badge">PREMIUM</span></h3>
+              <p>Charge a premium for &quot;Keto,&quot; &quot;Vegan,&quot; or &quot;Gluten-Free&quot; specific scans that filter out non-compliant foods automatically</p>
+            </div>
+          </div>
+
+          <div className="timeline-item left">
+            <div className="timeline-dot">📊</div>
+            <div className="timeline-content">
+              <h3>Nutritional Insights</h3>
+              <p>Advanced scanning technology provides detailed nutritional information and healthier alternatives</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <style jsx>{`
+        .clean-eats-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(229, 9, 20, 0.05) 50%, rgba(0,0,0,0) 100%);
+        }
+
+        .clean-eats-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+        }
+
+        .section-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 700px;
+          opacity: 0;
+        }
+
+        .food-timeline {
+          position: relative;
+          width: 100%;
+          opacity: 0;
+          padding: 40px 0;
+        }
+
+        .food-timeline::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 0;
+          bottom: 0;
+          width: 4px;
+          background: linear-gradient(180deg, transparent, ${colors.netflixRed}, transparent);
+          transform: translateX(-50%);
+        }
+
+        .timeline-item {
+          position: relative;
+          margin-bottom: 60px;
+          display: flex;
+          align-items: center;
+          gap: 40px;
+        }
+
+        .timeline-item.left {
+          justify-content: flex-end;
+        }
+
+        .timeline-item.right {
+          justify-content: flex-start;
+          flex-direction: row-reverse;
+        }
+
+        .timeline-dot {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80px;
+          height: 80px;
+          background: ${colors.dark};
+          border: 4px solid ${colors.netflixRed};
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2.5rem;
+          box-shadow: 0 0 40px rgba(229, 9, 20, 0.6);
+          z-index: 2;
+          transition: all 0.4s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+          transform: translateX(-50%) scale(1.2);
+          box-shadow: 0 0 60px rgba(229, 9, 20, 0.9);
+        }
+
+        .timeline-content {
+          flex: 0 0 40%;
+          background: rgba(26, 26, 26, 0.8);
+          padding: 30px;
+          border-radius: 20px;
+          border: 2px solid rgba(229, 9, 20, 0.2);
+          backdrop-filter: blur(10px);
+          transition: all 0.4s ease;
+        }
+
+        .timeline-item:hover .timeline-content {
+          border-color: ${colors.netflixRed};
+          background: rgba(26, 26, 26, 0.95);
+          transform: translateY(-5px);
+        }
+
+        .timeline-content h3 {
+          font-size: 1.4rem;
+          font-weight: 800;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .premium-badge {
+          display: inline-block;
+          background: ${colors.netflixRed};
+          padding: 4px 12px;
+          border-radius: 12px;
+          font-size: 0.7rem;
+          margin-left: 8px;
+          vertical-align: middle;
+        }
+
+        .timeline-content p {
+          font-size: 1.05rem;
+          color: ${colors.textLight};
+          line-height: 1.7;
+          margin: 0;
+        }
+
+        @media (max-width: 768px) {
+          .food-timeline::before {
+            left: 30px;
+          }
+
+          .timeline-item {
+            flex-direction: column !important;
+            align-items: flex-start;
+            padding-left: 100px;
+          }
+
+          .timeline-item.left,
+          .timeline-item.right {
+            justify-content: flex-start;
+          }
+
+          .timeline-dot {
+            left: 30px;
+            transform: translateX(0);
+            width: 60px;
+            height: 60px;
+            font-size: 2rem;
+          }
+
+          .timeline-item:hover .timeline-dot {
+            transform: scale(1.1);
+          }
+
+          .timeline-content {
+            flex: 1;
+            width: 100%;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function EntertainmentSceneShoppingSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="entertainment-section">
+      <div className="entertainment-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          Entertainment <span className="highlight">Scene Shopping</span>
+        </h2>
+
+        <p className={`section-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          Shop the furniture, fashion, and props from your favorite movies and games
+        </p>
+
+        <div className={`scene-features ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+          <div className="scene-card large">
+            <div className="scene-icon">🎬</div>
+            <h3>Scene-Level Product Recognition</h3>
+            <p>Use TMDB/Twitch data to identify not just the movie, but the furniture, sneakers, or clothing in specific scenes. High-ticket items like designer chairs or limited edition sneakers have much higher affiliate payouts than a $4 movie rental.</p>
+          </div>
+
+          <div className="scene-features-grid">
+            <div className="scene-card">
+              <div className="scene-icon">🪑</div>
+              <h3>Furniture & Decor</h3>
+              <p>Identify and shop high-value furniture pieces from movie sets</p>
+            </div>
+
+            <div className="scene-card">
+              <div className="scene-icon">👟</div>
+              <h3>Fashion & Accessories</h3>
+              <p>Find exact clothing, shoes, and accessories worn by characters</p>
+            </div>
+
+            <div className="scene-card">
+              <div className="scene-icon">🎮</div>
+              <h3>Gaming Gear</h3>
+              <p>Discover and purchase equipment, collectibles, and gaming accessories</p>
+            </div>
+          </div>
+        </div>
+
+        <div className={`payout-comparison ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
+          <h3>💰 Commission Comparison</h3>
+          <div className="comparison-grid">
+            <div className="comparison-item low">
+              <div className="item-type">Movie Rental</div>
+              <div className="commission-amount">$0.40</div>
+              <div className="commission-desc">10% of $4 rental</div>
+            </div>
+            <div className="comparison-vs">vs</div>
+            <div className="comparison-item high">
+              <div className="item-type">Designer Chair</div>
+              <div className="commission-amount">$80</div>
+              <div className="commission-desc">8% of $1,000 furniture</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .entertainment-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          background: radial-gradient(circle at 50% 50%, rgba(229, 9, 20, 0.08) 0%, transparent 70%);
+        }
+
+        .entertainment-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+        }
+
+        .section-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 700px;
+          opacity: 0;
+        }
+
+        .scene-features {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          opacity: 0;
+        }
+
+        .scene-card {
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(40, 40, 40, 0.6) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.2);
+          border-radius: 20px;
+          padding: 32px 28px;
+          text-align: center;
+          transition: all 0.4s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .scene-card.large {
+          padding: 40px 32px;
+        }
+
+        .scene-card:hover {
+          transform: translateY(-8px);
+          border-color: ${colors.netflixRed};
+          box-shadow: 0 20px 60px rgba(229, 9, 20, 0.4);
+        }
+
+        .scene-icon {
+          font-size: 3.5rem;
+          margin-bottom: 16px;
+        }
+
+        .scene-card h3 {
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .scene-card p {
+          font-size: 1.05rem;
+          color: ${colors.textLight};
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .scene-features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 24px;
+        }
+
+        .payout-comparison {
+          width: 100%;
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(26, 26, 26, 0.9) 100%);
+          border: 2px solid ${colors.netflixRed};
+          border-radius: 24px;
+          padding: 40px;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 20px 60px rgba(229, 9, 20, 0.4);
+          opacity: 0;
+        }
+
+        .payout-comparison h3 {
+          font-size: clamp(1.5rem, 3vw, 2rem);
+          font-weight: 800;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0 0 32px 0;
+        }
+
+        .comparison-grid {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 32px;
+          flex-wrap: wrap;
+        }
+
+        .comparison-item {
+          flex: 1;
+          min-width: 200px;
+          padding: 32px 24px;
+          border-radius: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .comparison-item.low {
+          background: rgba(255, 255, 255, 0.05);
+          border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-item.high {
+          background: rgba(229, 9, 20, 0.2);
+          border: 2px solid ${colors.netflixRed};
+        }
+
+        .item-type {
+          font-size: 1.1rem;
+          color: ${colors.textLight};
+          font-weight: 600;
+        }
+
+        .commission-amount {
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
+          font-weight: 900;
+          color: ${colors.white};
+        }
+
+        .comparison-item.high .commission-amount {
+          color: ${colors.netflixRed};
+          text-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+        }
+
+        .commission-desc {
+          font-size: 0.95rem;
+          color: ${colors.textLight};
+        }
+
+        .comparison-vs {
+          font-size: 2rem;
+          font-weight: 900;
+          color: ${colors.white};
+          padding: 0 16px;
+        }
+
+        @media (max-width: 768px) {
+          .scene-features-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .comparison-grid {
+            flex-direction: column;
+          }
+
+          .comparison-vs {
+            transform: rotate(90deg);
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function ShopifyIntegrationSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="shopify-section">
+      <div className="shopify-content">
+        <h2 className={`section-title ${isVisible ? 'animate-in' : ''}`}>
+          <span className="highlight">Shopify</span> B2B Integration
+        </h2>
+
+        <p className={`section-subtitle ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          Bring virtual try-on directly to clothing brand e-commerce stores
+        </p>
+
+        <div className={`shopify-logo-container ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.2s' }}>
+          <svg className="shopify-logo" viewBox="0 0 108 124" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M95.5 20.1C95.4 19.7 95.1 19.5 94.7 19.5L90.8 19.4C90.4 19.4 89.8 18.8 89.6 18.4L87.2 14.2C86.9 13.7 86.3 13.7 86 13.8L82.5 15.3C81.8 13 80.6 10.6 78.5 8.5C75.1 5.1 70.5 3.3 65.4 3.4C64.9 3.4 64.4 3.4 64 3.5C63.5 2.3 62.7 1.3 61.6 0.5C59.3 -1.2 56.4 -0.2 56.2 -0.1L55.6 0.1C55.2 0.3 54.8 0.5 54.5 0.8L54.4 0.9C53.1 2.1 52.3 3.8 52.2 5.6C52.1 10 54.4 13.7 57.4 16.1C57.2 17.5 56.8 19.3 56.2 21.4C54.9 25.7 52.8 31.1 49.9 37.3C44.1 31.5 39.4 28.2 35.9 27.5C33.6 27 32.1 27.2 31.2 27.6C31.1 27.6 31 27.7 30.9 27.7L30.6 28C30.5 28.1 30.4 28.3 30.3 28.4C29.6 29.7 29.5 31.9 30.8 35.5C32 38.8 34.7 42.9 39 47.7C37.7 51.3 36.1 55.8 34.2 60.9C28.7 75 22.8 90.6 17.4 101.2L17.3 101.4C17.2 101.6 17.1 101.8 17 102L16.9 102.3C16.7 102.9 16.7 103.4 16.8 103.8L16.9 104.1C17.1 104.8 17.6 105.3 18.3 105.6L18.8 105.7C19.5 105.9 20.2 105.7 20.8 105.4L21.1 105.2L21.4 105L21.7 104.7L108 20.9C108.1 20.8 108.2 20.6 108.3 20.5L108.4 20.2C108.5 20 108.5 19.7 108.5 19.5V19.2L108.4 18.9C108.3 18.6 108.1 18.4 107.9 18.2L95.5 20.1Z" fill="${colors.netflixRed}"/>
+          </svg>
+        </div>
+
+        <div className={`integration-features ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+          <div className="integration-card">
+            <div className="card-icon">🔌</div>
+            <h3>Shopify App Integration</h3>
+            <p>One-click installation that adds virtual try-on functionality to any Shopify clothing store. Seamlessly integrates with existing product catalogs.</p>
+          </div>
+
+          <div className="integration-card">
+            <div className="card-icon">👔</div>
+            <h3>Virtual Try-On Widget</h3>
+            <p>Customers can try outfits on themselves before purchasing. Reduces returns by 40% and increases conversion rates by up to 60%.</p>
+          </div>
+
+          <div className="integration-card">
+            <div className="card-icon">📊</div>
+            <h3>Analytics & Insights</h3>
+            <p>Brands get detailed analytics on try-on engagement, popular items, and conversion data to optimize their inventory and marketing.</p>
+          </div>
+        </div>
+
+        <div className={`pricing-model ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
+          <h3>💼 B2B Revenue Model</h3>
+          <div className="pricing-tiers">
+            <div className="tier-card">
+              <div className="tier-name">Starter</div>
+              <div className="tier-price">$99<span>/month</span></div>
+              <div className="tier-desc">Up to 1,000 try-ons/month</div>
+            </div>
+            <div className="tier-card featured">
+              <div className="tier-badge">Most Popular</div>
+              <div className="tier-name">Professional</div>
+              <div className="tier-price">$299<span>/month</span></div>
+              <div className="tier-desc">Up to 10,000 try-ons/month + Advanced analytics</div>
+            </div>
+            <div className="tier-card">
+              <div className="tier-name">Enterprise</div>
+              <div className="tier-price">Custom</div>
+              <div className="tier-desc">Unlimited try-ons + White-label + API access</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .shopify-section {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          background: linear-gradient(180deg, rgba(229, 9, 20, 0.03) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        .shopify-content {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0;
+          opacity: 0;
+        }
+
+        .highlight {
+          color: ${colors.netflixRed};
+        }
+
+        .section-subtitle {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          color: ${colors.textLight};
+          text-align: center;
+          margin: -20px 0 0 0;
+          max-width: 700px;
+          opacity: 0;
+        }
+
+        .shopify-logo-container {
+          opacity: 0;
+        }
+
+        .shopify-logo {
+          width: clamp(80px, 15vw, 120px);
+          height: auto;
+          filter: drop-shadow(0 8px 24px rgba(229, 9, 20, 0.5));
+          transition: transform 0.3s ease;
+        }
+
+        .shopify-logo:hover {
+          transform: scale(1.1);
+        }
+
+        .integration-features {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 24px;
+          width: 100%;
+          opacity: 0;
+        }
+
+        .integration-card {
+          background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(40, 40, 40, 0.6) 100%);
+          border: 2px solid rgba(229, 9, 20, 0.2);
+          border-radius: 20px;
+          padding: 32px 24px;
+          text-align: center;
+          transition: all 0.4s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .integration-card:hover {
+          transform: translateY(-8px);
+          border-color: ${colors.netflixRed};
+          box-shadow: 0 20px 60px rgba(229, 9, 20, 0.4);
+        }
+
+        .card-icon {
+          font-size: 3rem;
+          margin-bottom: 16px;
+        }
+
+        .integration-card h3 {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin: 0 0 12px 0;
+        }
+
+        .integration-card p {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .pricing-model {
+          width: 100%;
+          background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(26, 26, 26, 0.9) 100%);
+          border: 2px solid ${colors.netflixRed};
+          border-radius: 24px;
+          padding: 40px;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 20px 60px rgba(229, 9, 20, 0.4);
+          opacity: 0;
+        }
+
+        .pricing-model h3 {
+          font-size: clamp(1.5rem, 3vw, 2rem);
+          font-weight: 800;
+          color: ${colors.white};
+          text-align: center;
+          margin: 0 0 40px 0;
+        }
+
+        .pricing-tiers {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 24px;
+        }
+
+        .tier-card {
+          background: rgba(0, 0, 0, 0.3);
+          border: 2px solid rgba(229, 9, 20, 0.2);
+          border-radius: 20px;
+          padding: 32px 24px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+          position: relative;
+          transition: all 0.3s ease;
+        }
+
+        .tier-card:hover {
+          transform: translateY(-8px);
+          border-color: ${colors.netflixRed};
+        }
+
+        .tier-card.featured {
+          border-color: ${colors.netflixRed};
+          background: rgba(229, 9, 20, 0.1);
+        }
+
+        .tier-badge {
+          position: absolute;
+          top: -12px;
+          background: ${colors.netflixRed};
+          color: ${colors.white};
+          padding: 6px 16px;
+          border-radius: 20px;
+          font-size: 0.85rem;
+          font-weight: 700;
+        }
+
+        .tier-name {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: ${colors.white};
+          margin-top: 8px;
+        }
+
+        .tier-price {
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
+          font-weight: 900;
+          color: ${colors.netflixRed};
+          text-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+        }
+
+        .tier-price span {
+          font-size: 1.2rem;
+          color: ${colors.textLight};
+        }
+
+        .tier-desc {
+          font-size: 1rem;
+          color: ${colors.textLight};
+          text-align: center;
+          line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+          .integration-features {
+            grid-template-columns: 1fr;
+          }
+
+          .pricing-tiers {
+            grid-template-columns: 1fr;
+          }
         }
       `}</style>
     </section>
