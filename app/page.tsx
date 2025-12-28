@@ -147,7 +147,7 @@ export default function HomePage() {
           <div className="divider"></div>
 
           <section className="gallery-section">
-            <h2 className="section-title">Gallery</h2>
+            <h2 className="section-title">Me 🫠</h2>
             <div className="photo-grid">
               <div className="photo-card">
                 <Image
