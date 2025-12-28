@@ -723,8 +723,30 @@ function FeaturesSection() {
           <div className="screenshot-item">
             <div className="screenshot-wrapper">
               <Image
-                src={getAssetPath("/6.png")}
-                alt="Feature 1"
+                src={getAssetPath("/1.jpg")}
+                alt="Find Similar Products"
+                width={220}
+                height={440}
+                className="app-screenshot"
+              />
+            </div>
+          </div>
+          <div className="screenshot-item">
+            <div className="screenshot-wrapper">
+              <Image
+                src={getAssetPath("/2.jpg")}
+                alt="Digital Closet & Outfits"
+                width={220}
+                height={440}
+                className="app-screenshot"
+              />
+            </div>
+          </div>
+          <div className="screenshot-item">
+            <div className="screenshot-wrapper">
+              <Image
+                src={getAssetPath("/3.jpg")}
+                alt="Image Search Feature"
                 width={220}
                 height={440}
                 className="app-screenshot"
@@ -735,7 +757,18 @@ function FeaturesSection() {
             <div className="screenshot-wrapper">
               <Image
                 src={getAssetPath("/5.png")}
-                alt="Feature 2"
+                alt="App Features Overview"
+                width={220}
+                height={440}
+                className="app-screenshot"
+              />
+            </div>
+          </div>
+          <div className="screenshot-item">
+            <div className="screenshot-wrapper">
+              <Image
+                src={getAssetPath("/4.jpg")}
+                alt="Mini Apps"
                 width={220}
                 height={440}
                 className="app-screenshot"
