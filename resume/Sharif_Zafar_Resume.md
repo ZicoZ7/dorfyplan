@@ -6,23 +6,20 @@ GitHub: github.com/zicoz7
 X/Twitter: x.com/Zicozafar79
 Portfolio: https://zicoz7.github.io/dorfyplan/
 
-SUMMARY
-================================================================================
+## SUMMARY
 Full-stack developer with hands-on experience building production mobile and
 web applications using React Native (Expo), Next.js, TypeScript, and modern
 backend technologies. Strong focus on shipping real products with clean
 architecture and excellent user experiences.
 
-TECHNICAL SKILLS
-================================================================================
+## TECHNICAL SKILLS
 • Languages: JavaScript, TypeScript, Python, Swift, Go (learning)
 • Mobile:React Native, Expo
 • Frontend:React, Next.js, CSS-in-JS
 • Backend:Node.js, REST APIs
 • Database: PostgreSQL (familiar), Redis (familiar)
 • DevOps & Tools: Docker, Git, Vercel
-• WORK EXPERIENCE & PROJECTS
-================================================================================
+## WORK EXPERIENCE & PROJECTS
 
 Dorfy Mobile App | Full-Stack Developer 
 Community Platform | React Native (Expo)
@@ -56,12 +53,10 @@ AI Platform | React, Next.js, TypeScript | Python
 • Collaborated with distributed team on feature development
 
 
-EDUCATION
-================================================================================
+## EDUCATION
 Self-taught Developer | Focus on Modern Web & Mobile Technologies
 
-KEY ACHIEVEMENTS
-================================================================================
+## KEY ACHIEVEMENTS
 • Shipped production mobile app to Google Play Store serving real users
 • Built end-to-end features from concept to deployment in fast-paced
   environment
