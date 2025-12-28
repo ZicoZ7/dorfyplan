@@ -126,7 +126,7 @@ function IntroSection() {
         </h1>
 
         <p className={`intro-description ${isVisible ? 'animate-in' : ''}`} style={{ animationDelay: '0.2s' }}>
-          A community hub where you can see what everyone&apos;s watching, playing, and wearing.
+          A community hub where you can see what everyone&apos;s watching, playing, and wearing. Discover similar products, build outfits, and shop the look across multiple platforms - all in one app.
         </p>
 
         <div className={`content-wrapper ${isVisible ? 'fade-in' : ''}`} style={{ animationDelay: '0.4s' }}>
