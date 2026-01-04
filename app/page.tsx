@@ -89,7 +89,12 @@ export default function HomePage() {
             <h2 className="section-title">Work Experience & Projects</h2>
 
             <div className="project-grid">
-              <Link href="/mobile-app" className="project-card">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.sharifzafar.dorfy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-card"
+              >
                 <div className="project-logo">
                   <Image
                     src={getAssetPath("/dofylogogo.png")}
@@ -100,8 +105,8 @@ export default function HomePage() {
                 </div>
                 <h3>Dorfy Mobile App</h3>
                 <p>Community hub for fashion, entertainment & shopping</p>
-                <div className="visit-indicator">View Showcase →</div>
-              </Link>
+                <div className="visit-indicator">View on Play Store →</div>
+              </a>
 
               <a
                 href="https://zicoz7.github.io/demo_heroxshorts2/Home/"
