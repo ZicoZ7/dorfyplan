@@ -54,7 +54,7 @@ AI Platform | React, Next.js, TypeScript | Python
 
 
 ## EDUCATION
-Self-taught Developer | Focus on Modern Web & Mobile Technologies
+Self-taught Developer with 2 years experience | Focus on Modern Web & Mobile Technologies
 
 ## KEY ACHIEVEMENTS
 • Shipped production mobile app to Google Play Store serving real users
