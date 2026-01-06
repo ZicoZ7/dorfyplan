@@ -143,7 +143,7 @@ export default function HomePage() {
                 </div>
                 <h3>Pollinations.ai</h3>
                 <p className="opensource-tag">Open-source AI for people who make things (Work Experience) </p>
-                <p className="project-desc">A community-driven platform where developers, artists, and tinkerers build together. No gatekeeping, no corporate nonsense — just good tools and good people.</p>
+                <p className="project-desc">A community-driven platform where developers, artists, and tinkerers build together. No gatekeeping, no corporate nonsense, just good tools and good people.</p>
                 <div className="visit-indicator">Visit Site →</div>
               </a>
             </div>
